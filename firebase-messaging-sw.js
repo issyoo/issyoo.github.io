@@ -11,9 +11,21 @@ const firebaseApp = initializeApp({
     storageBucket: "em-issyoo.appspot.com",
     messagingSenderId: "33480809995",
     appId: "1:33480809995:web:74df1e056f7638d0b5310e",
-    measurementId: "G-C64NWHRT0Y"
+    measurementId: "G-C64NWHRT0Y",
 });
 
 // Retrieve an instance of Firebase Messaging so that it can handle background
 // messages.
 const messaging = getMessaging(firebaseApp);
+onBackgroundMessage(messaging, (payload) => {
+  console.log('[firebase-messaging-sw.js] Received background message ', payload);
+  // Customize notification here
+  const notificationTitle = 'Background Message Title';
+  const notificationOptions = {
+    body: 'Background Message body.',
+    icon: '/firebase-logo.png'
+  };
+
+  self.registration.showNotification(notificationTitle,
+    notificationOptions);
+});
