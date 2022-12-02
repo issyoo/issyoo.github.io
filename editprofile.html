@@ -1,0 +1,583 @@
+
+<head>
+
+  <title>Edit profile | Issyoo</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="theme-color" content="#000">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+
+  <link rel="stylesheet" 
+
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Nunito:ital,wght@1,700&family=Patrick+Hand&family=Quicksand:wght@700&display=swap">
+
+  <style>
+
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@600&display=swap');
+
+</style>
+
+  <style>
+
+    *{
+
+      font-family: 'Poppins';
+
+      }
+
+    #theme1 *{
+
+      color: #000;
+
+      }
+
+     #theme2 *{
+
+      color: pink;
+
+    }
+
+    body{
+
+      padding:0;
+
+      margin:0;
+
+      }
+
+  select,  input{
+border: solid 2px;
+border-radius: 22px;
+outline:none;
+padding:7px;
+}
+
+  button {
+  position: relative;
+ 
+  overflow: hidden;
+  border: none;
+ 
+  border-radius: 15px;
+
+  width: 40vw;
+
+  }
+.option{
+  margin: 4vw;
+  padding: 5vw;
+  }
+  #theme1 button {
+
+  background-color: #fff;
+
+  }
+
+  
+  #theme2 button {
+
+  background-color: #000;
+
+  }
+
+  
+    #progg{
+
+  height: 12px;
+
+  width: 10vw;
+
+  position: absolute;
+
+  top:0;
+
+  left:0;
+
+  background-color:#000;
+
+  animation: load 3s infinite;
+
+}
+    #theme1 #progg{
+      //background-color: blue;
+      }
+    #theme2 #progg{
+    //  background-color: red;
+      }
+
+@keyframes load{
+
+  from{left:0}
+
+  to{left:90vw}
+
+}
+
+    #container{
+      margin-top: 60px;
+}
+    .div{
+      position: relative;
+  padding: 12px;
+  overflow: hidden;
+  margin:0;
+  transition: background 400ms;
+      }
+    span.ripple {
+
+  position: absolute;
+
+  border-radius: 50%;
+
+  transform: scale(0);
+
+  animation: ripple 600ms linear;
+
+  background-color: rgba(5, 5, 5, 0.2);
+
+ 
+
+}
+
+@keyframes ripple {
+
+  to {
+
+    transform: scale(4);
+
+    opacity: 0;
+
+  }
+
+}
+    #pPic{
+      height: 70px;
+      width: 70px;
+      border-radius: 50%;
+      justify-content: center;
+      margin-left: 40vw;
+      }
+#pedit{
+height: 55px;
+width:55px;
+border-radius: 55px;
+}
+#upprogress{
+      background-color:red;
+      height: 5px;
+      width: 0;
+      transition: all ease 0.3s;
+      }
+    #pst{
+      position: fixed;
+      top:0;
+      width: 100vw;
+      height: 100vh;
+      }
+    #theme1 #pst{
+      background-color: #fff;
+      color: #fff;
+      }
+    #theme2 #pst{
+      background-color: rgb(255,251,251);
+      }
+  </style>
+
+</head>
+
+<body>
+
+<div id="progg"></div>
+
+  <button id="issyoo" onclick="window.open('/','_self')"style="width: auto;">issyoo</button>
+<div id="container">
+<img id="pPic"> <button id='pedit' onclick='createRipple()' class="material-symbols-outlined">add_photo_alternate</button>
+ <div class="div"><span class="material-symbols-outlined">person</span> <span>Name: </span><input type= "text" id="name"></div>
+ <div class="div"><span class="material-symbols-outlined" id="gender_sym"></span> <span>Gender: </span><select id="gender"><option value=null>Not prefer to answer</option><option value='male'>Male</option><option value='female'>Female</option></select></div>
+ <div class="div"><span class="material-symbols-outlined">cake</span> <span>D.O.B.: </span><input type="date" id="dob"></div>
+  </div>
+<button class="option" onclick="history.back(); createRipple()">Cancel</button>
+<button class="option" id='save' onclick="createRipple()">Save</button>
+<div id="inpBox">
+<div id="pst" hidden>
+<span id="name"></span>
+<label id="extlab"></label>
+<div id="cover">
+<div id="upprogress"></div></div><br>
+<button id="dbtn" class="material-symbols-outlined">close</button>
+<div id='atch'></div>
+<button id="send" class="material-symbols-outlined">send</button>
+ </div>
+</body>
+
+ <script type='module'>
+
+  // Import the functions you need from the SDKs you need
+
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-app.js";
+
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-analytics.js";
+
+  // TODO: Add SDKs for Firebase products that you want to use
+
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
+  const firebaseConfig = {
+
+    apiKey: "AIzaSyAN-X9u7n7QnM8RLrVV4YnXq2MmVz6WNfw",
+
+    authDomain: "em-issyoo.firebaseapp.com",
+
+    projectId: "em-issyoo",
+
+    storageBucket: "em-issyoo.appspot.com",
+
+    messagingSenderId: "33480809995",
+
+    appId: "1:33480809995:web:74df1e056f7638d0b5310e",
+
+    measurementId: "G-C64NWHRT0Y"
+
+  };
+
+  // Initialize Firebase
+
+  const app = initializeApp(firebaseConfig);
+
+  const analytics = getAnalytics(app);
+
+  
+
+  import{
+
+      getFirestore,Timestamp , doc, getDoc, getDocs, limit, orderBy, query, where, setDoc, collection, addDoc, updateDoc, deleteDoc, deleteField, onSnapshot, arrayUnion
+
+  }from "https://www.gstatic.com/firebasejs/9.9.3/firebase-firestore.js";
+
+  import { getAuth, signInWithPopup,signInWithEmailAndPassword, createUserWithEmailAndPassword, GoogleAuthProvider , signOut
+
+  } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js";
+import { getStorage, ref as sRef, uploadBytesResumable , getDownloadURL
+  } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-storage.js";
+  const auth = getAuth();
+  const db = getFirestore();
+  const storage = getStorage();
+      var files = [];
+
+      var namebox = document.getElementById("name");
+      var extlab = document.getElementById("extlab");
+      var proglab = document.getElementById("upprogress");
+      var upBtn = document.getElementById("upbtn");
+      var dBtn = document.getElementById("dbtn");
+      var reader = new FileReader();
+      var inpt = document.createElement("input");
+      inpt.type = "file";
+      inpt.accept = 'image/*';
+      var pst = document.getElementById("pst");
+      var url = "";
+
+        inpt.onchange = e =>{
+        files = e.target.files;
+        var extension = GetFileExt(files[0]);
+        var name = GetFileName(files[0]);
+        namebox.innerHTML = name;
+        extlab.innerHTML = extension;
+        reader.readAsDataURL(files[0]);
+
+        
+//document.getElementById("attach").style.display = 'none';
+      document.getElementById("send").hidden = false;
+     // document.getElementById("inp").hidden = false;
+      }
+
+      reader.onload = function (){
+     var ftg = document.createElement('img');
+        ftg.setAttribute("src",  reader.result);
+       ftg.setAttribute("id", "ifr");
+        document.getElementById("atch").appendChild(ftg);
+        ftg.style.maxHeight = "75px";
+         ftg.style.maxWidth = "75px;";
+       document.getElementById("pst").hidden = false;
+      }
+
+  function clk(){
+    inpt.click();
+  }
+   function GetFileExt(file){
+    var temp = file.name.split('.');
+    var ext = temp.slice((temp.length-1),(temp.length));
+    return '.' + ext[0];
+    }
+
+    function GetFileName(file){
+    var temp = file.name.split("0");
+    var fname = temp.slice(0,-1).join('.');
+    return fname;
+    }
+
+   async function UploadProcess() { 
+document.getElementById("send").style.display = 'none';
+//document.getElementById("inp").hidden = true;
+    var ImgToUpload = files [0];
+var ImgName = namebox.innerHTML + extlab.innerHTML;
+const metaData = {
+contentType: ImgToUpload.type
+}
+
+const stroageRef = sRef(storage, "Images/"+ Timestamp.fromDate(new Date()).toMillis().toString());
+const UploadTask = uploadBytesResumable (stroageRef, ImgToUpload, metaData);
+UploadTask.on('state-changed', (snapshot) =>{ 
+var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+if( progress != 100){
+proglab.style.width = ( progress * 80 / 100 ) + "vw";
+proglab.innerHTML = progress + '%...';
+}
+else{
+}
+},
+(error) =>{
+alert("error in uploading image: " + error);
+},
+() => {
+  getDownloadURL(UploadTask.snapshot.ref).then((downloadURL) => {
+    SaveDownloadURL(downloadURL);
+  })
+}
+);
+}
+   
+   async function SaveDownloadURL(url){
+  var name = namebox.innerHTML;
+  var ext = extlab.innerHTML;
+var uid = sessionStorage.getItem("uid");
+const q = query(collection(db, "People"), where("Uid", "==", uid));
+const querySnapshot = await getDocs(q);
+querySnapshot.forEach((doc) => {
+  // doc.data() is never undefined for query doc snapshots
+  console.log(doc.id, " => ", doc.data());
+  updatePic('People' , doc.id, url);
+});
+const qe = query(collection(db, "Public"), where("Uid", "==", uid), where('Type', '==', 'user'));
+const querySnapshote = await getDocs(qe);
+querySnapshote.forEach((doc) => {
+  // doc.data() is never undefined for query doc snapshots
+  console.log(doc.id, " => ", doc.data());
+  updatePic('Public' , doc.id, url);
+});
+    console.log("true");
+cancelUp();
+  }
+    function cancelUp(){
+      proglab.style.width = 0;
+      extlab.innerHTML = "";
+      namebox.innerHTML = "";
+      document.getElementById("send").style.display = '';
+    //  document.getElementById("attach").style.display = 'flex';
+      document.getElementById("pst").hidden = true;
+      document.getElementById("ifr").remove();
+    }
+document.getElementById("dbtn").addEventListener("click", cancelUp);
+   document.getElementById("pedit").addEventListener("click", clk);
+   document.getElementById("send").addEventListener("click", UploadProcess);
+
+   async function updatePic(coll , did, url){
+   const profRef = doc(db, coll, did);
+
+// Set the "capital" field of the city 'DC'
+await updateDoc(profRef, {
+  Pic: url
+});
+}
+
+      async function Check_login_data(){
+
+var uid = sessionStorage.getItem("uid");
+
+var q = query(collection(db, "People"), where("Uid", "==", uid));
+
+const querySnapshot = await getDocs(q);
+
+querySnapshot.forEach((doc) => {
+
+  // doc.data() is never undefined for query doc snapshots
+  const name = doc.data().Name;
+  const dob = doc.data().Dob;
+  const gender = doc.data().Gender;
+  const pPic = doc.data().Pic;
+  document.getElementById("name").value = name;
+  if(!!gender){
+  document.getElementById("gender_sym").textContent = gender;
+  document.getElementById("gender").value = gender;
+    }
+  if(!!dob){
+  document.getElementById("dob").value = dob;}
+  if(!!pPic){
+  document.getElementById("pPic").setAttribute("src", pPic);}
+  document.getElementById("progg").hidden = true;
+});
+ }
+
+    Check_login_data()
+
+ async function saveData(){
+var uid = sessionStorage.getItem("uid");
+
+var q = query(collection(db, "People"), where("Uid", "==", uid));
+
+const querySnapshot = await getDocs(q);
+
+querySnapshot.forEach((doc) => {
+console.log('id sending: ', doc.id);
+    UpdateData(doc.id);
+});
+}
+async function UpdateData(did){
+console.log('id got: ', did);
+await updateDoc(doc(db, 'People', did), {
+    Name: document.getElementById("name").value,
+  Gender: document.getElementById("gender").value,
+  Dob: document.getElementById("dob").value,
+});
+console.log('going back...');
+history.back();
+}
+document.getElementById("save").addEventListener("click", saveData);
+async function Signout(){
+
+signOut(auth).then(() => {
+
+  
+
+  sessionStorage.removeItem("uid");
+
+  sessionStorage.removeItem("anonymous");
+
+  //alert(" Sign-out successful.");
+
+  window.open("/signin", "_self");
+
+}).catch((error) => {
+
+  alert(" An error happened.");
+
+});
+
+  }
+
+ 
+
+  
+
+</script>
+
+<script>
+
+  var uid = sessionStorage.getItem("uid");
+
+  if(uid){
+
+     console.log(uid);
+
+    }
+
+  else{ window.open("/signin", "_self")}
+
+  var gen = localStorage.getItem("Gen");
+
+  function getColor(){
+
+    if(gen == "theme1"){
+
+      var color = "rgb(25,125,255)";
+
+      document.body.id = "theme1";
+
+      document.querySelector('#issyoo').style.color = 'rgb(22,122,222)';
+
+      }
+
+    else{ var color = "rgb(255,195,195)";
+
+        document.body.id = "theme2";
+
+         document.querySelector('#issyoo').style.color = 'rgb(222,190,190)';
+
+        }
+
+    changeThemeColor(color);
+
+    
+
+    }
+
+  function changeThemeColor(color) {
+
+    var metaThemeColor = document.querySelector("meta[name=theme-color]");
+
+    metaThemeColor.setAttribute("content", color);
+
+  }
+
+  getColor();
+
+  function nav(){
+
+ var dash = document.getElementById("nav");
+
+  if(dash.style.width == ""){
+
+    dash.style.width = "200px";
+
+  }
+
+  else{
+
+    dash.style.width = "";
+
+  }
+
+}
+  function createRipple() {
+
+  const button = event.currentTarget;
+
+  const circle = document.createElement("span");
+
+  const diameter = Math.max(button.clientWidth, button.clientHeight);
+
+  const radius = diameter / 2;
+
+  circle.style.width = circle.style.height = `${diameter}px`;
+
+  circle.style.left = `${event.clientX - button.offsetLeft - radius}px`;
+
+  circle.style.top = `${event.clientY - button.offsetTop - radius}px`;
+
+  circle.classList.add("ripple");
+
+  const ripple = button.getElementsByClassName("ripple")[0];
+
+  if (ripple) {
+
+    ripple.remove();
+
+  }
+
+  button.appendChild(circle);
+
+}
+
+const buttons = document.getElementsByClassName("input");
+
+for (const button of buttons) {
+
+  button.addEventListener("click", createRipple);
+
+}
+  </script>

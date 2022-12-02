@@ -1,0 +1,161 @@
+<head>
+<title>Theme</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#000">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Nunito:ital,wght@1,700&family=Patrick+Hand&family=Quicksand:wght@700&display=swap">
+  <style>
+*{
+  font-family: "Poppins";
+  }
+    #proof{
+      background-color: #fff;
+      height: 120px;
+      width: 120px;
+      padding: 2px;
+      border: #000 solid;
+      margin: 5px;
+      }
+    .head{
+      height: 36px;
+      width: 110px;
+      padding: 5px;
+      border-radius: 10px;
+      background-color: #000;
+      }
+     #proof .head{
+      color: white;
+      }
+
+     #blackpink{
+      color: pink;
+      background-color: #fff;
+      height: 120px;
+      width: 120px;
+      padding: 2px;
+      border: #000 solid;
+      margin: 5px;
+     }
+     #blackpink .head{
+       color: pink;
+     }
+      .body{
+       background-color: rgb(200,200,200);
+       margin: 7px;
+       }
+      #blackpink .body{
+       background-color: #000;
+       }
+    </style>
+  <body>
+  <p id='currentTheme'></p>
+  <p>  Please select a theme. </p>
+  <div style="display:flex;">
+  <div id="proof" onclick="theme1()">
+    <div class="head">Theme 1</div>
+    <div class="body">Name:</div>
+    <div class="body">Proof</div>
+    </div>
+<div id="blackpink" onclick="theme2()">
+    <div class="head">Theme 2</div>
+    <div class="body">Name:</div>
+    <div class="body">BlackPink</div>
+    </div>
+  </div>
+  </body>
+    <script>
+  function theme1(){
+    localStorage.setItem("Gen", "theme1");
+    }
+  function theme2(){
+    localStorage.setItem("Gen", "theme2");
+    }
+      var gen = localStorage.getItem("Gen");
+      function getColor(){
+    if(gen == "theme1"){
+      document.body.id = "theme1";
+      document.getElementById('currentTheme').innerHTML = 'Current Theme : Proof.';
+      }
+    else{
+        document.body.id = "theme2";
+        document.getElementById('currentTheme').innerHTML = 'Current Theme : BlackPink.';
+        }
+    }
+  getColor();
+var uid = sessionStorage.getItem("uid");
+  if(uid){
+     console.log(uid);
+    }
+  else{ window.open("/signin", "_self")}
+
+      </script>
+<script type="module">
+
+  // Import the functions you need from the SDKs you need
+
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-app.js";
+
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-analytics.js";
+
+  // TODO: Add SDKs for Firebase products that you want to use
+
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
+  const firebaseConfig = {
+
+    apiKey: "AIzaSyAN-X9u7n7QnM8RLrVV4YnXq2MmVz6WNfw",
+
+    authDomain: "em-issyoo.firebaseapp.com",
+
+    projectId: "em-issyoo",
+
+    storageBucket: "em-issyoo.appspot.com",
+
+    messagingSenderId: "33480809995",
+
+    appId: "1:33480809995:web:74df1e056f7638d0b5310e",
+
+    measurementId: "G-C64NWHRT0Y"
+
+  };
+
+  // Initialize Firebase
+
+  const app = initializeApp(firebaseConfig);
+
+  const analytics = getAnalytics(app);
+import {getFirestore, collection, query, where, getDocs, doc, updateDoc } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-firestore.js";
+import { getAuth} from "https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js";
+
+  const db = getFirestore();
+  const auth = getAuth();
+
+async function saveData(){
+document.getElementById('currentTheme').innerHTML = 'Updating theme...';
+var uid = sessionStorage.getItem("uid");
+
+var q = query(collection(db, "People"), where("Uid", "==", uid));
+
+const querySnapshot = await getDocs(q);
+
+querySnapshot.forEach((doc) => {
+console.log('id sending: ', doc.id);
+    UpdateData(doc.id, this.id);
+});
+}
+async function UpdateData(did, theme){
+console.log('id got: ', did);
+await updateDoc(doc(db, 'People', did), {
+    Theme: theme
+});
+console.log('going back...');
+history.back();
+}
+
+document.getElementById("proof").addEventListener("click", saveData);
+document.getElementById("blackpink").addEventListener("click", saveData);
+</script>

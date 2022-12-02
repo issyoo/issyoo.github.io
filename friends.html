@@ -1,0 +1,749 @@
+<head>
+
+  <title>people</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="theme-color" content="rgb(200,205,255)">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+
+  <link rel="stylesheet" 
+
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Nunito:ital,wght@1,700&family=Patrick+Hand&family=Quicksand:wght@700&display=swap">
+
+  <style>
+
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@600&display=swap');
+
+</style>
+
+  <style>
+
+    *{
+
+      font-family: 'Poppins';
+
+      }
+
+    #theme1{
+
+      color: rgb(22,122,222);
+
+      }
+
+     #theme2{
+
+      color: rgb(255,181,182);
+
+    }
+
+    body{
+
+      padding:0;
+
+      margin:0;
+
+      }
+
+  button {
+
+  padding: 10px;
+
+  border: none;
+
+  border-radius: 15px;
+
+transition: all ease 0.21s;
+
+  }
+
+    img{
+
+      border-radius: 100%;
+
+      }
+
+  #theme1 button {
+
+  background-color: rgb(22,122,222,0);
+
+  }
+
+  #theme1 button:active {
+
+  background-color: rgb(22,122,222,0.1);
+
+  }
+
+  #theme2 button {
+
+  background-color: rgb(222,192,192,0);
+
+  }
+
+  #theme2 button:active {
+
+  background-color: rgb(222,192,192,0.2);
+
+  }
+
+    #menu{
+
+      width: 100vw;
+
+      height: 48px;
+
+      align-items: stretch;
+
+  position: fixed;
+
+  bottom: 0;
+
+  display: flex;
+
+  overflow: hidden;
+
+  flex-direction: row;
+
+  flex-wrap: nowrap;
+
+      border-top: solid;
+
+      }
+
+    #menu button {
+
+      min-width: 25vw;
+
+      }
+
+    #issyoo{
+
+      font-family: 'Dancing Script', cursive;
+
+      padding: 10px;
+
+      font-size: 25px;
+
+      font-weight:900;
+
+      position: absolute;
+
+      right: 10px;
+
+      }
+
+    #nav{
+
+  box-shadow: 2px 2px 2px rgb(0,0,0,0.2);
+
+  height: 100vh;
+
+  width:0;
+
+  position: fixed;
+
+  padding-top: 30px;
+
+  top: 0;
+
+  left:0;
+
+  transition: width ease 0.21s;
+
+  overflow-x: hidden;
+
+}
+
+#theme1 #menu {
+
+      background-color: rgb(235,242,255);
+
+      }
+
+    #theme2 #menu{
+
+      background-color: rgb(255,234,235);
+
+      }
+
+    #theme1 #menu button{
+
+      color: rgb(22,129,222);
+
+      }
+
+    #theme2 #menu button{
+
+      color: rgb(255,199,199);
+
+      }
+
+#dash{
+
+  -webkit-appearance : none
+
+}
+
+[for = 'dash']{
+
+  position: absolute;
+
+  z-index: 2;
+
+  border-radius: 100%;
+
+}
+
+    #nav button {
+
+      width: 180px;
+
+      border-radius: 0 25px 25px 0;
+
+      box-shadow: 2px 2px 2px rgb(0,0,0,0.2);
+
+      }
+
+    #explore_field{
+
+      position: absolute;
+
+      bottom: 50px;
+
+      width: 90vw;
+
+      margin-left: 2vw;
+
+      height: 35vh;
+
+      border: solid 1px;
+
+      border-radius: 15px;
+
+      overflow: scroll;
+
+      }
+
+    #explore div{
+
+      padding: 5px;
+
+     // border: solid 1px;
+
+      width: 90vw;
+
+      margin: 10px;
+
+      }
+
+    #explore div:active {
+
+      background-color: rgb(0,0,0,0.1);
+
+      }
+
+#progg{
+
+  height: 2px;
+
+  width: 10vw;
+
+  position: absolute;
+
+  top:0;
+
+  left:0;
+
+  background-color:red;
+
+  animation: load 3s infinite;
+
+}
+
+    #theme1 #progg{
+
+      background-color: blue;
+
+      }
+
+    #theme2 #progg{
+
+      background-color: red;
+
+      }
+
+@keyframes load{
+
+  from{left:0}
+
+  to{left:90vw}
+
+}
+
+    .namebox{
+
+      background-color: #fff;
+
+      font-weight: 900;
+
+      border: none;
+
+      border-radius: 10px;
+
+      padding: 10px;
+
+      text-align: center;
+
+      padding: 10px;
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      }
+
+    #theme1 .namebox{
+
+      box-shadow: 5px 5px 15px rgb(22,122,222,0.2);
+
+      }
+
+    #theme2 .namebox{
+
+      box-shadow: 5px 5px 15px rgb(222,190,190,0.5);
+
+      }
+
+    #viewer{
+
+      margin: auto;
+
+      position: absolute;
+
+      left: 0;
+
+      right:0;
+
+      top:0;
+
+      bottom:0;
+
+      height: 315px;
+
+      width:280px;
+
+      display: flex;
+
+      flex-direction: column;
+
+      justify-content: center;
+
+      align-items: center;
+
+      }
+
+  </style>
+
+</head>
+
+<body>
+
+<div id="progg"></div>
+
+     <button id="back" onclick="history.back()" class="material-symbols-outlined">arrow_back</button>
+
+ 
+
+  
+
+    
+
+  <div id="explore"></div>
+
+ 
+
+  </body>
+
+ <script type="module">
+
+  // Import the functions you need from the SDKs you need
+
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-app.js";
+
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-analytics.js";
+
+  // TODO: Add SDKs for Firebase products that you want to use
+
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
+  const firebaseConfig = {
+
+    apiKey: "AIzaSyAN-X9u7n7QnM8RLrVV4YnXq2MmVz6WNfw",
+
+    authDomain: "em-issyoo.firebaseapp.com",
+
+    projectId: "em-issyoo",
+
+    storageBucket: "em-issyoo.appspot.com",
+
+    messagingSenderId: "33480809995",
+
+    appId: "1:33480809995:web:74df1e056f7638d0b5310e",
+
+    measurementId: "G-C64NWHRT0Y"
+
+  };
+
+  // Initialize Firebase
+
+  const app = initializeApp(firebaseConfig);
+
+  const analytics = getAnalytics(app);
+
+  
+
+  import{
+
+      getFirestore,Timestamp , doc, getDoc, getDocs, limit, orderBy, query, where, setDoc, collection, addDoc, updateDoc, deleteDoc, deleteField, onSnapshot, arrayUnion
+
+  }from "https://www.gstatic.com/firebasejs/9.9.3/firebase-firestore.js";
+
+  import { getAuth, signInWithPopup,signInWithEmailAndPassword, createUserWithEmailAndPassword, GoogleAuthProvider , signOut
+
+  } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js";
+
+ 
+
+  const auth = getAuth();
+
+  const db = getFirestore();
+
+//import { collection, getDocs } from "firebase/firestore";
+
+async function getRequested(){
+
+  var uid = sessionStorage.getItem("uid");
+
+const querySnapshot = await getDocs(collection(db, "Private","friends", uid));
+
+var request;
+
+querySnapshot.forEach((doc) => {
+
+  // doc.data() is never undefined for query doc snapshots
+
+request = doc.data().OtherUid;
+printData(request);
+  });
+      }
+   
+async function printData(request){
+  const docRef = doc(db, "Explore", request);
+
+const doc = await getDoc(docRef);
+
+if (doc.exists()) {
+
+  console.log("Document data:", doc.data());
+
+
+
+  console.log(doc.id, " => ", doc.data());
+
+document.getElementById("progg").hidden= true;
+
+  var box = document.getElementById("explore");
+
+  var namebox = document.createElement("div");
+
+  var phto = document.createElement("img");
+
+  if(!!doc.data().Pic){
+
+  phto.src = doc.data().Pic;}
+
+  else{
+
+    phto.src = "https://firebasestorage.googleapis.com/v0/b/em-issyoo.appspot.com/o/Screenshot_2022-09-22-14-28-40-452-edit_com.android.chrome.jpg?alt=media&token=aa6e0aba-df6d-4b12-8761-6ca2cc118d2a";
+
+    }
+
+  namebox.appendChild(phto);
+
+  phto.style.width = "30px";
+
+  namebox.setAttribute("class", "namebox");
+
+  
+
+  box.appendChild(namebox);
+
+    
+
+  
+
+  var namer = document.createElement("span");
+
+  namebox.appendChild(namer);
+
+  namer.textContent = doc.data().Name;
+
+  namebox.id = doc.id;
+
+  namebox.onclick = ViewProfile;
+
+  
+
+ var namebtn = document.createElement("button");
+
+  namebtn.textContent = "View Profile";
+
+  namebox.appendChild(namebtn);
+
+} else {
+
+  // doc.data() will be undefined in this case
+
+  console.log("No such document!");
+
+}
+
+     
+
+ }
+
+  async function ViewProfile(){
+
+     console.log("viewProfile");
+
+   const docRef = doc(db, "Explore", this.id);
+
+const docSnap = await getDoc(docRef);
+
+if (docSnap.exists()) {
+
+  console.log("Document data:", docSnap.data());
+
+var viewer = document.createElement("div");
+
+  viewer.setAttribute("id", "viewer");
+
+  viewer.setAttribute("class", "namebox");
+
+  document.body.appendChild(viewer);
+
+  var close = document.createElement("button");
+
+  close.textContent = "close";
+
+  
+
+  close.onclick = closeBox;
+
+  close.style.float = "right";
+
+  var pic = document.createElement("img");
+
+  var vPic = docSnap.data().Pic;
+
+  ;
+
+  viewer.appendChild(pic)
+
+  if(!!vPic){
+
+  pic.setAttribute("src", vPic);}else{
+
+    pic.src = "https://firebasestorage.googleapis.com/v0/b/em-issyoo.appspot.com/o/Screenshot_2022-09-22-14-28-40-452-edit_com.android.chrome.jpg?alt=media&token=aa6e0aba-df6d-4b12-8761-6ca2cc118d2a";
+
+    }
+
+  var name = document.createElement("div");
+
+  viewer.appendChild(name);
+
+  name.textContent = docSnap.data().Name;
+
+  var phone = document.createElement("div");
+
+  var vPhone = docSnap.data().Phone;
+
+  if(!!vPhone){
+
+  phone.textContent = vPhone;
+
+  viewer.appendChild(phone);}
+
+  var email = document.createElement("div");
+
+  var vEmail = docSnap.data().Email;
+
+  if(!!vEmail){
+
+  email.textContent = vEmail;
+
+  viewer.appendChild(email);}
+
+  var btn = document.createElement("button");
+
+  btn.id= docSnap.data().Uid;
+
+  btn.onclick = SendRequest;
+
+  btn.textContent = "Request Friend";
+
+  viewer.appendChild(btn);
+
+  viewer.appendChild(close);
+
+} else {
+
+  // doc.data() will be undefined in this case
+
+  console.log("No such document!");
+
+}
+
+   }
+
+function closeBox(){
+
+  this.parentElement.remove();
+
+  }
+
+   async function SendRequest(){
+
+     var myUid = sessionStorage.getItem("uid");
+
+     const docRef = await setDoc(doc(db, "Private", "friends", myUid , this.id), {
+
+  Status: "pending",
+
+  MyUid: myUid,
+
+  OtherUid: this.id,
+
+  Sender: true
+
+});
+
+     
+
+     const docref = await setDoc(doc(db, "Private", "friends", this.id , myUid), {
+
+  Status: "pending",
+
+  MyUid: this.id,
+
+  OtherUid: myUid,
+
+  Sender: false
+
+});
+
+     
+
+     location.reload();
+
+     }
+
+   
+
+async function Signout(){
+
+signOut(auth).then(() => {
+
+  
+
+  sessionStorage.removeItem("uid");
+
+  sessionStorage.removeItem("anonymous");
+
+  //alert(" Sign-out successful.");
+
+  window.open("/signin", "_self");
+
+}).catch((error) => {
+
+  alert(" An error happened.");
+
+});
+
+  }
+
+ 
+
+  getRequested();
+
+  
+
+</script>
+
+<script>
+
+  var uid = sessionStorage.getItem("uid");
+
+  if(uid){
+
+     console.log(uid);
+
+    }
+
+  else{ 
+
+    
+
+    window.open("/signin", "_self")}
+
+  var gen = localStorage.getItem("Gen");
+
+  function getColor(){
+
+    if(gen == "theme1"){
+
+      var color = "rgb(25,125,255)";
+
+      document.body.id = "theme1";
+
+      document.querySelector('#back').style.color = 'rgb(22,122,222)';
+
+      }
+
+    else{ var color = "rgb(255,195,195)";
+
+        document.body.id = "theme2";
+
+         document.querySelector('#back').style.color = 'rgb(222,190,190)';
+
+        }
+
+    changeThemeColor(color);
+
+    
+
+    }
+
+  function changeThemeColor(color) {
+
+    var metaThemeColor = document.querySelector("meta[name=theme-color]");
+
+    metaThemeColor.setAttribute("content", color);
+
+  }
+
+  getColor();
+
+  
+
+  
+
+  </script>

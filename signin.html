@@ -1,0 +1,389 @@
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#000">
+  <title>Sign in | Issyoo</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <link rel="stylesheet" 
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Nunito:ital,wght@1,700&family=Patrick+Hand&family=Quicksand:wght@700&display=swap">
+  <style>
+    *{
+      font-family: 'Poppins';
+      }
+    body{
+      margin:0;
+      padding:0;
+      display:flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(-20deg, #fff 80%,#000 1%);
+      }
+    input{
+    outline: none;
+    margin-bottom: 10px;
+    font-weight: 900;
+    border: none;
+    color: #000;
+    border-bottom: solid 3px;
+    font-size: 22px;
+    width: 270px;
+    text-align: center;
+  }
+ p{
+font-size: 99px;
+font-weight: 700;
+color:#fff;
+mix-blend-mode: difference;
+}
+ a{
+   color: #000;
+   text-align:center;
+}
+    #theme2 input{
+      border-bottom: solid 5px rgb(255,192,192);
+      }
+      button {
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    color: #000;
+    font-size: 17px;
+    background: transparent;
+  }
+    #theme2 button{
+     // color: rgb(255,192,193);
+      }
+      button:active{
+    background-color: rgb(200,205,255,0.2);
+  }
+#theme2 button:active{
+   // background-color: rgb(255,192,192,0.2);
+  }
+    #fieldset{
+      border: none;
+      border-top: 1px solid gray;
+      border-bottom: 1px solid gray;
+      margin-top: 19px;
+      }
+    .auth{
+      margin-top: 19px;
+      border-radius: 60%;
+      box-shadow: 2px 2px 2px rgb(0,0,0,0.2), inset 2px 1px 1px rgb(0,0,0,0.2);
+      }
+  /*  .loader {
+    margin: auto;
+    position: absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    max-width: 200px;
+    max-height: 200px;
+    border-radius: 50%;
+    background: linear-gradient(#f07e6e, #84cdfa, #5ad1cd);
+    animation: animate 1.2s linear infinite;
+    
+}
+
+@keyframes animate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.loader span {
+    position: absolute ;
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    background: linear-gradient(#f07e6e, #84cdfa, #5ad1cd);
+}
+
+.loader div:nth-child(1) {
+    filter: blur(5px);
+}
+
+.loader div:nth-child(2) {
+    filter: blur(10px);
+}
+
+.loader div:nth-child(3) {
+    filter: blur(25px);
+}
+
+.loader span:nth-child(4) {
+    filter: blur(50px);
+}
+
+.loader:after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    background: #353535;
+    border: solid #000 10px;
+    border-radius: 50%;
+}*/
+#wrapper{
+  position: fixed;
+  top:0;
+  width: 100vw;
+  height: 100vh;
+  border:solid;
+  background-color: #000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+.loader {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      position: relative;
+      animation: rotate 1s linear infinite
+    }
+    .loader::before {
+      content: "";
+      box-sizing: border-box;
+      position: absolute;
+      inset: 0px;
+      border-radius: 50%;
+      border: 5px solid #FFF;
+      animation: prixClipFix 2s linear infinite ;
+    }
+
+    @keyframes rotate {
+      100%   {transform: rotate(360deg)}
+    }
+
+    @keyframes prixClipFix {
+        0%   {clip-path:polygon(50% 50%,0 0,0 0,0 0,0 0,0 0)}
+        25%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 0,100% 0,100% 0)}
+        50%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,100% 100%,100% 100%)}
+        75%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 100%)}
+        100% {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 0)}
+    }
+    @media screen and (max-width: 500px){
+        
+        
+      }
+    
+  </style>
+</head>
+<body oncontextmenu="return false">
+    <p>Sign In </p>
+    <label for="acc">Email: </label>
+    <input id="acc" type="email">
+    <label for="pass">Password: </label>
+    <input id="pass" type="password"> <br>
+   <span> <button id="cancel" onclick="history.back();">Cancel</button>
+    <button id="newuser" onclick="window.open('/newuser', '_self')">New User</button>
+    <button id="login">Log in</button></span>
+  <span hidden><button id="googleAuth" class='auth'>  <img style="width: 25px;" src="/281764.png"></button>
+  <button onclick='window.open("/phone.html","_self")' class='material-symbols-outlined auth'>phone</button></span>
+   <span> <a href='/resetpassword.html'>Reset Password</a><br>
+    <a href="/privacy.html">Privacy Policy</a>
+    <a href ="/terms.html">Terms and Conditions</a></span>
+  <div id="wrapper" hidden>
+<div class="loader">
+    </div></div>
+</body>
+<script type="module">
+
+  // Import the functions you need from the SDKs you need
+
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-app.js";
+  
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-analytics.js";
+
+  // TODO: Add SDKs for Firebase products that you want to use
+
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
+  const firebaseConfig = {
+
+    apiKey: "AIzaSyAN-X9u7n7QnM8RLrVV4YnXq2MmVz6WNfw",
+
+    authDomain: "em-issyoo.firebaseapp.com",
+
+    projectId: "em-issyoo",
+
+    storageBucket: "em-issyoo.appspot.com",
+
+    messagingSenderId: "33480809995",
+
+    appId: "1:33480809995:web:74df1e056f7638d0b5310e",
+
+    measurementId: "G-C64NWHRT0Y"
+
+  };
+
+  // Initialize Firebase
+
+  const app = initializeApp(firebaseConfig);
+  
+  const analytics = getAnalytics(app);
+  import{
+      getFirestore,Timestamp , doc, getDoc, getDocs, limit, orderBy, query, where, setDoc, collection, addDoc, updateDoc, deleteDoc, deleteField, onSnapshot, arrayUnion
+  }from "https://www.gstatic.com/firebasejs/9.9.3/firebase-firestore.js";
+  import { getAuth,setPersistence, browserLocalPersistence, signInWithPopup,signInWithEmailAndPassword,FacebookAuthProvider, GithubAuthProvider, createUserWithEmailAndPassword, GoogleAuthProvider , signInAnonymously, onAuthStateChanged,multiFactor,PhoneAuthProvider,getMultiFactorResolver, PhoneMultiFactorGenerator,
+    RecaptchaVerifier, signOut
+  } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js";
+  const auth = getAuth();
+  const db = getFirestore();
+
+  //declaration of variable 
+  var password = document.getElementById("pass");
+  var email = document.getElementById("acc");
+  var uid = "";
+   async function SignWithEmail(){
+     document.getElementById("wrapper").style.display = 'flex';
+     setPersistence(auth, browserLocalPersistence)
+  .then(() => {
+    // Existing and future Auth states are now persisted in the current
+    // session only. Closing the window would clear any existing state even
+    // if a user forgets to sign out.
+    // ...
+    // New sign-in will be persisted with session persistence.
+    return signInWithEmailAndPassword(auth, email.value, password.value);
+  })
+  .then((userCredential) => {
+    // Signed in 
+    //alert("Signed in successfully");
+    const user = userCredential.user;
+    console.log(user);
+    localStorage.setItem("uid", user.uid);
+    GetUserName(user.uid);
+    sessionStorage.setItem("anonymous", user.isAnonymous);
+    // ...
+  //  showUserDetails(user);
+  })
+  .catch(function (error) {
+        if (error.code == 'auth/multi-factor-auth-required') {
+            const resolver = getMultiFactorResolver(auth, error);
+            // Ask user which second factor to use.
+            if (resolver.hints[selectedIndex].factorId ===
+                PhoneMultiFactorGenerator.FACTOR_ID) {
+                const phoneInfoOptions = {
+                    multiFactorHint: resolver.hints[selectedIndex],
+                    session: resolver.session
+                };
+                const phoneAuthProvider = new PhoneAuthProvider(auth);
+                // Send SMS verification code
+                return phoneAuthProvider.verifyPhoneNumber(phoneInfoOptions, recaptchaVerifier)
+                    .then(function (verificationId) {
+                        // Ask user for the SMS verification code. Then:
+                        const cred = PhoneAuthProvider.credential(
+                            verificationId, prompt('verificationCode'));
+                        const multiFactorAssertion =
+                            PhoneMultiFactorGenerator.assertion(cred);
+                        // Complete sign-in.
+                        return resolver.resolveSignIn(multiFactorAssertion)
+                    })
+                    .then(function (userCredential) {
+                        // User successfully signed in with the second factor phone number.
+                    });
+            } else {
+                alert('Unsupported second factor.');
+            }
+        } else if (error.code == 'auth/wrong-password') {
+           alert(' wrong password.');
+           document.getElementById("wrapper").style.display = 'none';
+        }
+    const errorCode = error.code;
+    const errorMessage = error.message;
+       document.getElementById("wrapper").style.display = 'none';
+    alert(errorMessage);
+  });
+  }
+  
+  async function GetUserName(uid){
+   const q = query(collection(db, "Public"), where("Uid", "==", uid), where('Type', '==', 'user'));
+
+const querySnapshot = await getDocs(q);
+querySnapshot.forEach((doc) => {
+  // doc.data() is never undefined for query doc snapshots
+  console.log(doc.id, " => ", doc.data());
+localStorage.setItem("Name", doc.data().Name);
+  getTheme(uid);
+});
+   }
+  
+  async function SigninGoogle(){
+    document.getElementById("wrapper").hidden = false;
+    var provider = new GoogleAuthProvider();
+   signInWithPopup(auth, provider)
+  .then((result) => {
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    const credential = GoogleAuthProvider.credentialFromResult(result);
+    const token = credential.accessToken;
+    // The signed-in user info.
+     document.getElementById("wrapper").hidden = false;
+    const user = result.user;
+    Get_login_data(user);
+    // ...
+  }).catch((error) => {
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // The email of the user's account used.
+    const email = error.customData.email;
+    // The AuthCredential type that was used.
+    const credential = GoogleAuthProvider.credentialFromError(error);
+    alert( errorMessage);
+     document.getElementById("wrapper").hidden = true;
+  });
+  }
+  
+  async function Get_login_data(user){
+const q = query(collection(db, "Public"), where("Uid", "==", user.uid), where('Type', '==', 'user'));
+const unsubscribe = onSnapshot(q, (querySnapshot) => {
+  const myacc = [];
+  querySnapshot.forEach((doc) => {
+      myacc.push(doc.data().name);
+  });
+   if( myacc.length != 0){
+    localStorage.setItem("uid", user.uid);
+    if(user.isAnonymous){
+      localStorage.setItem("Name", "User");
+      }
+      else{
+    localStorage.setItem("Name", user.displayName);
+     }
+    sessionStorage.setItem("anonymous", user.isAnonymous);
+    history.back();
+     }
+     else{
+     }
+    });
+   }
+  
+  document.getElementById("googleAuth").addEventListener("click", SigninGoogle);
+  document.getElementById("login").addEventListener("click", SignWithEmail);
+  async function getTheme(id){
+const q = query(collection(db, "People"), where("Uid", "==", id));
+
+const querySnapshot = await getDocs(q);
+querySnapshot.forEach((doc) => {
+  // doc.data() is never undefined for query doc snapshots
+  console.log(doc.id, " => ", doc.data());
+  if(doc.data().Theme === 'blackpink'){
+  localStorage.setItem('Gen', 'theme2');
+  }
+  else{
+  localStorage.setItem('Gen', 'theme1');
+  }
+});
+history.back();
+}
+</script>
+ 

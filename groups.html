@@ -1,0 +1,484 @@
+<head>
+
+  <title>issyoo | channels</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="theme-color" content="#000">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+
+  <link rel="stylesheet" 
+
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Nunito:ital,wght@1,700&family=Patrick+Hand&family=Quicksand:wght@700&display=swap">
+
+  <style>
+
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@600&display=swap');
+
+</style>
+
+  <style>
+
+    *{
+
+      font-family: 'Poppins';
+
+      }
+
+    #theme1{
+
+      color: #000;
+
+      }
+
+     #theme2{
+
+      color: #000;
+
+    }
+
+    body{
+
+      padding:0;
+
+      margin:0;
+
+      }
+
+    
+
+  button {
+  position: relative;
+  overflow: hidden;
+  border: none;
+  }
+.option{
+  margin: 4vw;
+  padding: 5vw;
+  }
+  #theme1 button {
+
+  background-color: rgb(251,251,255);
+
+  }
+
+  
+  #theme2 button {
+
+  background-color: rgb(255,251,251);
+
+  }
+
+  
+    #progg{
+
+  height: 2px;
+
+  width: 10vw;
+
+  position: absolute;
+
+  top:0;
+
+  left:0;
+
+  background-color:red;
+
+  animation: load 3s infinite;
+
+}
+    #theme1 #progg{
+      background-color: blue;
+      }
+    #theme2 #progg{
+      background-color: red;
+      }
+
+@keyframes load{
+
+  from{left:0}
+
+  to{left:90vw}
+
+}
+
+    #menu{
+
+      width: 100vw;
+
+      height: 48px;
+
+      align-items: stretch;
+
+  position: fixed;
+
+  bottom: 0;
+
+  display: flex;
+
+  flex-direction: row;
+  
+  justify-content: space-between;
+
+  overflow-x: scroll;
+
+  overflow-y: hidden;
+
+      border-top: solid;
+
+      }
+
+    #menu button {
+     // min-width: 20vw;
+      }
+
+    #create{
+      padding: 12px;
+      font-size: 20px;
+      width: 100vw;
+      font-weight:300;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      }
+
+    #nav{
+  box-shadow: 2px 2px 2px rgb(0,0,0,0.2);
+  height: 100vh;
+  width:0;
+  position: fixed;
+  padding-top: 30px;
+  top: 0;
+  left:0;
+  transition: width ease 0.21s;
+  overflow-x: hidden;
+}
+
+#theme1 #menu {
+    //  background-color: rgb(251,251,255);
+      }
+    #theme2 #menu{
+     // background-color: rgb(255,251,251);
+      }
+    #theme1 #menu button{
+
+    //  color: rgb(22,129,222);
+
+      }
+
+    #theme2 #menu button{
+
+    //  color: rgb(255,199,199);
+
+      }
+
+#dash{
+
+  -webkit-appearance : none
+
+}
+
+[for = 'dash']{
+
+  position: absolute;
+
+  z-index: 2;
+
+  border-radius: 100%;
+
+}
+
+    #nav button {
+
+      width: 180px;
+
+      border-radius: 0 25px 25px 0;
+
+      box-shadow: 2px 2px 2px rgb(0,0,0,0.2);
+
+      }
+
+    #container{
+      margin-top: 60px;
+}
+    .div{
+      position: relative;
+  padding: 12px;
+  overflow: hidden;
+  margin:0;
+  transition: background 400ms;
+      }
+    span.ripple {
+
+  position: absolute;
+
+  border-radius: 50%;
+
+  transform: scale(0);
+
+  animation: ripple 600ms linear;
+
+  background-color: rgba(5, 5, 5, 0.2);
+
+ 
+
+}
+
+@keyframes ripple {
+
+  to {
+
+    transform: scale(4);
+
+    opacity: 0;
+
+  }
+
+}
+    #pPic{
+      max-height: 45px;
+      border-radius: 50%;
+      justify-content: center;
+      }
+
+@media only screen and (min-width: 600px) {
+     
+#menu{
+      margin: auto;
+      width: 400px;
+      height: 48px;
+      align-items: stretch;
+  position: fixed;
+  padding:0;
+  bottom: 0;
+  left:0;
+  right:0;
+  display: '';
+  flex-direction: row;
+  justify-content: space-between;
+  overflow-x: hidden;
+  align-items:center;
+  overflow-y: hidden;
+  border-top: solid rgb(99,99,99) 1px;
+  border-radius: 19px 19px 0 0;
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+
+<div id="progg"></div>
+
+  <button id="create" onclick="window.open('/chanel.html','_self'); createRipple()" hidden><span class="material-symbols-outlined"> add </span>  Create your channel</button>
+<div id="container"></div>
+   
+
+<div id="menu">
+  <button class="material-symbols-outlined" onclick="window.open('/chat','_self')">chat</button>
+  <button class="material-symbols-outlined">diversity_1</button>
+  <button class="material-symbols-outlined" onclick="window.open('/','_self')">home</button>
+  <button class="material-symbols-outlined" onclick="window.open('/profile','_self')">manage_accounts</button>
+  <button class="material-symbols-outlined"onclick="window.open('/dashboard','_self')">dashboard</button>
+  </div>
+
+</body>
+
+ <script type="module">
+
+  // Import the functions you need from the SDKs you need
+
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-app.js";
+
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-analytics.js";
+
+  // TODO: Add SDKs for Firebase products that you want to use
+
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
+  const firebaseConfig = {
+
+    apiKey: "AIzaSyAN-X9u7n7QnM8RLrVV4YnXq2MmVz6WNfw",
+
+    authDomain: "em-issyoo.firebaseapp.com",
+
+    projectId: "em-issyoo",
+
+    storageBucket: "em-issyoo.appspot.com",
+
+    messagingSenderId: "33480809995",
+
+    appId: "1:33480809995:web:74df1e056f7638d0b5310e",
+
+    measurementId: "G-C64NWHRT0Y"
+
+  };
+
+  // Initialize Firebase
+
+  const app = initializeApp(firebaseConfig);
+
+  const analytics = getAnalytics(app);
+
+  
+
+  import{
+
+      getFirestore,Timestamp , doc, getDoc, getDocs, limit, orderBy, query, where, setDoc, collection, addDoc, updateDoc, deleteDoc, deleteField, onSnapshot, arrayUnion
+
+  }from "https://www.gstatic.com/firebasejs/9.9.3/firebase-firestore.js";
+
+  import { getAuth, signInWithPopup,signInWithEmailAndPassword, createUserWithEmailAndPassword, GoogleAuthProvider , signOut
+
+  } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js";
+
+  const auth = getAuth();
+
+  const db = getFirestore();
+
+      
+
+      async function Check_login_data(){
+
+var uid = sessionStorage.getItem("uid");
+
+var q = query(collection(db, "People"), where("Uid", "==", uid));
+
+const querySnapshot = await getDocs(q);
+
+querySnapshot.forEach((doc) => {
+
+  // doc.data() is never undefined for query doc snapshots
+  const channel = doc.data().Chanel;
+  if(!!channel){
+  document.getElementById('create').style.display = 'initial';
+  document.getElementById('create').innerHTML = doc.data().Chanel + ' <span class="material-symbols-outlined" style="float: right;">arrow_forward_ios</span>' ;
+   }
+  else{document.getElementById('create').style.display = 'flex';}
+});
+
+      
+
+      }
+
+    Check_login_data()
+
+ 
+
+async function Signout(){
+
+signOut(auth).then(() => {
+
+  
+
+  sessionStorage.removeItem("uid");
+
+  sessionStorage.removeItem("anonymous");
+
+  //alert(" Sign-out successful.");
+
+  window.open("/signin.html", "_self");
+
+}).catch((error) => {
+
+  alert(" An error happened.");
+
+});
+
+  }
+
+ 
+
+  
+
+</script>
+
+<script>
+
+  var uid = sessionStorage.getItem("uid");
+
+  if(uid){
+
+     console.log(uid);
+
+    }
+
+  else{ window.open("/signin", "_self")}
+
+  var gen = localStorage.getItem("Gen");
+
+  function getColor(){
+
+    if(gen == "theme1"){
+
+      var color = "rgb(25,125,255)";
+
+      document.body.id = "theme1";
+
+      document.querySelector('#issyoo').style.color = 'rgb(22,122,222)';
+
+      }
+
+    else{ var color = "rgb(255,195,195)";
+
+        document.body.id = "theme2";
+
+         document.querySelector('#issyoo').style.color = 'rgb(222,190,190)';
+
+        }
+  }
+
+  getColor();
+
+  function nav(){
+
+ var dash = document.getElementById("nav");
+
+  if(dash.style.width == ""){
+
+    dash.style.width = "200px";
+
+  }
+
+  else{
+
+    dash.style.width = "";
+
+  }
+
+}
+  function createRipple() {
+
+  const button = event.currentTarget;
+
+  const circle = document.createElement("span");
+
+  const diameter = Math.max(button.clientWidth, button.clientHeight);
+
+  const radius = diameter / 2;
+
+  circle.style.width = circle.style.height = `${diameter}px`;
+
+  circle.style.left = `${event.clientX - button.offsetLeft - radius}px`;
+
+  circle.style.top = `${event.clientY - button.offsetTop - radius}px`;
+
+  circle.classList.add("ripple");
+  const ripple = button.getElementsByClassName("ripple")[0];
+  if (ripple) {
+    ripple.remove();
+  }
+  button.appendChild(circle);
+  }
+
+const buttons = document.getElementsByTagName("button");
+for (const button of buttons) {
+  button.addEventListener("click", createRipple);
+}
+  </script>

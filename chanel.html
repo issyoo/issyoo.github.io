@@ -1,0 +1,102 @@
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#000">
+  <meta name="description" content="issyoo">
+  <link rel="shortcut icon" type="image/x-icon" href='/IMG_20221121_171539.jpg'>
+  <link rel="stylesheet" 
+  href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Nunito:ital,wght@1,700&family=Patrick+Hand&family=Quicksand:wght@700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<style>
+#createBox{
+width: 300px;
+}
+</style>
+</head>
+<body>
+<H1 id='load'>loading...</h1>
+<div id='createBox' hidden>
+<input type='text' id='chanelName'>
+<input type='text' id='chanelHandle' placeholder='yourhandle' style='text-transform: lowercase;'>
+<button id='saveChanel'>Save</button></div>
+<div id='body' hidden>
+<button>edit channel</div>
+</div>
+</body>
+<script type="module">
+
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAN-X9u7n7QnM8RLrVV4YnXq2MmVz6WNfw",
+    authDomain: "em-issyoo.firebaseapp.com",
+    projectId: "em-issyoo",
+    storageBucket: "em-issyoo.appspot.com",
+    messagingSenderId: "33480809995",
+    appId: "1:33480809995:web:74df1e056f7638d0b5310e",
+    measurementId: "G-C64NWHRT0Y"
+  };
+  // Initialize Firebase
+
+  import{
+      getFirestore,Timestamp , doc, getDoc, getDocs, limit, orderBy, query, where, setDoc, collection, addDoc, updateDoc, deleteDoc, deleteField, onSnapshot, arrayUnion
+  }from "https://www.gstatic.com/firebasejs/9.9.3/firebase-firestore.js";
+  import { getAuth, signInWithPopup,signInWithEmailAndPassword, createUserWithEmailAndPassword, GoogleAuthProvider , signOut
+  } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js";
+import { getStorage, ref as sRef, uploadBytesResumable , getDownloadURL
+  } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-storage.js";
+   const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+  const auth = getAuth();
+  const db = getFirestore();
+   const storage = getStorage();
+  async function getChannel(){
+    const q = query(collection(db, "People"), where("Uid", "==", sessionStorage.getItem('uid')));
+const querySnapshot = await getDocs(q);
+querySnapshot.forEach((doc) => {
+  // doc.data() is never undefined for query doc snapshots
+  console.log(doc.id, " => ", doc.data());
+  if(!!doc.data().Chanel){
+    document.getElementById('body').hidden = false;
+    }
+    else{
+     document.getElementById('createBox').hidden = false;
+     document.getElementById('saveChanel').onclick = () => {checkChanelName(doc.id)};
+     }
+});
+document.getElementById('load').hidden = true;
+}
+getChannel();
+async function checkChanelName(id){
+const docRef = doc(db, "Public", '@' +  document.getElementById('chanelHandle').value.toLowerCase());
+const docSnap = await getDoc(docRef);
+
+if (docSnap.exists()) {
+  console.log("Document data:", docSnap.data());
+  alert('This handle is already taken.');
+} else {
+  // doc.data() will be undefined in this case
+  console.log("No such document!");
+saveChanelName(id);
+}
+}
+  async function saveChanelName(id){
+const washingtonRef = doc(db, "People", id);
+// Set the "capital" field of the city 'DC'
+await updateDoc(washingtonRef, {
+  Chanel: '@' + document.getElementById('chanelHandle').value.toLowerCase()
+});
+var name= '@' + document.getElementById('chanelHandle').value.toLowerCase();
+await setDoc(doc(db, "Public", name), {
+  Chanel: document.getElementById('chanelName').value,
+  Handle: name,
+  Uid: sessionStorage.getItem('uid')
+});
+alert('saved');
+}
+</script>

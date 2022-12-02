@@ -1,0 +1,993 @@
+<head>
+  <title>issyoo | home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#000">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <link rel="stylesheet" 
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Nunito:ital,wght@1,700&family=Patrick+Hand&family=Quicksand:wght@700&display=swap">
+  <style>
+
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@600&display=swap');
+
+</style>
+  <style>
+    *{
+      font-family: 'Poppins';
+      }
+    #theme1{
+      color: #000;
+      }
+     #theme2{
+      color: #000;
+    }
+    body{
+      padding:0;
+      margin:0;
+      }
+  button {
+  padding: 10px;
+    overflow: hidden;
+  border: none;
+  border-radius: 15px;
+transition: all ease 0.21s;
+  }
+  #theme1 button {
+  background-color: rgb(22,122,222,0);
+  }
+  
+  #theme2 button {
+  background-color: rgb(222,192,192,0);
+  }
+  
+    #menu{
+      width: 100vw;
+      height: 48px;
+      align-items: stretch;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  overflow: hidden;
+  flex-direction: row;
+  flex-wrap: nowrap;
+      border-top: solid;
+      }
+    #menu button {
+      min-width: 20vw;
+      
+      }
+    #issyoo{
+      font-family: 'Dancing Script', cursive;
+      padding: 10px;
+      font-size: 25px;
+      font-weight:900;
+      position: absolute;
+      right: 10px;
+      top: 16px;
+      }
+#theme1 #menu {
+    //  background-color: rgb(251,251,255);
+      }
+    #theme2 #menu{
+    //  background-color: rgb(255,251,251);
+      }
+
+    #theme1 #menu button{
+   //   color: rgb(22,129,222);
+      }
+    #theme2 #menu button{
+   //   color: rgb(255,199,199);
+      }
+
+#dash{
+
+  -webkit-appearance : none
+
+}
+
+[for = 'dash']{
+  position: absolute;
+  z-index: 2;
+  border-radius: 100%;
+
+}
+    #nav button {
+      width: 180px;
+      border-radius: 0 25px 25px 0;
+      box-shadow: 2px 2px 2px rgb(0,0,0,0.2);
+      }
+    #explore_field{
+      position: absolute;
+      bottom: 50px;
+      width: 90vw;
+      margin-left: 2vw;
+      height: 35vh;
+      border: solid 1px;
+      border-radius: 15px;
+      overflow: scroll;
+      }
+   #explore{
+    margin-bottom: 49px;
+}
+    #explore div{
+      padding: 9px;
+      width: 96%;
+      }
+    
+    #progg{
+
+  height: 3px;
+
+  width: 10vw;
+
+  position: absolute;
+
+  top:0;
+
+  left:0;
+
+  background-color:red;
+
+  animation: load 3s infinite;
+      background-color: #000;
+      }
+
+@keyframes load{
+
+  from{left:0}
+
+  to{left:90vw}
+
+}
+    .namebox{
+      width: 97vw;
+      display:flex;
+      justify-content: space-between;
+      align-items:center;
+      background-color: white;
+      }
+    .namebox img{
+      border-radius: 100%;
+      }
+    #theme1 .viewer{
+
+      box-shadow: 5px 5px 15px rgb(22,122,222,0.2);
+
+      }
+
+    #theme2 .viewer{
+
+      box-shadow: 5px 5px 15px rgb(222,190,190,0.5);
+
+      }
+    .viewer{
+
+      margin: auto;
+
+      position: absolute;
+
+      left: 0;
+
+      right:0;
+
+      top:0;
+
+      bottom:0;
+
+      height: 315px;
+
+      width:280px;
+
+      display: flex;
+
+      flex-direction: column;
+
+      justify-content: center;
+
+      align-items: center;
+
+      }
+    div {
+
+  position: relative;
+
+  overflow: hidden;
+
+  transition: background 400ms;
+
+  
+}
+
+span.ripple {
+
+  position: absolute;
+
+  border-radius: 50%;
+
+  transform: scale(0);
+
+  animation: ripple 600ms linear;
+
+  background-color: rgba(5, 5, 5, 0.2);
+
+}
+
+@keyframes ripple {
+
+  to {
+
+    transform: scale(4);
+
+    opacity: 0;
+
+  }
+
+}
+    .chatBox{
+      position: absolute;
+      top:0;
+      left:0;
+      background-color: rgb(222,222,222);
+      height: 100vh;
+      width: 100vw;
+      overflow: scroll;
+      }
+.chatBox .inpBox{
+position: fixed;
+bottom: 2px;
+}
+.inpBox input{
+ outline: none;
+border:none;
+padding: 5px;
+font-size: 19px;
+width: 75vw;
+}
+.cBox{
+overflow: hidden;
+margin-bottom: 50px;
+width: 100vw;
+border-radius: 23px;
+background-color: rgb(225,225,225);
+}
+.inpBox{
+background-color: white;
+border-radius: 23px;
+margin-top: 5px;
+margin-bottom: 5px;
+box-shadow: 2px 2px 5px rgb(0,0,0,0.2);
+}
+.inpBox span{
+padding: 5px;
+margin-top: 3px;
+}
+.msg{
+      width: 52vw;
+      padding:5px;
+      margin: 10px;
+      border-radius: 0 25px 25px 25px;
+      }
+    .myMsg{
+      border-radius: 25px 25px 0 25px;
+      width: 52vw;
+      border: solid;
+      padding:5px;
+      position:relative;
+      left: 40vw;
+      margin: 10px;
+      }
+    .msg img, .msg video, .msg audio, .msg iframe{
+      border-radius: 23px;
+      margin: 2px;
+      }
+    .myMsg img, .myMsg video, .myMsg audio, .myMsg iframe{
+      margin: 2px;
+      border-radius:23px;
+      }
+    div p{
+      margin: 5px;
+      padding: 1px;
+      }
+    .message{
+  
+      font-weight: 900;
+      }
+    .time{
+      font-size: 10px;
+      }
+    .msg,  .myMsg{
+    background-color: rgb(222,222,222);
+    color: rgb(22,22,22);
+    box-shadow: 5px 5px 5px rgb(2,2,2,0.1);
+    }
+#attachBox{
+position: absolute;
+top:0;
+height: 100vh;
+width: 100vw;
+}
+#attachBox img{
+max-height: 250px;
+}
+  /*  #theme2  .msg, #theme2 .myMsg{
+     // border: solid rgb(255,251,251);
+    background-color: rgb(255,190,190,0.1);
+    color: rgb(255,190,190);
+      box-shadow: 5px 5px 5px rgb(255,190,190,0.4);
+    }*/
+  </style>
+</head>
+<body>
+<div id="progg"></div>
+  <div class='inpBox'><span class='material-symbols-outlined'>search</span><input placeholder='Search in private chat' id='search' type='text' onkeyup='mySearchFunction()'></div>
+
+  <div id="explore"></div>
+<div id="empty" hidden>Seems your Private chat is empty.<br><a href='/explore.html'>Click here</a> to Explore People and make new friends.</div>
+  <div id="pst" hidden>
+
+           
+
+<span id="name"></span>
+
+<label id="extlab"></label>
+
+<div id="cover">
+
+<div id="upprogress"></div></div><br>
+
+        
+
+            <button id="dbtn" class="material-symbols-outlined">close</button>
+
+         
+
+ </div>
+<div id='attachBox' hidden></div>
+<div id="menu">
+  <button class="material-symbols-outlined" style="color: rgb(0,0,0); transform: scale(1.2,1.2);" >chat</button>
+  <button class="material-symbols-outlined" onclick="window.open('/groups','_self')">groups</button>
+  <button class="material-symbols-outlined" onclick="window.open('/','_self')">home</button>
+  <button class="material-symbols-outlined" onclick="window.open('/profile','_self')">manage_accounts</button>
+  <button class="material-symbols-outlined" onclick="window.open('/dashboard','_self')">dashboard</button>
+  </div>
+</body>
+ <script type="module">
+
+  // Import the functions you need from the SDKs you need
+
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-app.js";
+
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-analytics.js";
+
+  // TODO: Add SDKs for Firebase products that you want to use
+
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
+  const firebaseConfig = {
+
+    apiKey: "AIzaSyAN-X9u7n7QnM8RLrVV4YnXq2MmVz6WNfw",
+
+    authDomain: "em-issyoo.firebaseapp.com",
+
+    projectId: "em-issyoo",
+
+    storageBucket: "em-issyoo.appspot.com",
+
+    messagingSenderId: "33480809995",
+
+    appId: "1:33480809995:web:74df1e056f7638d0b5310e",
+
+    measurementId: "G-C64NWHRT0Y"
+
+  };
+
+  // Initialize Firebase
+
+  const app = initializeApp(firebaseConfig);
+
+  const analytics = getAnalytics(app);
+
+  
+
+  import{
+
+      getFirestore,Timestamp , doc, getDoc, getDocs, limit, orderBy, query, where, setDoc, collection, addDoc, updateDoc, deleteDoc, deleteField, onSnapshot, arrayUnion
+
+  }from "https://www.gstatic.com/firebasejs/9.9.3/firebase-firestore.js";
+
+  import { getAuth, signInWithPopup,signInWithEmailAndPassword, createUserWithEmailAndPassword, GoogleAuthProvider , signOut
+
+  } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js";
+
+  const auth = getAuth();
+
+  const db = getFirestore();
+
+
+//import { collection, getDocs } from "firebase/firestore";
+
+    
+async function Check_login_data(){
+
+var uid = sessionStorage.getItem("uid");
+
+var q = query(collection(db, "People"), where("Uid", "==", uid));
+
+const querySnapshot = await getDocs(q);
+
+querySnapshot.forEach((doc) => {
+
+  // doc.data() is never undefined for query doc snapshots
+
+  const name = doc.data().Name;
+
+  const email = doc.data().Email;
+
+ // alert("Name: " + name + "\n" + "Email: " + email);
+
+GetUsers();
+
+});
+}
+
+   
+
+Check_login_data();
+
+    
+
+   async function GetUsers(){
+
+     var myUid = sessionStorage.getItem("uid");
+     var friends=[];
+const q = query(collection(db, "Private", "friends", myUid), where("Status", "==", "accepted"));
+
+const unsubscribe = onSnapshot(q, (snapshot) => {
+
+  snapshot.docChanges().forEach((change) => {
+
+    if (change.type === "added") {
+        friends.push(change.doc.id);
+        console.log("New city: ", change.doc.data());
+
+document.getElementById("progg").hidden= true;
+
+      var boxId = "explore";
+
+ 
+
+  var box = document.getElementById(boxId);
+
+  var namebox = document.createElement("div");
+
+  var textname = document.createElement("span");
+
+  var namebtn = document.createElement("button");
+
+  
+
+  document.getElementById("empty").hidden = true;
+
+  namebox.setAttribute("class", "namebox");
+
+      box.appendChild(namebox);
+
+    namebox.appendChild(namebtn);
+
+    namebox.id = change.doc.id;
+    namebox.addEventListener("click", createRipple);
+      namebox.addEventListener("click", getChat);
+
+  
+
+  namebtn.id = change.doc.id + "btn";
+
+  var photo = document.createElement("img");
+
+      getProfiledata( photo, textname, change.doc.data().OtherUid);
+
+  photo.style.width = "35px";
+  photo.style.height = "35px";
+  namebox.appendChild(photo);
+
+  photo.onclick = ViewProfile;
+
+  namebox.appendChild(textname);
+
+  namebtn.textContent = "visibility_off";
+  namebtn.setAttribute("class", "material-symbols-outlined");
+  namebtn.onclick = closeBox;
+ namebox.appendChild(namebtn);
+
+    }
+
+    if (change.type === "modified") {
+
+        console.log("Modified city: ", change.doc.data());
+
+    }
+
+    if (change.type === "removed") {
+
+        console.log("Removed city: ", change.doc.data());
+
+      document.getElementById(change.doc.id).remove();
+
+    }
+
+  });
+
+});
+
+   
+if(friends.length == 0){
+document.getElementById("progg").hidden= true;
+document.getElementById("empty").hidden = false;
+}
+else{}
+ }
+
+ async function getProfiledata(photo, textname, id){
+
+   var q = query(collection(db, "Public"), where("Uid", "==", id), where('Type', '==', 'user'));
+
+var querySnapshot = await getDocs(q);
+
+querySnapshot.forEach((doc) => {
+
+textname.textContent = doc.data().Name;
+
+if(!!doc.data().Pic){
+
+  photo.src = doc.data().Pic;}
+
+else{
+
+  photo.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/em-issyoo.appspot.com/o/Screenshot_2022-09-22-14-28-40-452-edit_com.android.chrome.jpg?alt=media&token=aa6e0aba-df6d-4b12-8761-6ca2cc118d2a");
+
+}
+
+});
+
+   }
+  
+  async function ViewProfile(e){
+
+     console.log("viewing Profile");
+ e.stopPropagation();
+   
+
+var q = query(collection(db, "Public"), where("Uid", "==", this.parentElement.id), where('Type', '==', 'user'));
+
+const querySnapshot = await getDocs(q);
+
+querySnapshot.forEach((doc) => {
+
+  console.log("Document data:", doc.data());
+
+var viewer = document.createElement("div");
+
+  viewer.setAttribute("id", this.parentElement.id);
+
+  viewer.setAttribute("class", "namebox viewer");
+
+  document.body.appendChild(viewer);
+
+  var close = document.createElement("button");
+
+  close.textContent = "close";
+
+  
+
+  close.onclick = closeBox;
+
+  close.style.float = "right";
+
+  var pic = document.createElement("img");
+
+  var vPic = doc.data().Pic;
+
+if(!!vPic){
+
+  pic.setAttribute("src", vPic);}
+
+else{
+
+  pic.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/em-issyoo.appspot.com/o/Screenshot_2022-09-22-14-28-40-452-edit_com.android.chrome.jpg?alt=media&token=aa6e0aba-df6d-4b12-8761-6ca2cc118d2a");
+
+}
+
+  viewer.appendChild(pic);
+
+  var name = document.createElement("div");
+
+  viewer.appendChild(name);
+
+  name.textContent = doc.data().Name;
+
+  var phone = document.createElement("div");
+
+  var vPhone = doc.data().Phone;
+
+  if(!!vPhone){
+
+  phone.textContent = vPhone;
+
+  viewer.appendChild(phone);}
+
+  var email = document.createElement("div");
+
+  var vEmail = doc.data().Email;
+
+  if(!!vEmail){
+
+  email.textContent = vEmail;
+
+  viewer.appendChild(email);}
+
+  
+
+  viewer.appendChild(close);
+
+});
+
+   }
+
+function closeBox(e){
+  e.stopPropagation();
+  this.parentElement.remove();
+
+  }
+   var sender ='';
+   async function getChat(){
+
+     var cbox = document.createElement('div');
+     var chatbox = document.createElement('div');
+     chatbox.setAttribute('class', 'cBox');
+     cbox.setAttribute('class', 'chatBox');
+     var close = document.createElement('button');
+     close.textContent = 'close';
+     close.setAttribute('class', 'material-symbols-outlined');
+     close.addEventListener("click", closeBox);
+     close.style.float = 'right';
+     cbox.appendChild(close);
+     cbox.appendChild(chatbox);
+var inpbox = document.createElement('div');
+inpbox.setAttribute('class', 'inpBox');
+cbox.appendChild(inpbox);
+var atth = document.createElement('button');
+inpbox.appendChild(atth);
+atth.setAttribute('class', 'material-symbols-outlined');
+atth.innerHTML = 'attachment';
+atth.onclick = AttachmentFunc;
+atth.setAttribute('id', 'attach');
+     var inp = document.createElement('input');
+inpbox.appendChild(inp);
+inp.placeholder = 'Type your message here...';
+    inp.setAttribute('id', 'inp');
+var send = document.createElement('button');
+inpbox.appendChild(send);
+send.setAttribute('class', 'material-symbols-outlined');
+send.innerHTML = 'send';
+send.setAttribute('id', this.id);
+//send.onclick = AddChat;
+     var myUid = sessionStorage.getItem("uid");
+     const q = query(collection(db, "Private", "friends", myUid, this.id, "chat"), orderBy('Time'));
+  
+const unsubscribe = onSnapshot(q, (snapshot) => {
+
+  snapshot.docChanges().forEach((change) => {
+
+    if (change.type === "added") {
+
+        console.log("New msg: "+ change.doc.data());
+
+
+var div = document.createElement('div');
+chatbox.appendChild(div);
+div.setAttribute('id', change.doc.id);
+      
+
+        var msg = document.createElement('p');
+
+        var item = document.createElement('p');
+
+      var uid = sessionStorage.getItem("uid");
+
+      if(change.doc.data().Uid == uid){
+
+        
+
+        div.classList.add("myMsg");
+
+        }
+
+      else{div.classList.add("msg"); }
+
+      div.setAttribute('id', change.doc.id);
+
+      item.setAttribute('class', 'time');
+
+      msg.setAttribute('class', 'message');
+
+      item.innerHTML = change.doc.data().Time.toDate();
+      div.appendChild(item);
+      div.appendChild(msg);
+  div.id = change.doc.id;
+   var Msg = change.doc.data().Msg;
+  msg.innerHTML = urlify(Msg);
+  var del = document.createElement('button');
+  del.setAttribute('class', 'material-symbols-outlined');
+      del.textContent = 'delete';
+      del.id = this.id;
+      del.onclick = deleteData;
+      if(change.doc.data().Time.toMillis() >= Timestamp.fromDate(new Date()).toMillis() - 16990000 && change.doc.data().Uid == sessionStorage.getItem('uid')){
+      div.appendChild(del);}
+      var ffl = change.doc.data().Attachment;
+          if(ffl){
+            getMeta(change.doc.data().Id, div);
+           }
+          else{ console.log("no meta ");}
+    }
+
+    if (change.type === "modified") {
+
+        alert("Modified msg: "+ change.doc.data().Msg);
+
+    }
+
+    if (change.type === "removed") {
+
+       // alert("Removed msg: "+ change.doc.data().Msg);
+
+        document.getElementById(change.doc.id).remove();
+
+    }
+
+  });
+
+});
+document.body.appendChild(cbox);
+}
+function urlify(text) {
+  var urlRegex = /([^\s]+\.[^\s]+)/g;
+  return text.replace(urlRegex, function(url) {
+  if(url.includes("http")){
+    return '<a href="' + url + '">' + url + '</a>';
+    }
+    else{
+      return '<a href="' + 'https://' + url + '">' + url + '</a>';
+    }
+  })
+  // or alternatively
+  // return text.replace(urlRegex, '<a href="$1">$1</a>')
+}
+     
+
+async function deleteData(){
+     await deleteDoc(doc(db, "Private", "friends", sessionStorage.getItem('uid'), this.id, "chat", this.parentElement.id));
+     await deleteDoc(doc(db, "Private", "friends",this.id , sessionStorage.getItem('uid'), "chat", this.parentElement.id));
+}
+
+function createRipple(event) {
+
+  const button = event.currentTarget;
+
+  const circle = document.createElement("span");
+
+  const diameter = Math.max(button.clientWidth, button.clientHeight);
+
+  const radius = diameter / 2;
+
+  circle.style.width = circle.style.height = `${diameter}px`;
+
+  circle.style.left = `${event.clientX - button.offsetLeft - radius}px`;
+
+  circle.style.top = `${event.clientY - button.offsetTop - radius}px`;
+
+  circle.classList.add("ripple");
+
+  const ripple = button.getElementsByClassName("ripple")[0];
+
+  if (ripple) {
+
+    ripple.remove();
+
+  }
+
+  button.appendChild(circle);
+
+}
+
+const buttons = document.getElementsByTagName("button");
+
+for (const button of buttons) {
+
+  button.addEventListener("click", createRipple);
+
+}
+
+var attch = false;
+   async function getMeta( id, div){
+
+    var uid = sessionStorage.getItem("uid")
+
+const docRef = doc(db, "Storage", uid , "storage", id);
+
+const docSnap = await getDoc(docRef);
+
+if (docSnap.exists()) {
+
+  console.log("Document data:", docSnap.data());
+
+ if(!!docSnap.data().FileTyp){ var ffl = docSnap.data().FileTyp;}
+
+  else{ffl = 'iframe';}
+
+  let ifrm = document.createElement(ffl);
+
+  ifrm.style.maxWidth = "45vw";
+
+             ifrm.setAttribute("src", docSnap.data().Url);
+
+             ifrm.controls = true;
+
+             div.appendChild(ifrm);
+
+ 
+
+} else {
+
+  // doc.data() will be undefined in this case
+
+  console.log("No such document!");
+
+var info = document.createElement('p');
+
+  info.textContent = 'The attachment has been deleted or removed';
+
+  div.appendChild(info);
+
+}
+
+             
+
+           
+
+    }
+   async function addData(){
+     AddData();
+     adddata();
+     
+     }
+async function adddata(){
+    var msg =  document.getElementById("inp");
+     const docRef = await addDoc(collection(db, "Private", "friends", sessionStorage.getItem('uid'), sender, "chat"), {
+
+  Name: name,
+  Attachment: false,
+  Uid: uid,
+       Time: Timestamp.fromDate(new Date()),
+       Msg: msg.value
+   
+});
+     
+
+     }
+async function AddData(){
+    var msg =  document.getElementById("inp");
+     const docRef = await addDoc(collection(db, "Private", "friends", sender, sessionStorage.getItem('uid'), "chat"), {
+
+  Name: name,
+  Attachment: false,
+  Uid: uid,
+       Time: Timestamp.fromDate(new Date()),
+       Msg: msg.value
+   
+});
+  msg.value = "";
+}
+  /* async function deleteData(){
+     await deleteDoc(doc(db, "Private", "friends", myUid, this.id, "chat"));
+     }*/
+   
+   
+   async function AttachmentFunc(){
+      document.getElementById("attachBox").hidden = false;
+      const citiesRef = collection(db, "Storage");  
+      const q = query(citiesRef, where("Access", "array-contains", sessionStorage.getItem('uid')));
+      const querySnapshot = await getDocs(q);
+querySnapshot.forEach((doc) => {
+  // doc.data() is never undefined for query doc snapshots
+  console.log(doc.id, " => ", doc.data());
+var div = document.createElement('div');
+      var cont = document.createElement('div');
+      cont.appendChild(div);
+ document.getElementById("attachBox").appendChild(cont);
+ console.log("Document data:", doc.data());
+  if(!!doc.data().FileTyp){ var ffl = doc.data().FileTyp;}
+  else{ffl = 'iframe';}
+  let ifrm = document.createElement(ffl);
+             ifrm.setAttribute("src", doc.data().Url);
+             div.setAttribute('id', 'isknt=' + doc.id);
+             ifrm.controls = false;
+            // div.onclick = openCont;
+             div.appendChild(ifrm);
+             var title = document.createElement('span');
+             title.innerHTML = doc.data().Caption;
+             cont.appendChild(title);
+             var del = document.createElement('button');
+             ifrm.setAttribute("class" , 'ifrm');
+});
+    }
+   
+</script>
+<script>
+    var uid = sessionStorage.getItem("uid");
+    var luid = localStorage.getItem("uid");
+    if (uid) {
+        console.log(uid);
+    }
+    else if(luid){ sessionStorage.setItem('uid' , luid);}
+    else {
+        window.open("/signin.html", "_self")
+    }
+  var gen = localStorage.getItem("Gen");
+  function getColor(){
+    if(gen == "theme1"){
+      var color = "rgb(25,125,255)";
+      document.body.id = "theme1";
+      }
+    else{ var color = "rgb(255,195,195)";
+        document.body.id = "theme2";
+          
+        }
+
+  }
+  getColor();
+
+function mySearchFunction() { 
+// Declare variables
+
+var input, filter, ul, li, item, i, txtValue; 
+// User Input
+
+input = document.getElementById("search");
+
+// Filter, makes search not case sensitive 
+filter = input.value.toUpperCase();
+
+// Grabs the parent element by id
+
+ul = document.getElementById("explore"); // Individual item on list
+
+li = ul.getElementsByTagName("span");
+
+// Treats lists items like an array, where each item can be accessed through it's index 
+for (i = 0; i < li.length; i++) {
+
+item = li[i];
+
+// Iterate over each list item to see if the value of the input, ignoring case, matche s the inner text or inner html of the item.
+
+txtValue = item.textContent || item.innerText;
+
+if (txtValue.toUpperCase().indexOf(filter) > -1) {
+
+// Displays list items that are a match, an d nothing if no match
+
+li[i].parentElement.style.display = "";
+ console.log('match found: ', txtValue);
+
+} else {
+li[i].parentElement.style.display = "none";
+console.log('No match found');
+
+}
+}
+}
+  </script>
+

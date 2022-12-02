@@ -1,0 +1,225 @@
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#000">
+  <meta name="description" content="issyoo">
+  <link rel="shortcut icon" type="image/x-icon" href='/IMG_20221121_171539.jpg'>
+  <link rel="stylesheet" 
+  href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Nunito:ital,wght@1,700&family=Patrick+Hand&family=Quicksand:wght@700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<style>
+  body{
+    font-family: 'Poppins';
+    margin:0;
+    color: #fff;
+   //   background: linear-gradient(-20deg, #fff 83%,#000 10%);
+    padding:0;
+    background-color: rgb(215,215,215);
+    }
+#channelEdit{
+display: none;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+height: 100vh;
+width: 100vw;
+font-size: 23px;
+}
+.channelPic{
+ width: 55px;
+ height: 55px;
+}
+#cid{
+text-transform: lowercase;
+}
+ </style>
+<body>
+<div id='channelEdit'>
+ <img id="pPic"> <button id='pedit' onclick='createRipple()' class="material-symbols-outlined">add_photo_alternate</button>
+  <div id="pst" hidden>
+   <span id="name"></span>
+   <label id="extlab"></label>
+   <div id="cover"><div id="upprogress"></div></div>
+   <button id="dbtn" class="material-symbols-outlined">close</button>
+<div id='atch'></div>
+<button id="send" class="material-symbols-outlined">send</button>
+ </div>
+Channel name:<input type='text'>
+Choose Handle:<span> @<input type='text' placeholder='channelname' id='cid'></span>
+<span><button>Create</button></span>
+</div>
+</body>
+<script type="module">
+
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAN-X9u7n7QnM8RLrVV4YnXq2MmVz6WNfw",
+    authDomain: "em-issyoo.firebaseapp.com",
+    projectId: "em-issyoo",
+    storageBucket: "em-issyoo.appspot.com",
+    messagingSenderId: "33480809995",
+    appId: "1:33480809995:web:74df1e056f7638d0b5310e",
+    measurementId: "G-C64NWHRT0Y"
+  };
+  // Initialize Firebase
+
+  import{
+      getFirestore,Timestamp , doc, getDoc, getDocs, limit, orderBy, query, where, setDoc, collection, addDoc, updateDoc, deleteDoc, deleteField, onSnapshot, arrayUnion
+  }from "https://www.gstatic.com/firebasejs/9.9.3/firebase-firestore.js";
+  import { getAuth, signInWithPopup,signInWithEmailAndPassword, createUserWithEmailAndPassword, GoogleAuthProvider , signOut
+  } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js";
+import { getStorage, ref as sRef, uploadBytesResumable , getDownloadURL
+  } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-storage.js";
+   const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+  const auth = getAuth();
+  const db = getFirestore();
+   const storage = getStorage();
+  async function getChannel(){
+    const q = query(collection(db, "People"), where("Uid", "==", sessionStorage.getItem('uid')));
+const querySnapshot = await getDocs(q);
+querySnapshot.forEach((doc) => {
+  // doc.data() is never undefined for query doc snapshots
+  console.log(doc.id, " => ", doc.data());
+  if(!!doc.data().Channel){
+    }
+    else{
+     document.getElementById('channelEdit').style.display = 'flex';
+     }
+});
+}
+getChannel();
+var files = [];
+
+      var namebox = document.getElementById("name");
+      var extlab = document.getElementById("extlab");
+      var proglab = document.getElementById("upprogress");
+      var upBtn = document.getElementById("upbtn");
+      var dBtn = document.getElementById("dbtn");
+      var reader = new FileReader();
+      var inpt = document.createElement("input");
+      inpt.type = "file";
+      inpt.accept = 'image/*';
+      var pst = document.getElementById("pst");
+      var url = "";
+
+        inpt.onchange = e =>{
+        files = e.target.files;
+        var extension = GetFileExt(files[0]);
+        var name = GetFileName(files[0]);
+        namebox.innerHTML = name;
+        extlab.innerHTML = extension;
+        reader.readAsDataURL(files[0]);
+
+        
+//document.getElementById("attach").style.display = 'none';
+      document.getElementById("send").hidden = false;
+     // document.getElementById("inp").hidden = false;
+      }
+
+      reader.onload = function (){
+     var ftg = document.createElement('img');
+        ftg.setAttribute("src",  reader.result);
+       ftg.setAttribute("id", "ifr");
+        document.getElementById("atch").appendChild(ftg);
+        ftg.style.maxHeight = "75px";
+         ftg.style.maxWidth = "75px;";
+       document.getElementById("pst").hidden = false;
+      }
+
+  function clk(){
+    inpt.click();
+  }
+   function GetFileExt(file){
+    var temp = file.name.split('.');
+    var ext = temp.slice((temp.length-1),(temp.length));
+    return '.' + ext[0];
+    }
+
+    function GetFileName(file){
+    var temp = file.name.split("0");
+    var fname = temp.slice(0,-1).join('.');
+    return fname;
+    }
+
+   async function UploadProcess() { 
+document.getElementById("send").style.display = 'none';
+//document.getElementById("inp").hidden = true;
+    var ImgToUpload = files [0];
+var ImgName = namebox.innerHTML + extlab.innerHTML;
+const metaData = {
+contentType: ImgToUpload.type
+}
+
+const stroageRef = sRef(storage, "Images/"+ Timestamp.fromDate(new Date()).toMillis().toString());
+const UploadTask = uploadBytesResumable (stroageRef, ImgToUpload, metaData);
+UploadTask.on('state-changed', (snapshot) =>{ 
+var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+if( progress != 100){
+proglab.style.width = ( progress * 80 / 100 ) + "vw";
+proglab.innerHTML = progress + '%...';
+}
+else{
+}
+},
+(error) =>{
+alert("error in uploading image: " + error);
+},
+() => {
+  getDownloadURL(UploadTask.snapshot.ref).then((downloadURL) => {
+    SaveDownloadURL(downloadURL);
+  })
+}
+);
+}
+   
+   async function SaveDownloadURL(url){
+  var name = namebox.innerHTML;
+  var ext = extlab.innerHTML;
+var uid = sessionStorage.getItem("uid");
+const q = query(collection(db, "People"), where("Uid", "==", uid));
+const querySnapshot = await getDocs(q);
+querySnapshot.forEach((doc) => {
+  // doc.data() is never undefined for query doc snapshots
+  console.log(doc.id, " => ", doc.data());
+  updatePic('People' , doc.id, url);
+});
+const qe = query(collection(db, "Public"), where("Uid", "==", uid), where('Type', '==', 'user'));
+const querySnapshote = await getDocs(qe);
+querySnapshote.forEach((doc) => {
+  // doc.data() is never undefined for query doc snapshots
+  console.log(doc.id, " => ", doc.data());
+  updatePic('Public' , doc.id, url);
+});
+    console.log("true");
+cancelUp();
+  }
+    function cancelUp(){
+      proglab.style.width = 0;
+      extlab.innerHTML = "";
+      namebox.innerHTML = "";
+      document.getElementById("send").style.display = '';
+    //  document.getElementById("attach").style.display = 'flex';
+      document.getElementById("pst").hidden = true;
+      document.getElementById("ifr").remove();
+    }
+document.getElementById("dbtn").addEventListener("click", cancelUp);
+   document.getElementById("pedit").addEventListener("click", clk);
+   document.getElementById("send").addEventListener("click", UploadProcess);
+
+   async function updatePic(coll , did, url){
+   const profRef = doc(db, coll, did);
+
+// Set the "capital" field of the city 'DC'
+await updateDoc(profRef, {
+  Pic: url
+});
+}
+
+</script>

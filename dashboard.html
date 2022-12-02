@@ -1,0 +1,334 @@
+<head>
+  <title>issyoo | dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#000">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Nunito:ital,wght@1,700&family=Patrick+Hand&family=Quicksand:wght@700&display=swap">
+<style>
+*{
+      font-family: 'Poppins';
+      }
+  #theme1 #head{
+ color:#fff;
+ background-color: #000;
+ border-bottom: solid rgb(88,88,88);
+}
+  #theme2 #head{ color:#fff; background-color: pink;}
+    body{
+      padding:0;
+      margin:0;
+      }
+    button{
+    border: none;
+    overflow: hidden;
+    background: transparent;
+}
+  #body button {
+  position:relative;
+  overflow:hidden;
+  border: none;
+  border-radius: 15px;
+  width: 100vw;
+  margin-top: 22px;
+  text-align: left;
+  display:flex;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 400;
+  }
+#body button span {
+ margin: 0 13px;
+}
+  #theme1 #body button {
+ // mix-blend-mode: difference;
+  }
+  #theme2 #body button {
+  color: pink;
+  }
+#menu{ 
+      width: 100vw;
+      height: 48px;
+      align-items: stretch;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  border-top: solid;
+  background-color: #fff;
+      }
+    #menu button {
+      min-width: 20vw;
+      background-color: #fff;
+      }
+    #theme1 #menu button{
+      color: #000;
+      }
+    #theme2 #menu button{
+      color: pink;
+      }
+     #theme2 #menu{
+      color: pink;
+      }
+span.ripple {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple 600ms linear;
+  background-color: rgba(25, 25, 25, 0.2);
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+</style>
+</head>
+<body>
+<h2 id="head"></h2>
+<div id="body">
+  <button onclick="window.open('/explore.html','_self')"><span class="material-symbols-outlined">
+groups
+</span>Explore people</button>
+<button onclick="window.open('/proposal.html','_self')"><span class="material-symbols-outlined">
+group_add
+</span>Requests</button>
+<button onclick="window.open('/friends.html','_self')"><span class="material-symbols-outlined">
+group
+</span>Friends</button>
+  <button onclick="window.open('/storage.html','_self')"><span class="material-symbols-outlined">
+video_library
+</span>Your Videos</button>
+  <button onclick="window.open('/aboutus.html','_self')" ><span class="material-symbols-outlined">
+badge
+</span>About Us</button>
+  <button onclick="window.open('/blog.html','_self')"><span class="material-symbols-outlined">
+rate_review
+</span>Blog</button>
+  <button onclick="window.open('/terms.html','_self')"><span class="material-symbols-outlined">
+receipt_long
+</span>Terms and conditions</button>
+     <button onclick="window.open('/privacy.html','_self')"><span class="material-symbols-outlined">
+policy
+</span>Privacy Policy</button>
+     <button onclick="window.open('/contactus.html','_self')"><span class="material-symbols-outlined">
+support_agent
+</span>Contact Us</button>
+     <button id="signout"><span class="material-symbols-outlined">
+logout
+</span>Sign out</button>
+  
+</div>
+    
+
+  
+
+     
+
+<div id="menu">
+
+  <button class="material-symbols-outlined" onclick="window.open('/chat.html','_self')">chat</button>
+  <button class="material-symbols-outlined" onclick="window.open('/groups.html','_self')">diversity_1</button>
+  <button class="material-symbols-outlined" onclick="window.open('/','_self')">home</button>
+  <button class="material-symbols-outlined" onclick="window.open('/profile.html','_self')">manage_accounts</button>
+  <button class="material-symbols-outlined" style="color: #000; background-color: #fff;">dashboard</button>
+
+  </div>
+
+</body>
+
+ <script type="module">
+
+  // Import the functions you need from the SDKs you need
+
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-app.js";
+
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-analytics.js";
+
+  // TODO: Add SDKs for Firebase products that you want to use
+
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
+  const firebaseConfig = {
+
+    apiKey: "AIzaSyAN-X9u7n7QnM8RLrVV4YnXq2MmVz6WNfw",
+
+    authDomain: "em-issyoo.firebaseapp.com",
+
+    projectId: "em-issyoo",
+
+    storageBucket: "em-issyoo.appspot.com",
+
+    messagingSenderId: "33480809995",
+
+    appId: "1:33480809995:web:74df1e056f7638d0b5310e",
+
+    measurementId: "G-C64NWHRT0Y"
+
+  };
+
+  // Initialize Firebase
+
+  const app = initializeApp(firebaseConfig);
+
+  const analytics = getAnalytics(app);
+
+  
+
+  import{
+
+      getFirestore,Timestamp , doc, getDoc, getDocs, limit, orderBy, query, where, setDoc, collection, addDoc, updateDoc, deleteDoc, deleteField, onSnapshot, arrayUnion
+
+  }from "https://www.gstatic.com/firebasejs/9.9.3/firebase-firestore.js";
+
+  import { getAuth, signInWithPopup,signInWithEmailAndPassword, createUserWithEmailAndPassword, GoogleAuthProvider , signOut
+
+  } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js";
+
+  const auth = getAuth();
+
+  const db = getFirestore();
+
+      
+
+      async function Check_login_data(){
+
+var uid = sessionStorage.getItem("uid");
+
+var q = query(collection(db, "People"), where("Uid", "==", uid));
+
+const querySnapshot = await getDocs(q);
+
+querySnapshot.forEach((doc) => {
+
+  // doc.data() is never undefined for query doc snapshots
+
+  const name = doc.data().Name;
+
+  const email = doc.data().Email;
+
+ // alert("Name: " + name + "\n" + "Email: " + email);
+
+});
+
+      
+
+      }
+
+    Check_login_data()
+
+ 
+
+     async function Signout() {
+
+         signOut(auth).then(() => {
+
+
+              localStorage.removeItem("uid");
+              sessionStorage.removeItem("uid");
+
+             //alert(" Sign-out successful.");
+
+             window.open("/signin", "_self");
+
+         }).catch((error) => {
+
+             alert(" An error happened.");
+
+         });
+
+     }
+
+     document.getElementById("signout").addEventListener("click", Signout);
+
+  
+
+</script>
+
+<script>
+
+  var uid = sessionStorage.getItem("uid");
+  var luid = localStorage.getItem("uid");
+  if(uid){
+     console.log(uid);
+    }
+   else if(luid){ sessionStorage.setItem('uid' , luid);}
+  else{ window.open("/signin.html", "_self")}
+
+  var gen = localStorage.getItem("Gen");
+
+  function getColor(){
+
+    if(gen == "theme1"){
+      var color = "rgb(25,125,255)";
+      document.body.id = "theme1";
+      }
+    else{ var color = "rgb(255,195,195)";
+        document.body.id = "theme2";
+         changeThemeColor('pink');
+        }
+    }
+function changeThemeColor(color) {
+
+    var metaThemeColor = document.querySelector("meta[name=theme-color]");
+
+    metaThemeColor.setAttribute("content", color);
+
+  }
+  
+  getColor();
+
+  
+function createHead(){
+  var name = localStorage.getItem("Name");
+  document.getElementById("head").textContent = name + "'s Dashboard";
+  }
+  createHead();
+    function createRipple() {
+
+  const button = event.currentTarget;
+
+  const circle = document.createElement("span");
+
+  const diameter = Math.max(button.clientWidth, button.clientHeight);
+
+  const radius = diameter / 2;
+
+  circle.style.width = circle.style.height = `${diameter}px`;
+
+  circle.style.left = `${event.clientX - button.offsetLeft - radius}px`;
+
+  circle.style.top = `${event.clientY - button.offsetTop - radius}px`;
+
+  circle.classList.add("ripple");
+
+  const ripple = button.getElementsByClassName("ripple")[0];
+
+  if (ripple) {
+
+    ripple.remove();
+
+  }
+
+  button.appendChild(circle);
+
+}
+
+const buttons = document.getElementsByTagName("button");
+
+for (const button of buttons) {
+
+  button.addEventListener("click", createRipple);
+
+}
+
+
+  </script>

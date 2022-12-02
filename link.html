@@ -1,0 +1,169 @@
+<!doctype html>
+
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>link</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+
+    body{
+
+      margin:0;
+
+      padding:0;
+
+      background-color: rgb(255,249,245);
+
+      font-family: sans-serif;
+
+      }
+
+      #app{
+
+      margin:auto;
+
+      height: 125px;
+
+      width:325px;
+
+      position: absolute ;
+
+      top:0;
+
+      bottom:0;
+
+      right:0;
+
+      left:0;
+
+    }
+
+    input{
+
+    width: 320px;
+
+      margin:1px;
+
+      background-color: rgb(129,129,266);
+
+      outline:none;
+
+      border:none;
+
+      padding: 10px;
+
+      border-radius: 20px;
+
+      color:white;
+
+    }
+
+    a{
+
+      font-width: 900;
+
+      color:red;
+
+      
+
+    }
+
+    </style>
+
+</head>
+
+<body>
+
+<div id="app">
+
+    <input id="txt" onkeyup="linkit()"> 
+
+    <p id="pp"></p>
+
+  <div id="getin"></div>
+
+</div>
+
+<script>
+
+function urlify(text) {
+
+  var urlRegex = /([^\s]+\.[^\s]+)/g;
+
+  return text.replace(urlRegex, function(url) {
+
+  if(url.includes("http")){
+
+    return '<a href="' + url + '">' + url + '</a>';
+
+    }
+
+    else{
+
+      return '<a href="' + 'https://' + url + '">' + url + '</a>';
+
+    }
+
+  })
+
+  // or alternatively
+
+  // return text.replace(urlRegex, '<a href="$1">$1</a>')
+
+}
+
+function getUrl(text) {
+
+  var urlRegex = /([^\s]+\.[^\s]+)/g;
+
+  return text.replace(urlRegex, function(url) {
+
+  if(url.includes("http")){
+
+      return url;
+
+      }
+
+    else{
+
+      return  'https://' + url;
+
+    }
+
+  })
+
+  // or alternatively
+
+  // return text.replace(urlRegex, '<a href="$1">$1</a>')
+
+}
+
+function linkit(){
+
+  var txt = document.getElementById("txt").value;
+
+ document.getElementById("pp").innerHTML = urlify(txt);
+
+ var ifr = document.createElement("iframe");
+
+ ifr.src = getUrl(txt);
+
+ var parent =document.getElementById("getin");
+
+ parent.innerHTML = "";
+
+ parent.appendChild(ifr);
+
+}
+
+</script>
+
+</body>
+
+</html>
