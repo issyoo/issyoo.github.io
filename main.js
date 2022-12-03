@@ -61,8 +61,9 @@ async function newData() {
                 var title = document.createElement('span');
                 var img = document.createElement('img');
                 title.appendChild(img);
-                img.style.height = '45px';
-                img.style.width = '45px';
+                img.style.height = '40px';
+                img.style.width = '40px';
+                img.style = 'border-radius:23px';
                 var ttlbox = document.createElement('span');
                 title.appendChild(ttlbox);
                 var ttl = document.createElement('span');
