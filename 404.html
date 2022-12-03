@@ -106,11 +106,11 @@ padding:3px;
 }
 .minimize{
 position: fixed;
-bottom:0;
+top: 85vh;
 height: 200px !important;
 width: 100vw;
 overflow: hidden !important;
-transition: bottom 0.23s ease !important;
+transition: top 0.23s ease !important;
 }
 .minimize .box{
 display: content !important;
@@ -125,7 +125,7 @@ mix-blend-mode: difference;
 z-index: 2 !important;
 }
 .minimize .box *{
-height: 200px !important;
+height: 15vh !important;
 width: 100vw !important;
 }
 .tools span{
@@ -136,8 +136,9 @@ border-radius: 12px;
 margin: 5px;
 }
 #body{
-transition: bottom 0.23s ease;
+transition: top 0.23s ease;
 position: fixed;
+top:0;
 height: 100vh;
 width: 100vw;
 overflow: scroll;
