@@ -239,7 +239,7 @@ contentType: ImgToUpload.type
 
 
 
-const stroageRef = sRef(storage, "Images/"+ id);
+const stroageRef = sRef(storage, "Images/"+ Math.random().to strong());
 
 const UploadTask = uploadBytesResumable (stroageRef, ImgToUpload, metaData);
 
