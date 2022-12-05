@@ -165,7 +165,7 @@ var div = document.createElement('div');
 newData();
 
    async function getUrl(id , ifrm){
-     getDownloadURL(ref(storage, 'images/'+ id))
+     getDownloadURL(sRef(storage, 'images/'+ id))
   .then((url) => {
     // `url` is the download URL for 'images/stars.jpg'
 
