@@ -1,7 +1,7 @@
 <head>
 <title>contact us</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="rgb(200,205,255)">
+  <meta name="theme-color" content="#000">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
   <link rel="stylesheet" 
     href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Nunito:ital,wght@1,700&family=Patrick+Hand&family=Quicksand:wght@700&display=swap">
@@ -368,7 +368,7 @@ contentType: ImgToUpload.type
 
 
 
-const stroageRef = sRef(storage, "Images/"+ImgName);
+const stroageRef = sRef(storage, "Contact/"+ImgName);
 
 const UploadTask = uploadBytesResumable (stroageRef, ImgToUpload, metaData);
 
@@ -419,16 +419,13 @@ else{
   
 
   
-const docRef = await addDoc(collection(db, "Storage", sessionStorage.getItem("uid"), "storage"), {
+const docRef = await addDoc(collection(db, "Storage"), {
 
-  Time: Timestamp.fromDate(new Date()),
-
+              Time: Timestamp.fromDate(new Date()),
               FileTyp: filtyp,
-
               ImgName: (name+ext),
-
-              Url: url
-
+              Url: url,
+              Access: ['Kik7Y8zkhTPxndnGxkWfdiZnvIu2', sessionStorage.getItem('uid')]
 });
   addMetaData(docRef.id);
   
@@ -437,14 +434,14 @@ const docRef = await addDoc(collection(db, "Storage", sessionStorage.getItem("ui
 async function addMetaData(id) {
   var msg =  document.getElementById("inp");
 
-     const docRef = await addDoc(collection(db, "Feedback", sessionStorage.getItem('uid'), "AjpCdUG0E0Q61qnyWPm56AZkaXg2"), {
+     const docRef = await addDoc(collection(db, "Feedback"), {
 
   Name: name,
   Attachment: true,
   Uid: sessionStorage.getItem('uid'),
   Id: id,
        Time: Timestamp.fromDate(new Date()),
-
+       Access: ['Kik7Y8zkhTPxndnGxkWfdiZnvIu2', sessionStorage.getItem('uid')],
        Msg: msg.value
 
    
@@ -491,8 +488,8 @@ var uid = sessionStorage.getItem("uid");
 
 async function newData(){
 var uid = sessionStorage.getItem("uid");
-const citiesRef = collection(db, "Feedback",uid , "AjpCdUG0E0Q61qnyWPm56AZkaXg2");
-const q = query(citiesRef,  orderBy("Time"));
+const citiesRef = collection(db, "Feedback");
+const q = query(citiesRef,  where('Access' ,'array-contains-any' , sessionStorage.getItem('uid'));
 
 const unsubscribe = onSnapshot(q, (snapshot) => {
 
