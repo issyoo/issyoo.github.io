@@ -248,14 +248,14 @@ UploadTask.on('state-changed', (snapshot) =>{
 var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
 
 if( progress != 100){
-document.getElementById("cover").hidden = false;
+
 proglab.style.width = ( progress * 80 / 100 ) + "vw";
-proglab.innerHTML = progress + '%...';
+proglab.innerHTML = progress + '% uploaded';
 }
 
 else{
 
- document.getElementById("send").hidden = true;
+ // cancelUp();
 
 }
 
@@ -264,31 +264,51 @@ else{
 (error) =>{
 alert("error in uploading image: " + error);
 
-});
-cancelUp();
+},
+
+() => {
+
+  getDownloadURL(UploadTask.snapshot.ref).then((downloadURL) => {
+
+    SaveDownloadURL(downloadURL);
+
+  })
+
 }
-   async function SaveDownloadURL(){
+
+);
+
+}
+   
+   async function SaveDownloadURL(url){
 
   var name = namebox.innerHTML;
 
   var ext = extlab.innerHTML;
+
+  
+
   
 const docRef = await addDoc(collection(db, "Public"), {
-              Time: Timestamp.fromDate(new Date()),
+
+  Time: Timestamp.fromDate(new Date()),
+
               FileTyp: filtyp,
               Description: document.getElementById("descrip").value,
               Title: document.getElementById("title").value,
               ImgName: (name+ext),
               Uid: sessionStorage.getItem('uid'),
               Url: url,
-              Time: Timestamp.fromDate(new Date()),
-              Type: 'content'
+              Time: Timestamp.fromDate(new Date())
+
 });
   
-    attch = false;
+  attch = false;
+
     filtyp = filtyp;
+
     console.log("true");
-    UploadProcess(docRef.id);
+cancelUp();
   }
     function cancelUp(){
       filtyp ="";
@@ -298,7 +318,7 @@ const docRef = await addDoc(collection(db, "Public"), {
       attch = "";
       document.getElementById("send").style.display = '';
       document.getElementById("attach").style.display = 'flex';
-      document.getElementById("inp").hidden = false;
+      
       document.getElementById("pst").hidden = true;
 
       document.getElementById("ifr").remove();
@@ -323,7 +343,7 @@ document.getElementById("audio").addEventListener("click", function(){
       clk();
     })
 document.getElementById("dbtn").addEventListener("click", cancelUp);
-   document.getElementById("send").addEventListener("click", SaveDownloadURL);
+   document.getElementById("send").addEventListener("click", UploadProcess);
 </script>
 <script>
 var uid = sessionStorage.getItem("uid");
