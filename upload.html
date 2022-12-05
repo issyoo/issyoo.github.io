@@ -227,22 +227,19 @@ document.getElementById("attach").style.display = 'none';
     }
 
     
-   async function UploadProcess() { 
-document.getElementById("send").style.display = 'none';
-document.getElementById("inp").hidden = true;
+   async function UploadProcess(id) { 
+   document.getElementById("send").style.display = 'none';
+   document.getElementById("inp").hidden = true;
     var ImgToUpload = files [0];
 
 var ImgName = namebox.innerHTML + extlab.innerHTML;
-
 const metaData = {
-
 contentType: ImgToUpload.type
-
 }
 
 
 
-const stroageRef = sRef(storage, "Images/"+ ImgName);
+const stroageRef = sRef(storage, "Images/"+ id);
 
 const UploadTask = uploadBytesResumable (stroageRef, ImgToUpload, metaData);
 
@@ -267,35 +264,17 @@ else{
 (error) =>{
 alert("error in uploading image: " + error);
 
-},
-
-() => {
-
-  getDownloadURL(UploadTask.snapshot.ref).then((downloadURL) => {
-
-    SaveDownloadURL(downloadURL);
-
-  })
-
+});
+cancelUp();
 }
-
-);
-
-}
-   
-   async function SaveDownloadURL(url){
+   async function SaveDownloadURL(){
 
   var name = namebox.innerHTML;
 
   var ext = extlab.innerHTML;
-
-  
-
   
 const docRef = await addDoc(collection(db, "Public"), {
-
-  Time: Timestamp.fromDate(new Date()),
-
+              Time: Timestamp.fromDate(new Date()),
               FileTyp: filtyp,
               Description: document.getElementById("descrip").value,
               Title: document.getElementById("title").value,
@@ -306,12 +285,10 @@ const docRef = await addDoc(collection(db, "Public"), {
               Type: 'content'
 });
   
-  attch = false;
-
+    attch = false;
     filtyp = filtyp;
-
     console.log("true");
-cancelUp();
+    UploadProcess(docRef.id);
   }
     function cancelUp(){
       filtyp ="";
@@ -346,7 +323,7 @@ document.getElementById("audio").addEventListener("click", function(){
       clk();
     })
 document.getElementById("dbtn").addEventListener("click", cancelUp);
-   document.getElementById("send").addEventListener("click", UploadProcess);
+   document.getElementById("send").addEventListener("click", SaveDownloadURL);
 </script>
 <script>
 var uid = sessionStorage.getItem("uid");
