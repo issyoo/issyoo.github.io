@@ -292,7 +292,7 @@ alert("error in uploading image: " + error);
 const docRef = await addDoc(collection(db, "Public"), {
 
   Time: Timestamp.fromDate(new Date()),
-
+              Type: content,
               FileTyp: filtyp,
               Description: document.getElementById("descrip").value,
               Title: document.getElementById("title").value,
