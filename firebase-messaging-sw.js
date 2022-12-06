@@ -7,10 +7,10 @@
   
  const messaging = firebase.messaging(); 
   
- */
+ *
   * Here is is the code snippet to initialize Firebase Messaging in the Service 
   * Worker when your app is not hosted on Firebase Hosting. 
-  
+  */
   // Give the service worker access to Firebase Messaging. 
   // Note that you can only use Firebase Messaging here. Other Firebase libraries 
   // are not available in the service worker. 
