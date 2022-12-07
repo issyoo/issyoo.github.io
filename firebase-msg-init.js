@@ -74,7 +74,7 @@ querySnapshot.forEach((doc) => {
 }
 
 async function SaveTok(id, tok){
-await updateDoc(doc(db, 'People', id), {
+await updateDoc(doc(db, 'Public', id), {
     Token: tok
 });
 }
