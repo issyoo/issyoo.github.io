@@ -21,6 +21,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.3/firebase
 import { getMessaging, getToken ,onMessage} from "https://www.gstatic.com/firebasejs/9.9.3/firebase-messaging.js";
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
+const db = getFirestore();
 const messaging = getMessaging(app);
 // Add the public key generated from the console here.
 
@@ -63,7 +64,7 @@ async function requestNotificationsPermissions() {
 
 async function SaveToken(currentToken){
 var uid = sessionStorage.getItem("uid");
-var q = query(collection(db, "People"), where("Uid", "==", uid));
+var q = query(collection(db, "Explore"), where("Uid", "==", uid));
 const querySnapshot = await getDocs(q);
 querySnapshot.forEach((doc) => {
   // doc.data() is never undefined for query doc snapshots
