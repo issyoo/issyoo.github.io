@@ -64,7 +64,7 @@ async function requestNotificationsPermissions() {
 
 async function SaveToken(currentToken){
 var uid = sessionStorage.getItem("uid");
-var q = query(collection(db, "Explore"), where("Uid", "==", uid));
+var q = query(collection(db, "Public"), where("Uid", "==", uid), where("Type", "==", "user"));
 const querySnapshot = await getDocs(q);
 querySnapshot.forEach((doc) => {
   // doc.data() is never undefined for query doc snapshots
