@@ -1,5 +1,4 @@
-// Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-app.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-analytics.js";
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
@@ -14,14 +13,18 @@
     appId: "1:33480809995:web:74df1e056f7638d0b5310e",
     measurementId: "G-C64NWHRT0Y"
   };
-  import{ getFirestore,Timestamp , doc, getDoc, getDocs, limit, orderBy, query, where, setDoc, collection, addDoc, updateDoc, deleteDoc, deleteField, onSnapshot, arrayUnion
+  import{
+      getFirestore,Timestamp , doc, getDoc, getDocs, limit, orderBy, query, where, setDoc, collection, addDoc, updateDoc, deleteDoc, deleteField, onSnapshot, arrayUnion
   }from "https://www.gstatic.com/firebasejs/9.9.3/firebase-firestore.js";
-  import { getMessaging, getToken ,onMessage} from "https://www.gstatic.com/firebasejs/9.9.3/firebase-messaging.js";
+  import { getAuth, signInWithPopup,signInWithEmailAndPassword, createUserWithEmailAndPassword, GoogleAuthProvider , signOut
+  } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js";
+import { getMessaging, getToken ,onMessage} from "https://www.gstatic.com/firebasejs/9.9.3/firebase-messaging.js";
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
 const messaging = getMessaging(app);
 // Add the public key generated from the console here.
 
+  // Saves the messaging device token to Cloud Firestore.
 requestNotificationsPermissions();
 async function saveMessagingDeviceToken() {
     // Add the public key generated from the console here.
@@ -41,7 +44,7 @@ getToken(messaging, { vapidKey: 'BEJuIVEwajH7KGC1M0w82E911C8KFzzvucHGr_BQ0Iwg2ga
   // ...
 }); }
   onMessage(messaging, (payload) => {
-  alert('Message received. ' + payload);
+  console.log('Message received. ', payload);
   // ...
 });
 
@@ -74,3 +77,4 @@ await updateDoc(doc(db, 'People', id), {
     Token: tok
 });
 }
+requestNotificationsPermissions();
