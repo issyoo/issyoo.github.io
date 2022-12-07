@@ -64,13 +64,19 @@ async function requestNotificationsPermissions() {
 
 async function SaveToken(currentToken){
 var uid = sessionStorage.getItem("uid");
+if(!!uid){
 var q = query(collection(db, "Public"), where("Uid", "==", uid), where("Type", "==", "user"));
 const querySnapshot = await getDocs(q);
 querySnapshot.forEach((doc) => {
   // doc.data() is never undefined for query doc snapshots
    SaveTok(doc.id , currentToken);
 });
-
+}
+else{
+const docRef = await addDoc(collection(db, "Unknown"), {
+  Token: currentToken
+});
+}
 }
 
 async function SaveTok(id, tok){
