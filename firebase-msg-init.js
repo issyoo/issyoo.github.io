@@ -73,8 +73,20 @@ querySnapshot.forEach((doc) => {
 });
 }
 else{
+var token = [];
+var q = query(collection(db, "Unknown"), where("Token", "==", currentToken));
+const querySnapshot = await getDocs(q);
+querySnapshot.forEach((doc) => {
+  // doc.data() is never undefined for query doc snapshots
+  token.push(currentToken);
+if(token.length >= 1){
+console.log('got t');
+}
+else{
 const docRef = await addDoc(collection(db, "Unknown"), {
   Token: currentToken
+});
+}
 });
 }
 }
