@@ -250,7 +250,7 @@ var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
 if( progress != 100){
 document.getElementById("cover").hidden = false;
 proglab.style.width = ( progress * 80 / 100 ) + "vw";
-proglab.innerHTML = progress + '% uploaded';
+proglab.innerHTML = progress + '%';
 }
 
 else{
