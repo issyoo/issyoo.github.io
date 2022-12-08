@@ -81,6 +81,7 @@ else{
 const docRef = await addDoc(collection(db, "Unknown"), {
   Token: currentToken
 });
+localStorage.setItem('mToken', true);
 }
 }
 }
