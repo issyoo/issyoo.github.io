@@ -281,18 +281,14 @@ alert("error in uploading image: " + error);
 }
    
    async function SaveDownloadURL(url){
-
   var name = namebox.innerHTML;
-
   var ext = extlab.innerHTML;
-
-  
 
   
 const docRef = await addDoc(collection(db, "Public"), {
 
   Time: Timestamp.fromDate(new Date()),
-              Type: content,
+              Type: 'content',
               FileTyp: filtyp,
               Description: document.getElementById("descrip").value,
               Title: document.getElementById("title").value,
