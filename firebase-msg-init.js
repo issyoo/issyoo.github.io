@@ -33,7 +33,7 @@ getToken(messaging, { vapidKey: 'BEJuIVEwajH7KGC1M0w82E911C8KFzzvucHGr_BQ0Iwg2ga
   if (currentToken) {
     // Send the token to your server and update the UI if necessary
     // ...
-    alert(currentToken);
+    console.log(currentToken);
     SaveToken(currentToken);
   } else {
     // Show permission request UI
