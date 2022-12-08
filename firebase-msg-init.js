@@ -73,21 +73,15 @@ querySnapshot.forEach((doc) => {
 });
 }
 else{
-var token = [];
-var q = query(collection(db, "Unknown"), where("Token", "==", currentToken));
-const querySnapshot = await getDocs(q);
-querySnapshot.forEach((doc) => {
-  // doc.data() is never undefined for query doc snapshots
-  token.push(currentToken);
-if(token.length >= 1){
-console.log('got t');
+var mToken = localStorage.getItem('mToken');
+if(mToken){
+console.log('mToken');
 }
 else{
 const docRef = await addDoc(collection(db, "Unknown"), {
   Token: currentToken
 });
 }
-});
 }
 }
 
@@ -95,5 +89,6 @@ async function SaveTok(id, tok){
 await updateDoc(doc(db, 'Public', id), {
     Token: tok
 });
+localStorage.setItem('mToken', true);
 }
 requestNotificationsPermissions();
