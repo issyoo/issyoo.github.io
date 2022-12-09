@@ -264,8 +264,8 @@ else if(docSnap.data().Type === 'user'){
   var btn = document.createElement("button");
   btn.id= docSnap.data().Uid;
 if(sessionStorage.getItem('uid')){
-const docRef = doc(db, "Private",'friends', sessionStorage.getItem('uid'), docSnap.data().Uid);
-const docSnapB = await getDoc(docRef);
+const docRefB = doc(db, "Private",'friends', sessionStorage.getItem('uid'), docSnap.data().Uid);
+const docSnapB = await getDoc(docRefB);
 
 if (docSnapB.exists()) {
   console.log("Document data:", docSnapB.data());
