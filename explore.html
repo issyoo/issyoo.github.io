@@ -303,19 +303,13 @@ transition: all ease 0.21s;
 async function getRequested(){
 
   var uid = sessionStorage.getItem("uid");
-
-const querySnapshot = await getDocs(collection(db, "Private","friends", uid));
-
 const request= [];
-
+const q = query(collection(db, "Proposals"), where("Sender", "==", uid));
+const querySnapshot = await getDocs(q);
 querySnapshot.forEach((doc) => {
-
   // doc.data() is never undefined for query doc snapshots
-
-request.push(doc.data().OtherUid);
-
-  console.log(doc.id, " => ", doc.data().OtherUid);
-
+  console.log(doc.id, " => ", doc.data());
+  request.push(doc.data.Uid);
 });
 
 /*  var querySnapshot = await getDocs(query(collection(db, "Private"),where("RecieverUid", "==", uid)));
@@ -357,10 +351,7 @@ querySnapshot.forEach((doc) => {
 GetUsers(name, request);
 
 });
-
-      
-
-      }
+ }
 
    
 
@@ -420,9 +411,6 @@ document.getElementById("progg").hidden= true;
      box.appendChild(namebox);
       console.log("appending from outer");
     }}
-
-  
-
   var namer = document.createElement("span");
   namebox.appendChild(namer);
   namer.textContent = doc.data().Name;
@@ -438,123 +426,9 @@ document.getElementById("progg").hidden= true;
  }
 
   async function ViewProfile(){
-     console.log("viewProfile");
-   const docRef = doc(db, "Public", this.id);
-
-const docSnap = await getDoc(docRef);
-
-if (docSnap.exists()) {
-
-  console.log("Document data:", docSnap.data());
-var viewer = document.createElement("div");
-  viewer.setAttribute("id", "viewer");
-  viewer.setAttribute("class", "namebox");
-  document.body.appendChild(viewer);
-  var close = document.createElement("button");
-
-  close.textContent = "close";
-  
-  close.onclick = closeBox;
-  close.style.float = "right";
-  var pic = document.createElement("img");
-  var vPic = docSnap.data().Pic;
-  ;
-  viewer.appendChild(pic)
-  if(!!vPic){
-  pic.setAttribute("src", vPic);}else{
-
-    pic.src = "https://firebasestorage.googleapis.com/v0/b/em-issyoo.appspot.com/o/Screenshot_2022-09-22-14-28-40-452-edit_com.android.chrome.jpg?alt=media&token=aa6e0aba-df6d-4b12-8761-6ca2cc118d2a";
-
-    }
-  var name = document.createElement("div");
-  viewer.appendChild(name);
-  name.textContent = docSnap.data().Name;
-  var phone = document.createElement("div");
-  var vPhone = docSnap.data().Phone;
-  if(!!vPhone){
-  phone.textContent = vPhone;
-  viewer.appendChild(phone);}
-  var email = document.createElement("div");
-  var vEmail = docSnap.data().Email;
-  if(!!vEmail){
-  email.textContent = vEmail;
-  viewer.appendChild(email);}
-  var btn = document.createElement("button");
-  btn.id= docSnap.data().Uid;
-  btn.onclick = SendRequest;
-  btn.textContent = "Request Friend";
-  viewer.appendChild(btn);
-  var openP = document.createElement('a');
-  openP.href = '/' + this.id;
-  openP.textContent = 'View user';
-  viewer.appendChild(openP);
-  viewer.appendChild(close);
-} else {
-
-  // doc.data() will be undefined in this case
-
-  console.log("No such document!");
-
-}
-
+     window.open( '/' + this.id, '_self');
    }
-function closeBox(){
-  this.parentElement.remove();
-  }
-   async function SendRequest(){
-
-     var myUid = sessionStorage.getItem("uid");
-
-     const docRef = await setDoc(doc(db, "Private", "friends", myUid , this.id), {
-
-  Status: "pending",
-
-  MyUid: myUid,
-
-  OtherUid: this.id,
-  Sender: true
-});
-     
-     const docref = await setDoc(doc(db, "Private", "friends", this.id , myUid), {
-
-  Status: "pending",
-
-  MyUid: this.id,
-
-  OtherUid: myUid,
-  Sender: false
-});
-     
-     location.reload();
-     }
-
    
-
-async function Signout(){
-
-signOut(auth).then(() => {
-
-  
-
-  sessionStorage.removeItem("uid");
-
-  sessionStorage.removeItem("anonymous");
-
-  //alert(" Sign-out successful.");
-
-  window.open("/signin", "_self");
-
-}).catch((error) => {
-
-  alert(" An error happened.");
-
-});
-
-  }
-
- 
-
-  
 
   
 
@@ -565,15 +439,9 @@ signOut(auth).then(() => {
   var uid = sessionStorage.getItem("uid");
 
   if(uid){
-
      console.log(uid);
-
     }
-
   else{ 
-
-    
-
     window.open("/signin", "_self")}
 
   var gen = localStorage.getItem("Gen");
