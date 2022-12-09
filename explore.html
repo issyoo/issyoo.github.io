@@ -384,26 +384,18 @@ document.getElementById("progg").hidden= true;
   phto.style.width = "30px";
   phto.style.height = "30px";
   namebox.setAttribute("class", "namebox");
-
   if(!!request[0]){
 
   for( let i = 0; i< request.length; i++){
-
   if( doc.data().Uid == request [i]){
-
     namebox.remove();
     console.log("breaking from request", doc.data().Uid);
-
     break;
-
   }
 
   else if(doc.data().Name != name){
-
-  box.appendChild(namebox);
-
+    box.appendChild(namebox);
     console.log("appending from req ", doc.data().Uid);
-
   }}}
 
   else{
@@ -414,8 +406,8 @@ document.getElementById("progg").hidden= true;
   var namer = document.createElement("span");
   namebox.appendChild(namer);
   namer.textContent = doc.data().Name;
-  namebox.id = doc.id;
-  namebox.onclick = ViewProfile;
+  namebtn.id = doc.id;
+  namebtn.onclick = ViewProfile;
   var namebtn = document.createElement("button");
   namebtn.textContent = "View Profile";
   namebox.appendChild(namebtn);
