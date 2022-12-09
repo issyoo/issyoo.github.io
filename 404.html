@@ -264,24 +264,27 @@ else if(docSnap.data().Type === 'user'){
   var btn = document.createElement("button");
   btn.id= docSnap.data().Uid;
 if(sessionStorage.getItem('uid')){
-const docRefB = doc(db, "Private",'friends', sessionStorage.getItem('uid'), docSnap.data().Uid);
-const docSnapB = await getDoc(docRefB);
-
-if (docSnapB.exists()) {
-  console.log("Document data:", docSnapB.data());
-  if(docSnapB.data().Status === 'accepted'){
-   btn.setAttribute('class', 'success');
+const q = query(collection(db, "Proposals"), where("Sender", "==", true), where('Uid', '==', uid));
+const querySnapshot = await getDocs(q);
+querySnapshot.forEach((doc) => {
+  // doc.data() is never undefined for query doc snapshots
+  console.log(doc.id, " => ", doc.data());
+  if(doc.data.Status === 'pending'){
+  btn.setAttribute('class', 'danger');
+  btn.textContent = "Delete Request";
+  }
+  else{
+  btn.setAttribute('class', 'success');
  // btn.onclick = SendRequest;
   btn.textContent = "Chat";
   }
-  else if(docSnapB.data().Sender){
-  btn.setAttribute('class', 'danger');
-  btn.textContent = "Delete Request";
-}
-  else{
+});
+const qb = query(collection(db, "Proposals"), where("Sender", "==", false), where('Uid', '==', uid));
+const querySnapshotb = await getDocs(qb);
+querySnapshot.forEach((doc) => {
   btn.setAttribute('class', 'success');
   btn.textContent = "Accept Request";
-}
+});
 } else {
   // doc.data() will be undefined in this case
   console.log("No such document!");
@@ -300,9 +303,6 @@ var header = document.createElement('title');
  getCont(contner, docSnap.data().Uid);
 }
 } else {
-
-  
-
   // doc.data() will be undefined in this case
   document.getElementById('pnf').hidden = false;
   document.getElementById('load').hidden = true;
