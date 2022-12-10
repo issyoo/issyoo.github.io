@@ -6,7 +6,7 @@
 </body>
 <script type='module'>
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-analytics.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-analytics.js";
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
   // Your web app's Firebase configuration
@@ -27,8 +27,8 @@ import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-
   } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js";
 import { getMessaging, getToken ,onMessage} from "https://www.gstatic.com/firebasejs/9.9.3/firebase-messaging.js";
   // Initialize Firebase
-const db = getFirestore();
   const app = initializeApp(firebaseConfig);
+const db = getFirestore();
 const messaging = getMessaging(app);
 // This registration token comes from the client FCM SDKs.
 const registrationToken = 'eH3ccJGu23gGfPgXHRBdqS:APA91bEcfbzZ1Meqdf_aTu9zh9XWVo9zjDhaAmupy_yYHm7hx-culYWTDSQPahER5o8_RTbvbJlJm_kMfB-odttN0tY4kyqRGWIlJagOnb5NYdNQOVA4ke7i3qgfpD2l8wICH35brsx7';
