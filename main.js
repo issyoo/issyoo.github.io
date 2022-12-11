@@ -106,6 +106,7 @@ async function moreData(id, img, nam) {
         // doc.data() is never undefined for query doc snapshots
         console.log(doc.id, " => ", doc.data());
         img.src = doc.data().Pic;
+        img.onclick = e => { window.open('/'+this.id,'_self')}
         nam.innerHTML = doc.data().Name;
     });
 }
