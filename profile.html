@@ -434,6 +434,10 @@ signOut(auth).then(() => {
 
 const divs = document.getElementsByClassName("div");
 for (const div of divs) {
-  div.addEventListener("onmouseenter", createRipple);
+  div.addEventListener("touchstart", createRipple);
+}
+const buttons = document.getElementsByTagName("button");
+for (const button of buttons) {
+  button.addEventListener("touchstart", createRipple);
 }
   </script>
