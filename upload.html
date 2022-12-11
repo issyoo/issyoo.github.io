@@ -75,9 +75,13 @@ mix-blend-mode: difference;
       <span id="name"></span>
 
 <label id="extlab"></label>
-
-<div id="cover" hidden>
+<div id='controls' hidden>
+<div id="cover">
 <div id="upprogress"></div></div>
+<button class="material-symbols-outlined" id="pause">pause</button>
+<button class="material-symbols-outlined" id="play" hidden>play</button>
+<button class="material-symbols-outlined" id="stop">stop</button>
+</div>
  <span id='inp'>
       <label for='title'>Title: </label><input type='text' id='title'><br>
       <label for='descrip'>Description: </label><textarea id='descrip'></textarea></span>
@@ -242,19 +246,35 @@ contentType: ImgToUpload.type
 const stroageRef = sRef(storage, "Images/"+ Math.random().toString());
 
 const UploadTask = uploadBytesResumable (stroageRef, ImgToUpload, metaData);
-
+document.getElementById("pause").addEventListener("click" , function () {
+// Pause the upload
+uploadTask.pause();
+document.getElementById("pause").hidden = true;
+document.getElementById("play").hidden = false;
+}
+document.getElementById("play").addEventListener("click", function (){
+// Resume the upload
+uploadTask.resume();
+document.getElementById("pause").hidden = false;
+document.getElementById("play").hidden = true;
+}
+document.getElementById("video").addEventListener("click", function (){
+// Cancel the upload
+uploadTask.cancel();
+cancelUp();
+}
 UploadTask.on('state-changed', (snapshot) =>{ 
 
 var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
 
 if( progress != 100){
-document.getElementById("cover").hidden = false;
+document.getElementById("controls").hidden = false;
 proglab.style.width = ( progress * 80 / 100 ) + "vw";
 proglab.innerHTML = progress + '%';
 }
 
 else{
-document.getElementById("cover").hidden = false;
+document.getElementById("controls").hidden = false;
  // cancelUp();
 
 }
