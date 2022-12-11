@@ -251,18 +251,18 @@ document.getElementById("pause").addEventListener("click" , function () {
 uploadTask.pause();
 document.getElementById("pause").hidden = true;
 document.getElementById("play").hidden = false;
-}
+});
 document.getElementById("play").addEventListener("click", function (){
 // Resume the upload
 uploadTask.resume();
 document.getElementById("pause").hidden = false;
 document.getElementById("play").hidden = true;
-}
+});
 document.getElementById("stop").addEventListener("click", function (){
 // Cancel the upload
 uploadTask.cancel();
 cancelUp();
-}
+});
 UploadTask.on('state-changed', (snapshot) =>{ 
 
 var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
