@@ -79,7 +79,7 @@ mix-blend-mode: difference;
 <div id="cover">
 <div id="upprogress"></div></div>
 <button class="material-symbols-outlined" id="pause">pause</button>
-<button class="material-symbols-outlined" id="play" hidden>play</button>
+<button class="material-symbols-outlined" id="play" hidden>play_arrow</button>
 <button class="material-symbols-outlined" id="stop">stop</button>
 </div>
  <span id='inp'>
@@ -246,21 +246,20 @@ contentType: ImgToUpload.type
 const stroageRef = sRef(storage, "Images/"+ Math.random().toString());
 
 const UploadTask = uploadBytesResumable (stroageRef, ImgToUpload, metaData);
+document.getElementById("pause").onclick = uploadTask.pause;
 document.getElementById("pause").addEventListener("click" , function () {
-// Pause the upload
-uploadTask.pause();
 document.getElementById("pause").hidden = true;
 document.getElementById("play").hidden = false;
 });
+document.getElementById("play").onclick = uploadTask.resume;
 document.getElementById("play").addEventListener("click", function (){
 // Resume the upload
-uploadTask.resume();
 document.getElementById("pause").hidden = false;
 document.getElementById("play").hidden = true;
 });
+document.getElementById("stop").onclick = uploadTask.cancel;
 document.getElementById("stop").addEventListener("click", function (){
 // Cancel the upload
-uploadTask.cancel();
 cancelUp();
 });
 UploadTask.on('state-changed', (snapshot) =>{ 
