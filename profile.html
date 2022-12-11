@@ -430,15 +430,10 @@ signOut(auth).then(() => {
   }
 
   button.appendChild(circle);
-
 }
 
 const divs = document.getElementsByClassName("div");
 for (const div of divs) {
-  button.addEventListener("click", createRipple);
-}
-const buttons = document.getElementsByClassName("button");
-for (const button of buttons) {
   button.addEventListener("click", createRipple);
 }
   </script>
