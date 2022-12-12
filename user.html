@@ -256,7 +256,7 @@ if(docSnap.data().Type === 'user'){
       btn.textContent = "Accept Request";
       }
    });
-   if(req.length != 0){}
+   if(req.length <= 0){}
    else {
      // doc.data() will be undefined in this case
      console.log("No such document!");
@@ -332,18 +332,10 @@ var div = document.createElement('div');
 }*/
 async function SendRequest(){
   var myUid = sessionStorage.getItem("uid");
-  const docRef = await setDoc(doc(db, "Private", "friends", myUid , this.id), {
+  const docRef = await setDoc(doc(db, "Proposals"), {
   Status: "pending",
-  MyUid: myUid,
-  OtherUid: this.id,
-  Sender: true
-});
-     
-     const docref = await setDoc(doc(db, "Private", "friends", this.id , myUid), {
-  Status: "pending",
-  MyUid: this.id,
-  OtherUid: myUid,
-  Sender: false
+  Uid: [myUid,this.id],
+  Sender: myUid
 });
      
      location.reload();
