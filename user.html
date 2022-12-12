@@ -98,6 +98,7 @@ border-radius: 23px;
 padding:13px;
 font-family: 'Quicksand';
 font-size: 18px;
+margin-bottom: 44px;
 box-shadow: 5px 5px 5px rgb(0,0,0,0.3), inset 3px 3px 5px rgb(255,255,255,0.3);
 }
 #viewer .success{
@@ -276,7 +277,7 @@ if(docSnap.data().Type === 'user'){
     reportBtn.id= docSnap.data().Uid;
     reportBtn.innerHTML = 'Report User';
     viewer.appendChild(reportBtn);
-    report.setAttribute('class', 'danger');
+    reportBtn.setAttribute('class', 'danger');
     document.getElementById('load').hidden = true;
     var header = document.createElement('title');
     header.innerHTML = docSnap.data().Name + ' | issyoo';
