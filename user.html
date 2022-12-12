@@ -54,7 +54,7 @@ align-items:center;
    font-size: 18px;
 }
 .name{
-  font-size: 10px;
+  font-size: 24px;
 }
 .tBox{
 display: flex;
@@ -217,8 +217,9 @@ if(docSnap.data().Type === 'user'){
     pic.setAttribute("src", vPic);}else{
     pic.src = "https://firebasestorage.googleapis.com/v0/b/em-issyoo.appspot.com/o/Screenshot_2022-09-22-14-28-40-452-edit_com.android.chrome.jpg?alt=media&token=aa6e0aba-df6d-4b12-8761-6ca2cc118d2a";
     }
-  var name = document.createElement("h1");
+  var name = document.createElement("p");
   viewer.appendChild(name);
+  name.setAttribute('class', 'name');
   name.textContent = docSnap.data().Name;
   var phone = document.createElement("div");
   var vPhone = docSnap.data().Phone;
