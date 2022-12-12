@@ -313,12 +313,17 @@ async function getRequested(){
 
   var uid = sessionStorage.getItem("uid");
 const request= [];
-const q = query(collection(db, "Proposals"), where("Sender", "==", uid));
+const q = query(collection(db, "Proposals"), where("Uid", "array-contains", uid));
 const querySnapshot = await getDocs(q);
 querySnapshot.forEach((doc) => {
   // doc.data() is never undefined for query doc snapshots
   console.log(doc.id, " => ", doc.data());
-  request.push(doc.data.Uid);
+  if(doc.data().Uid[0] == uid){
+  request.push(doc.data.Uid[1]);
+  }
+  else{
+  request.push(doc.data.Uid[0]);
+  }
 });
 
 /*  var querySnapshot = await getDocs(query(collection(db, "Private"),where("RecieverUid", "==", uid)));
@@ -343,7 +348,7 @@ getRequested();
 
 var uid = sessionStorage.getItem("uid");
 
-var q = query(collection(db, "People"), where("Uid", "array-contains", uid));
+var q = query(collection(db, "People"), where("Uid", "==", uid));
 
 const querySnapshot = await getDocs(q);
 
