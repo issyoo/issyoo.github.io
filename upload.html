@@ -63,9 +63,7 @@ mix-blend-mode: difference;
 <div id="attach">
 <p style='font-size: 111px;'>Create</p>
 <span>
-<button class="material-symbols-outlined" id="image">image</button>
-<button class="material-symbols-outlined" id="video">movie</button>
-<button class="material-symbols-outlined" id="audio">music_note</button>
+<button class="material-symbols-outlined" id="video">publish</button>
 </span></div>
 <div id="pst" hidden>
 
@@ -323,7 +321,6 @@ const docRef = await addDoc(collection(db, "Public"), {
               Uid: sessionStorage.getItem('uid'),
               Url: url,
               Time: Timestamp.fromDate(new Date())
-
 });
   
   attch = false;
@@ -347,22 +344,10 @@ cancelUp();
       document.getElementById("ifr").remove();
 
     }
-document.getElementById("image").addEventListener("click", function(){
-      attch = true;
-      filtyp = 'img';
-      inpt.accept = 'image/*';
-      clk();
-    })
 document.getElementById("video").addEventListener("click", function(){
       attch = true;
       filtyp = 'video';
       inpt.accept = 'video/*';
-      clk();
-    })
-document.getElementById("audio").addEventListener("click", function(){
-      attch = true;
-      filtyp = 'audio';
-      inpt.accept = 'audio/*';
       clk();
     })
 document.getElementById("dbtn").addEventListener("click", cancelUp);
@@ -372,9 +357,7 @@ document.getElementById("dbtn").addEventListener("click", cancelUp);
 var uid = sessionStorage.getItem("uid");
 
   if(uid){
-
      console.log(uid);
-
     }
 
   else{ window.open("/signin", "_self");
