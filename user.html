@@ -269,7 +269,7 @@ if(docSnap.data().Type === 'user'){
   else {
       btn.setAttribute('class', 'success');
       btn.textContent = "Login to chat";
-      btn.onclick = e => {window.open('/signin.html','_self');}
+      btn.addEventListener('click', function () {window.open('/signin.html','_self');});
    }
     viewer.appendChild(btn);
     var reportBtn = document.createElement("button");
