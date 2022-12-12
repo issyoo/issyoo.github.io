@@ -269,12 +269,13 @@ if(docSnap.data().Type === 'user'){
   else {
       btn.setAttribute('class', 'success');
       btn.textContent = "Login to chat";
-      btn.onclick = e=> {window.open('/signin.html','_self');
+      btn.onclick = e => {window.open('/signin.html','_self');}
    }
     viewer.appendChild(btn);
-    var report = document.createElement("button");
-    report.id= docSnap.data().Uid;
-    report.innerHTML = 'Report User";
+    var reportBtn = document.createElement("button");
+    reportBtn.id= docSnap.data().Uid;
+    reportBtn.innerHTML = 'Report User";
+    viewer.appendChild(reportBtn);
     report.setAttribute('class', 'danger');
     document.getElementById('load').hidden = true;
     var header = document.createElement('title');
