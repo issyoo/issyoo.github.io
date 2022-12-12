@@ -202,7 +202,7 @@ import { getStorage, ref as sRef, uploadBytesResumable , getDownloadURL
 
 async function getMeta(){
     var uid = sessionStorage.getItem("uid")
-const docRef = doc(db, "Public" , getParameterByName('v'));
+const docRef = doc(db, "Public" , getParameterByName('i'));
 const docSnap = await getDoc(docRef);
 if (docSnap.exists()) {
 if(docSnap.data().Type === 'content'){
@@ -237,7 +237,7 @@ if(docSnap.data().Type === 'content'){
             document.getElementById('body').appendChild(title);
         }
 else if(docSnap.data().Type === 'user'){
-   location.replace('/' + getParameterByName('v'));
+   location.replace('/user?i=' + getParameterByName('i'));
 }
 document.getElementById('load').hidden = true;
 var header = document.createElement('title');
@@ -258,7 +258,7 @@ var header = document.createElement('title');
     }
     getMeta();
    
- async function getCont(cont, id){
+ /*async function getCont(cont, id){
   const q = query(collection(db, "Public"), where("Uid", "==", id));
 
 const querySnapshot = await getDocs(q);
@@ -287,24 +287,7 @@ var div = document.createElement('div');
   div.setAttribute('class', 'cont');
   });
 }
-async function SendRequest(){
-  var myUid = sessionStorage.getItem("uid");
-  const docRef = await setDoc(doc(db, "Private", "friends", myUid , this.id), {
-  Status: "pending",
-  MyUid: myUid,
-  OtherUid: this.id,
-  Sender: true
-});
-     
-     const docref = await setDoc(doc(db, "Private", "friends", this.id , myUid), {
-  Status: "pending",
-  MyUid: this.id,
-  OtherUid: myUid,
-  Sender: false
-});
-     
-     location.reload();
-     }
+*/
 function getParameterByName(name, url = window.location.href) {
     name = name.replace(/[\[\]]/g, '\\$&');
     var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
@@ -313,5 +296,5 @@ function getParameterByName(name, url = window.location.href) {
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
-console.log(getParameterByName('v'));
+console.log(getParameterByName('i'));
 </script>
