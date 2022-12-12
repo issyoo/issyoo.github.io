@@ -234,8 +234,8 @@ if(docSnap.data().Type === 'user'){
     }
   var btn = document.createElement("button");
   btn.id= docSnap.data().Uid;
-  var req = [];
   if(sessionStorage.getItem('uid')){
+   try{
     const q = query(collection(db, "Proposals"), where("Uid", "array-contains-any", uid));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
@@ -255,9 +255,7 @@ if(docSnap.data().Type === 'user'){
       btn.setAttribute('class', 'success');
       btn.textContent = "Accept Request";
       }
-   });
-   if(req.length <= 0){}
-   else {
+   }) } catch(err){
      // doc.data() will be undefined in this case
      console.log("No such document!");
      btn.setAttribute('class', 'success');
