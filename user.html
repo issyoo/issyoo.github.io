@@ -289,6 +289,8 @@ if(docSnap.data().Type === 'user'){
       btn.textContent = "Login to chat";
       btn.addEventListener('click', function () {window.open('/signin.html','_self');});
    }
+
+    document.getElementById('load').hidden = true;
     viewer.appendChild(btn);
     var reportBtn = document.createElement("button");
     reportBtn.id= docSnap.data().Uid;
@@ -307,7 +309,6 @@ if(docSnap.data().Type === 'user'){
 else if(docSnap.data().Type === 'content'){
    location.replace('/watch?i=' + getParameterByName('i'));
 }
-document.getElementById('load').hidden = true;
 var header = document.createElement('title');
     header.innerHTML = docSnap.data().Name + ' | issyoo';
     document.head.appendChild(header);
