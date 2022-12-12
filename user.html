@@ -210,7 +210,7 @@ if(docSnap.data().Type === 'user'){
   var viewer = document.createElement("div");
   viewer.setAttribute("id", "viewer");
   viewer.setAttribute("class", "namebox");
-  document.body.appendChild(viewer);
+  document.getElementById('body').appendChild(viewer);
   var pic = document.createElement("img");
   var vPic = docSnap.data().Pic;
   viewer.appendChild(pic);
