@@ -269,8 +269,8 @@ if(docSnap.data().Type === 'user'){
       }
     else if(doc.data().Status === 'accepted'){
       btn.setAttribute('class', 'success');
-   // btn.onclick = SendRequest;
-      btn.textContent = "Chat";
+      btn.onclick = e => { location.href = '/chat'};
+      btn.textContent = "Message";
       }
     else if(doc.data().Status === 'pending' && doc.data().Sender != uid){
       btn.setAttribute('class', 'success');
