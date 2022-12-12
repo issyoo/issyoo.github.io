@@ -237,7 +237,7 @@ if(docSnap.data().Type === 'content'){
             document.getElementById('body').appendChild(title);
         }
 else if(docSnap.data().Type === 'watch'){
-   location.replace('/watch?' + getParameterByName('i'));
+   location.replace('/watch?i=' + getParameterByName('i'));
 }
 document.getElementById('load').hidden = true;
 var header = document.createElement('title');
