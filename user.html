@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
   <style>
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@700&family=Poppins:wght@600&display=swap');
 </style>
   <style>
     *{
@@ -96,6 +96,7 @@ font-weight: 600;
 border-radius: 23px;
 padding:7px;
 font-family: 'Quicksand';
+font-size: 18px;
 }
 #viewer .success{
 background-color: rgb(22,22,22);
@@ -216,7 +217,7 @@ if(docSnap.data().Type === 'user'){
     pic.setAttribute("src", vPic);}else{
     pic.src = "https://firebasestorage.googleapis.com/v0/b/em-issyoo.appspot.com/o/Screenshot_2022-09-22-14-28-40-452-edit_com.android.chrome.jpg?alt=media&token=aa6e0aba-df6d-4b12-8761-6ca2cc118d2a";
     }
-  var name = document.createElement("div");
+  var name = document.createElement("h1");
   viewer.appendChild(name);
   name.textContent = docSnap.data().Name;
   var phone = document.createElement("div");
@@ -225,7 +226,7 @@ if(docSnap.data().Type === 'user'){
     phone.textContent = vPhone;
     viewer.appendChild(phone);
     }
-  var email = document.createElement("div");
+  var email = document.createElement("h3");
   var vEmail = docSnap.data().Email;
   if(!!vEmail){
     email.textContent = vEmail;
