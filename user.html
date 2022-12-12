@@ -1,4 +1,6 @@
 <head>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
   <style>
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@600&display=swap');
 </style>
@@ -13,12 +15,12 @@
   #content{
     margin: 0;
     border-radius: 2px;
-    color: #fff;
+    color: #000;
     }
   #viewer{
   width:100vw;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items:center;
   justify-content: center;
 }
@@ -27,18 +29,130 @@
   border-radius: 50%;
   margin: 12px;
 }
+.cont{
+    width: 100vw;
+    min-height: 200px;
+    max-height: 450px;
+    overflow:hidden;
+    background-color:#000;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    border-radius: 13px;
+    }
+.box, .infobox{
+display: flex;
+flex-direction: column;
+background-color: #000;
+}
+.box .title{
+display: flex;
+align-items:center;
+}
+.tname{
+   font-weight:900;
+   font-size: 18px;
+}
+.name{
+  font-size: 10px;
+}
+.tBox{
+display: flex;
+justify-content: space-between;
+align-items:center;
+}
+.moreBtn:active{
+background-color: rgb(255,255,255,0.2);
+}
+.head{
+font-family: 'Quicksand';
+margin: 0;
+top:0;
+padding: 3px 0;
+display: flex;
+flex-direction: row;
+align-items:center;
+justify-content: space-between;
+background-color: rgb(12,12,12);
+font-weight: 800;
+color: #fff;
+height: 45px;
+}
+    .head span {
+        padding: 5px;
+    }
+    .head span {
+        font-size: 23px;
+      //  mix-blend-mode: difference;
+    }
+.ifrm{
+width: 100%;
+border-radius: 13px;
+}
 #viewer .success{
 border:none;
-background-color: rgb(120,255,100);
+background-color: rgb(22,122,222);
 color:#fff;
 font-weight: 600;
-border-radius: 22px;
+border-radius: 3px;
+padding:3px;
 }
 #viewer .danger{
 border:none;
 background-color: rgb(255,19,19);
 color:#fff;
 font-weight: 600;
+padding:3px;
+}
+.minimize{
+position: fixed;
+bottom:0;
+height: 200px !important;
+width: 100vw;
+overflow: hidden !important;
+transition: top 0.23s ease !important;
+}
+.minimize .box{
+display: content !important;
+}
+.minimize .head{
+background-color: rgb(0,0,0,0) !important;
+color: #fff;
+width: 100vw;
+overflow: visible !important;
+position: absolute !important;
+mix-blend-mode: difference;
+z-index: 2 !important;
+}
+.minimize .box *{
+height: 200px !important;
+width: 100vw !important;
+}
+.tools span{
+padding: 2px 7px;
+background-color: rgb(245,245,255);
+color: #000;
+border-radius: 12px;
+margin: 5px;
+}
+#body{
+transition: top 0.23s ease;
+position: fixed;
+height: 100vh;
+width: 100vw;
+overflow: scroll;
+}
+#body #closeCont{
+display: none;
+}
+.minimize #closeCont{
+display: block !important;
+}
+.minimize #shareCont{
+display: none !important;
+}
+.minimize #minimise{
+ transform: rotate(180deg) !important;
 }
   </style>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -82,133 +196,83 @@ import { getStorage, ref as sRef, uploadBytesResumable , getDownloadURL
   const analytics = getAnalytics(app);
   const auth = getAuth();
   const db = getFirestore();
+   const storage = getStorage();
 
 
-const url = location.href;
-console.log(url.pathname.split('/').slice(1)); // drop the leading slash
-const params = new URLSearchParams(url.search)
-alert("Did:" + params.get("Did"));
-const did = params.get("Did");
-  async function getUser(){
-    const docRef = doc(db, "Explore", did);
 
+async function getMeta(){
+    var uid = sessionStorage.getItem("uid")
+const docRef = doc(db, "Public" , getParameterByName('i'));
 const docSnap = await getDoc(docRef);
-
 if (docSnap.exists()) {
-
-  console.log("Document data:", docSnap.data());
-  var viewer = document.createElement("div");
-
-  viewer.setAttribute("id", "viewer");
-
-  viewer.setAttribute("class", "namebox");
-
-  document.body.appendChild(viewer);
-
-  var pic = document.createElement("img");
-
-  var vPic = docSnap.data().Pic;
-
-  viewer.appendChild(pic);
-
-  if(!!vPic){
-
-  pic.setAttribute("src", vPic);}else{
-
-    pic.src = "https://firebasestorage.googleapis.com/v0/b/em-issyoo.appspot.com/o/Screenshot_2022-09-22-14-28-40-452-edit_com.android.chrome.jpg?alt=media&token=aa6e0aba-df6d-4b12-8761-6ca2cc118d2a";
-
-    }
-
-  var name = document.createElement("div");
-
-  viewer.appendChild(name);
-
-  name.textContent = docSnap.data().Name;
-
-  var phone = document.createElement("div");
-
-  var vPhone = docSnap.data().Phone;
-
-  if(!!vPhone){
-
-  phone.textContent = vPhone;
-
-  viewer.appendChild(phone);}
-
-  var email = document.createElement("div");
-
-  var vEmail = docSnap.data().Email;
-
-  if(!!vEmail){
-
-  email.textContent = vEmail;
-
-  viewer.appendChild(email);}
-
-  var btn = document.createElement("button");
-
-  btn.id= docSnap.data().Uid;
-  btn.setAttribute('class', 'success');
- // btn.onclick = SendRequest;
-
-  btn.textContent = "Request Friend";
-
-  viewer.appendChild(btn);
-
+if(docSnap.data().Type === 'content'){
+  let head = document.createElement('div');
+            head.setAttribute('class', 'head');
+            document.getElementById('body').appendChild(head);
+            head.innerHTML = `<span class='material-symbols-outlined' id='minimise' onclick='document.getElementById("body").classList.toggle("minimize");'>keyboard_arrow_down</span><span id='titleCont'></span> <span class='material-symbols-outlined' id='shareCont' onclick='window.open("whatsapp://send?text=${location.href}", "_self")'>forward</span><span class='material-symbols-outlined' id='closeCont' onclick='this.parentElement.parentElement.remove()'>close</span>`
+            let div = document.createElement('div');
+            div.setAttribute('id', 'content');
+            document.getElementById('body').appendChild(div);
+            console.log("Document data:", docSnap.data());
+            if (!!docSnap.data().FileTyp) { var ffl = docSnap.data().FileTyp; }
+            else { ffl = 'iframe'; }
+            let ifrm = document.createElement(ffl);
+            ifrm.setAttribute("src", docSnap.data().Url);
+            ifrm.style.maxHeight = '70vh';
+            ifrm.controls = true;
+            ifrm.controlsList = "nodownload";
+            div.appendChild(ifrm);
+            div.setAttribute('class', 'box');
+            var title = document.createElement('p');
+            title.innerHTML = docSnap.data().Description;
+            document.getElementById('titleCont').innerHTML = docSnap.data().Title;
+            document.getElementById('load').hidden = true;
+            var header = document.createElement('title');
+            header.innerHTML = docSnap.data().Title + ' | issyoo';
+            document.head.appendChild(header);
+            var tools = document.createElement('div');
+            tools.setAttribute('class', 'tools');
+            tools.innerHTML = `<span class='material-symbols-outlined'>thumb_up</span><span class='material-symbols-outlined'>thumb_down</span>`;
+            document.getElementById('body').appendChild(tools);
+            document.getElementById('body').appendChild(title);
+        }
+else if(docSnap.data().Type === 'watch'){
+   location.replace('/watch?' + getParameterByName('i'));
+}
 document.getElementById('load').hidden = true;
 var header = document.createElement('title');
     header.innerHTML = docSnap.data().Name + ' | issyoo';
     document.head.appendChild(header);
  var contner = document.createElement('div');
  document.body.appendChild(contner);
- getCont(viewer);
+ getCont(contner, docSnap.data().Uid);
 } else {
-
   // doc.data() will be undefined in this case
-
-  document.getElementById('load').innerHTML = "No user found!";
+  document.getElementById('pnf').hidden = false;
+  document.getElementById('load').hidden = true;
 var header = document.createElement('title');
     header.innerHTML = '404 | page not found';
     document.head.appendChild(header);
 }
    // document.getElementById('load').hidden = true;
     }
-   if(!!did){
-    getUser();
-    }
-  else{
-    document.getElementById('pnf').hidden = false;
-    document.getElementById('load').hidden = true;
-    var header = document.createElement('title');
-    header.innerHTML = '404 | page not found';
-    document.head.appendChild(header);
-   }
- async function getCont(cont){
-  const docRef = doc(db, "Explore", did);
+    getMeta();
+   
+ async function getCont(cont, id){
+  const q = query(collection(db, "Public"), where("Uid", "==", id));
 
-const doc = await getDoc(docRef);
+const querySnapshot = await getDocs(q);
 
-if (doc.exists()) {
-        console.log("New msg: "+ doc.data());
-
+querySnapshot.forEach((doc) => {
 var div = document.createElement('div');
-     
       cont.appendChild(div);
-
- 
-
  console.log("Document data:", doc.data());
-
   if(!!doc.data().FileTyp){ var ffl = doc.data().FileTyp;}
-
   else{ffl = 'iframe';}
-
   let ifrm = document.createElement(ffl);
-
   ifrm.style.maxWidth = "45vw";
-
              ifrm.setAttribute("src", doc.data().Url);
-             div.setAttribute('id', 'isknt=' + doc.id);
+             div.setAttribute('id', doc.id);
              ifrm.controls = false;
              div.onclick = openCont;
              div.appendChild(ifrm);
@@ -216,18 +280,38 @@ var div = document.createElement('div');
              title.innerHTML = doc.data().Title;
              cont.appendChild(title);
              var del = document.createElement('button');
-
              del.innerHTML = 'delete';
              del.onclick = deletC;
              cont.appendChild(del);
   del.setAttribute('id', doc.id);
   div.setAttribute('class', 'cont');
-  }
+  });
 }
-</script>
-<script>
-const url = location.href;
-console.log(url.pathname.split('/').slice(1)); // drop the leading slash
-const params = new URLSearchParams(url.search)
-console.log("filter:",params.get("Did"))
+async function SendRequest(){
+  var myUid = sessionStorage.getItem("uid");
+  const docRef = await setDoc(doc(db, "Private", "friends", myUid , this.id), {
+  Status: "pending",
+  MyUid: myUid,
+  OtherUid: this.id,
+  Sender: true
+});
+     
+     const docref = await setDoc(doc(db, "Private", "friends", this.id , myUid), {
+  Status: "pending",
+  MyUid: this.id,
+  OtherUid: myUid,
+  Sender: false
+});
+     
+     location.reload();
+     }
+function getParameterByName(name, url = window.location.href) {
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+console.log(getParameterByName('i'));
 </script>
