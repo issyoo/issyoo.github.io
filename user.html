@@ -247,7 +247,6 @@ if(docSnap.data().Type === 'user'){
     querySnapshot.forEach((doc) => {
     // doc.data() is never undefined for query doc snapshots
     console.log(doc.id, " => ", doc.data());
-    req.push(doc.id);
     if(doc.data().Status === 'pending' && doc.data().Sender === uid){
       btn.setAttribute('class', 'danger');
       btn.textContent = "Delete Request";
