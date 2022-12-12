@@ -205,108 +205,18 @@ async function getMeta(){
 const docRef = doc(db, "Public" , location.href.substring(25));
 const docSnap = await getDoc(docRef);
 if (docSnap.exists()) {
-if(docSnap.data().Type === 'content'){
-  let head = document.createElement('div');
-            head.setAttribute('class', 'head');
-            document.getElementById('body').appendChild(head);
-            head.innerHTML = `<span class='material-symbols-outlined' id='minimise' onclick='document.getElementById("body").classList.toggle("minimize");'>keyboard_arrow_down</span><span id='titleCont'></span> <span class='material-symbols-outlined' id='shareCont' onclick='window.open("whatsapp://send?text=${location.href}", "_self")'>forward</span><span class='material-symbols-outlined' id='closeCont' onclick='this.parentElement.parentElement.remove()'>close</span>`
-            let div = document.createElement('div');
-            div.setAttribute('id', 'content');
-            document.getElementById('body').appendChild(div);
-            console.log("Document data:", docSnap.data());
-            if (!!docSnap.data().FileTyp) { var ffl = docSnap.data().FileTyp; }
-            else { ffl = 'iframe'; }
-            let ifrm = document.createElement(ffl);
-            ifrm.setAttribute("src", docSnap.data().Url);
-            ifrm.style.maxHeight = '70vh';
-            ifrm.controls = true;
-            ifrm.controlsList = "nodownload";
-            div.appendChild(ifrm);
-            div.setAttribute('class', 'box');
-            var title = document.createElement('p');
-            title.innerHTML = docSnap.data().Description;
-            document.getElementById('titleCont').innerHTML = docSnap.data().Title;
-            document.getElementById('load').hidden = true;
-            var header = document.createElement('title');
-            header.innerHTML = docSnap.data().Title + ' | issyoo';
-            document.head.appendChild(header);
-            var tools = document.createElement('div');
-            tools.setAttribute('class', 'tools');
-            tools.innerHTML = `<span class='material-symbols-outlined'>thumb_up</span><span class='material-symbols-outlined'>thumb_down</span>`;
-            document.getElementById('body').appendChild(tools);
-            document.getElementById('body').appendChild(title);
+       if(docSnap.data().Type === 'content'){
+            location.replace('/watch?i=' + location.href.substring(25));
         }
-else if(docSnap.data().Type === 'user'){
-  var viewer = document.createElement("div");
-  viewer.setAttribute("id", "viewer");
-  viewer.setAttribute("class", "namebox");
-  document.body.appendChild(viewer);
-  var pic = document.createElement("img");
-  var vPic = docSnap.data().Pic;
-  viewer.appendChild(pic);
-  if(!!vPic){
-    pic.setAttribute("src", vPic);}else{
-    pic.src = "https://firebasestorage.googleapis.com/v0/b/em-issyoo.appspot.com/o/Screenshot_2022-09-22-14-28-40-452-edit_com.android.chrome.jpg?alt=media&token=aa6e0aba-df6d-4b12-8761-6ca2cc118d2a";
-    }
-  var name = document.createElement("div");
-  viewer.appendChild(name);
-  name.textContent = docSnap.data().Name;
-  var phone = document.createElement("div");
-  var vPhone = docSnap.data().Phone;
-  if(!!vPhone){
-  phone.textContent = vPhone;
-  viewer.appendChild(phone);}
-  var email = document.createElement("div");
-  var vEmail = docSnap.data().Email;
-  if(!!vEmail){
-  email.textContent = vEmail;
-  viewer.appendChild(email);}
-  var btn = document.createElement("button");
-  btn.id= docSnap.data().Uid;
-if(sessionStorage.getItem('uid')){
-const q = query(collection(db, "Proposals"), where("Sender", "==", true), where('Uid', '==', uid));
-const querySnapshot = await getDocs(q);
-querySnapshot.forEach((doc) => {
-  // doc.data() is never undefined for query doc snapshots
-  console.log(doc.id, " => ", doc.data());
-  if(doc.data.Status === 'pending'){
-  btn.setAttribute('class', 'danger');
-  btn.textContent = "Delete Request";
-  }
-  else{
-  btn.setAttribute('class', 'success');
- // btn.onclick = SendRequest;
-  btn.textContent = "Chat";
-  }
-});
-const qb = query(collection(db, "Proposals"), where("Sender", "==", false), where('Uid', '==', uid));
-const querySnapshotb = await getDocs(qb);
-querySnapshot.forEach((doc) => {
-  btn.setAttribute('class', 'success');
-  btn.textContent = "Accept Request";
-});
-} else {
-  // doc.data() will be undefined in this case
-  console.log("No such document!");
-  btn.setAttribute('class', 'success');
-  btn.onclick = SendRequest;
-  btn.textContent = "Request Friend";
+       else if(docSnap.data().Type === 'user'){
+            location.replace('/user?i=' + location.href.substring(25));
+        }
 }
-  viewer.appendChild(btn);
-}
-document.getElementById('load').hidden = true;
-var header = document.createElement('title');
-    header.innerHTML = docSnap.data().Name + ' | issyoo';
-    document.head.appendChild(header);
- var contner = document.createElement('div');
- document.body.appendChild(contner);
- getCont(contner, docSnap.data().Uid);
-}
-} else {
+ else {
   // doc.data() will be undefined in this case
   document.getElementById('pnf').hidden = false;
   document.getElementById('load').hidden = true;
-var header = document.createElement('title');
+  var header = document.createElement('title');
     header.innerHTML = '404 | page not found';
     document.head.appendChild(header);
 }
