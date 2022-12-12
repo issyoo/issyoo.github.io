@@ -163,7 +163,7 @@ display: none !important;
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <h2 id='load'>loading...</h2>
-<div id='body' oncontextmenu="return false"></div>
+<div id='body' oncontextmenu="return false"><div id='profile'></div><div id='sugg'></div></div>
 <div id='pnf' hidden> <span style='font-size: 200px;'>404 </span><p>The User was not found on this website. Please try again.</p></div>
 <script type="module">
 
@@ -214,7 +214,7 @@ if(docSnap.data().Type === 'user'){
   var viewer = document.createElement("div");
   viewer.setAttribute("id", "viewer");
   viewer.setAttribute("class", "namebox");
-  document.getElementById('body').appendChild(viewer);
+  document.getElementById('profile').appendChild(viewer);
   var pic = document.createElement("img");
   var vPic = docSnap.data().Pic;
   viewer.appendChild(pic);
