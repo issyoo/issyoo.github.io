@@ -319,10 +319,10 @@ querySnapshot.forEach((doc) => {
   // doc.data() is never undefined for query doc snapshots
   console.log(doc.id, " => ", doc.data());
   if(doc.data().Uid[0] == uid){
-  request.push(doc.data.Uid[1]);
+  request.push(doc.data().Uid[1]);
   }
   else{
-  request.push(doc.data.Uid[0]);
+  request.push(doc.data().Uid[0]);
   }
 });
 
