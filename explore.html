@@ -338,7 +338,7 @@ getRequested();
 
 var uid = sessionStorage.getItem("uid");
 
-var q = query(collection(db, "People"), where("Uid", "==", uid));
+var q = query(collection(db, "People"), where("Uid", "array-contains", uid));
 
 const querySnapshot = await getDocs(q);
 
