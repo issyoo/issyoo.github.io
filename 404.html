@@ -205,7 +205,10 @@ async function getMeta(){
 const docRef = doc(db, "Public" , location.href.substring(25));
 const docSnap = await getDoc(docRef);
 if (docSnap.exists()) {
-       if(docSnap.data().Type === 'content'){
+       if(docSnap.data().Type === 'chanel'){
+            
+        }
+       else if(docSnap.data().Type === 'content'){
             location.replace('/watch?i=' + location.href.substring(25));
         }
        else if(docSnap.data().Type === 'user'){
