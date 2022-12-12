@@ -98,7 +98,7 @@ border-radius: 23px;
 padding:7px;
 font-family: 'Quicksand';
 font-size: 18px;
-box-shadow: 5px 5px 5px rgb(0,0,0,0.3);
+box-shadow: 5px 5px 5px rgb(0,0,0,0.3), inset 3px 3px 5px rgb(255,255,255,0.3);
 }
 #viewer .success{
 background-color: rgb(22,22,22);
@@ -333,7 +333,7 @@ var div = document.createElement('div');
 }*/
 async function SendRequest(){
   var myUid = sessionStorage.getItem("uid");
-  const docRef = await addDoc(doc(db, "Proposals"), {
+  const docRef = await addDoc(collection(db, "Proposals"), {
   Status: "pending",
   Uid: [myUid,this.id],
   Sender: myUid
