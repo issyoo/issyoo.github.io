@@ -1,137 +1,70 @@
 <head>
-
   <title>people</title>
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <meta name="theme-color" content="#000">
-
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-
   <link rel="stylesheet" 
-
     href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Nunito:ital,wght@1,700&family=Patrick+Hand&family=Quicksand:wght@700&display=swap">
-
   <style>
-
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@600&display=swap');
-
 </style>
-
   <style>
-
     *{
-
       font-family: 'Poppins';
-
       }
-
     #theme1{
-
-      color: rgb(22,122,222);
-
+      color: #000;
       }
-
      #theme2{
-
-      color: rgb(255,181,182);
-
+      color: pink;
     }
-
     body{
-
       padding:0;
-
       margin:0;
-
       }
-
   button {
-
   padding: 10px;
-
   border: none;
-
   border-radius: 15px;
-
 transition: all ease 0.21s;
-
   }
-
     img{
-
       border-radius: 100%;
-      margin: 5px;
       }
-
   #theme1 button {
-
-  background-color: rgb(22,122,222,0);
-
+  background-color: rgb(0,0,0);
   }
-
   #theme1 button:active {
-
   background-color: rgb(22,122,222,0.1);
-
   }
-
   #theme2 button {
-
-  background-color: rgb(222,192,192,0);
-
+  background-color: rgb(215,150,150);
   }
-
   #theme2 button:active {
-
   background-color: rgb(222,192,192,0.2);
-
   }
-
     #menu{
-
       width: 100vw;
-
       height: 48px;
-
       align-items: stretch;
-
   position: fixed;
-
   bottom: 0;
-
   display: flex;
-
   overflow: hidden;
-
   flex-direction: row;
-
   flex-wrap: nowrap;
-
       border-top: solid;
-
       }
-
     #menu button {
-
       min-width: 25vw;
-
       }
-
     #issyoo{
-
       font-family: 'Dancing Script', cursive;
-
       padding: 10px;
-
       font-size: 25px;
-
       font-weight:900;
-
       position: absolute;
-
       right: 10px;
-
       }
 
     #nav{
@@ -225,28 +158,12 @@ transition: all ease 0.21s;
       overflow: scroll;
 
       }
-#sent, #recieved{
-  height: 45vh;
-  overflow:scroll;
-  }
-    #explore div{
-
-      padding: 5px;
-
-     // border: solid 1px;
-
-      width: 90vw;
-
-      margin: 10px;
-
-      }
 
     #explore div:active {
 
       background-color: rgb(0,0,0,0.1);
 
       }
-
 #progg{
 
   height: 2px;
@@ -284,98 +201,55 @@ transition: all ease 0.21s;
   to{left:90vw}
 
 }
-
     .namebox{
-
       background-color: #fff;
-
       font-weight: 900;
-
       border: none;
-
-      border-radius: 10px;
-
+      padding: 7px;
+      text-align: center;
       padding: 10px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      border-bottom: solid;
       }
-    .namebox button {
-      float: right;
+     .namebox span{
+      font-size: 19px;
+      font-weight: 700;
       }
-
-    #theme1 .namebox{
-
-      box-shadow: 5px 5px 15px rgb(22,122,222,0.2);
-
+      .namebox button {
+      background-color: #000;
+      box-shadow: 3px 3px 5px rgb(0,0,0,0.3);
+      color: #fff;
       }
-
-    #theme2 .namebox{
-
-      box-shadow: 5px 5px 15px rgb(222,190,190,0.5);
-
-      }
-
-    .viewer{
-
+    #viewer{
       margin: auto;
-
       position: absolute;
-
       left: 0;
-
       right:0;
-
       top:0;
-
       bottom:0;
-
-      height: 335px;
-
+      height: 315px;
       width:280px;
-
       display: flex;
-
       flex-direction: column;
-
       justify-content: center;
-
       align-items: center;
-
       }
-    .viewer img{
-      max-height: 150px;
-      }
-fieldset{
-  margin: 0;
-  padding: 0;
-  border: none;
-  border-bottom: solid 1px;
-  }
+   #viewer img{
+    height: 70px;
+    width: 70px;
+}
   </style>
 
 </head>
 
 <body>
-
 <div id="progg"></div>
-
-     <button id="back" onclick="history.back()" class="material-symbols-outlined">arrow_back</button>
-
- 
-
-  
-
-    
-
-  <div id="explore">
-    <fieldset id="recieved"><legend>Request Received</legend><div id="emptysent" hidden>empty</div></fieldset>
-  <fieldset id="sent"><legend>Request Sent</legend><div id="emptyrecieved" hidden>empty</div></fieldset>
-  </div>
-
- 
-
+  <button id="back" onclick="history.back()" class="material-symbols-outlined">arrow_back</button>
+  <div id="explore"></div>
   </body>
+
 
  <script type="module">
 
@@ -428,20 +302,49 @@ fieldset{
   import { getAuth, signInWithPopup,signInWithEmailAndPassword, createUserWithEmailAndPassword, GoogleAuthProvider , signOut
 
   } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js";
-
  
-
   const auth = getAuth();
 
   const db = getFirestore();
 
 //import { collection, getDocs } from "firebase/firestore";
 
+async function getRequested(){
 
-  
+  var uid = sessionStorage.getItem("uid");
+const request= [];
+const q = query(collection(db, "Proposals"), where("Uid", "array-contains", uid));
+const querySnapshot = await getDocs(q);
+querySnapshot.forEach((doc) => {
+  // doc.data() is never undefined for query doc snapshots
+  console.log(doc.id, " => ", doc.data());
+  if(doc.data().Uid[0] == uid){
+  request.push(doc.data().Uid[1]);
+  }
+  else{
+  request.push(doc.data().Uid[0]);
+  }
+});
 
+/*  var querySnapshot = await getDocs(query(collection(db, "Private"),where("RecieverUid", "==", uid)));
 
-      async function Check_login_data(){
+querySnapshot.forEach((doc) => {
+
+  // doc.data() is never undefined for query doc snapshots
+
+request.push(doc.data().SenderUid);
+
+  console.log(doc.id, " => ", doc.data().SenderUid);
+
+});*/
+
+  Check_login_data(request);
+
+}
+
+getRequested();
+
+      async function Check_login_data(request){
 
 var uid = sessionStorage.getItem("uid");
 
@@ -459,281 +362,76 @@ querySnapshot.forEach((doc) => {
 
  // alert("Name: " + name + "\n" + "Email: " + email);
 
-GetUsers();
+GetUsers(name, request);
 
 });
-
-      
-
-      }
-
-   
-Check_login_data();
-    
-  
-   async function GetUsers(){
-     var myUid = sessionStorage.getItem("uid");
-const q = query(collection(db, "Private", "friends", myUid), where("Status", "==", "pending"));
-
-const unsubscribe = onSnapshot(q, (snapshot) => {
-
-  snapshot.docChanges().forEach((change) => {
-
-    if (change.type === "added") {
-
-        console.log("New city: ", change.doc.data());
-document.getElementById("progg").hidden= true;
-      var boxId;
- if(change.doc.data().Sender){
-   boxId = "sent";
-   
-   }
-      else{ boxId = "recieved";}
-      
-  var box = document.getElementById(boxId);
-
-  var namebox = document.createElement("div");
-
-  var textname = document.createElement("span");
-
-  var namebtn = document.createElement("button");
-
-  
-
-  document.getElementById("empty"+boxId).hidden = false;
-
-  namebox.setAttribute("class", "namebox");
-      box.appendChild(namebox);
-
-    namebox.appendChild(namebtn);
-
-    namebox.id = change.doc.id;
-      
-  
-
-  namebtn.id = change.doc.id + "btn";
-
-  var photo = document.createElement("img");
-      getProfiledata( photo, textname, change.doc.data().OtherUid);
-  photo.style.width = "30px";
-
-  namebox.appendChild(photo);
-
-  namebtn.onclick = ViewProfile;
-
-  namebox.appendChild(textname);
-
-  namebtn.textContent = "View Profile";
-
- namebox.appendChild(namebtn);
-    }
-
-    if (change.type === "modified") {
-
-        console.log("Modified city: ", change.doc.data());
-
-    }
-
-    if (change.type === "removed") {
-
-        console.log("Removed city: ", change.doc.data());
-      document.getElementById(change.doc.id).remove();
-    }
-
-  });
-
-});
-   
-
-
-
-  
-
-     
-
  }
- async function getProfiledata(photo, textname, id){
-   var q = query(collection(db, "Public"), where("Uid", "==", id), where('Type', '==', 'user'));
-
-var querySnapshot = await getDocs(q);
-
-querySnapshot.forEach((doc) => {
-
-textname.textContent = doc.data().Name;
-if(!!doc.data().Pic){
-  photo.src = doc.data().Pic;}
-else{
-
-  photo.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/em-issyoo.appspot.com/o/Screenshot_2022-09-22-14-28-40-452-edit_com.android.chrome.jpg?alt=media&token=aa6e0aba-df6d-4b12-8761-6ca2cc118d2a");
-
-}
-});
-   }
-  async function ViewProfile(){
-
-     console.log("viewing Profile");
 
    
-var q = query(collection(db, "Public"), where("Uid", "==", this.parentElement.id), where('Type', '==', 'user'));
+
+    
+
+   async function GetUsers(name, request){
+const q = query(collection(db, "Public"), where("Name", "!=", null), where('Type', '==', 'user'));
 
 const querySnapshot = await getDocs(q);
 
 querySnapshot.forEach((doc) => {
 
-  console.log("Document data:", doc.data());
+  // doc.data() is never undefined for query doc snapshots
 
-var viewer = document.createElement("div");
+  console.log(doc.id, " => ", doc.data());
+document.getElementById("progg").hidden= true;
+  var box = document.getElementById("explore");
 
-  viewer.setAttribute("id", this.parentElement.id);
+  var namebox = document.createElement("div");
+  var phto = document.createElement("img");
+  if(!!doc.data().Pic){
+  phto.src = doc.data().Pic;}
+  else{
+    phto.src = "https://firebasestorage.googleapis.com/v0/b/em-issyoo.appspot.com/o/Screenshot_2022-09-22-14-28-40-452-edit_com.android.chrome.jpg?alt=media&token=aa6e0aba-df6d-4b12-8761-6ca2cc118d2a";
+    }
+  namebox.appendChild(phto);
+  phto.style.width = "30px";
+  phto.style.height = "30px";
+  namebox.setAttribute("class", "namebox");
+  if(!!request[0]){
 
-  viewer.setAttribute("class", "namebox viewer");
-
-  document.body.appendChild(viewer);
-
-  var close = document.createElement("button");
-
-  close.textContent = "close";
-
-  
-
-  close.onclick = closeBox;
-
-  close.style.float = "right";
-
-  var pic = document.createElement("img");
-
-  var vPic = doc.data().Pic;
-if(!!vPic){
-  pic.setAttribute("src", vPic);}
-else{
-  pic.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/em-issyoo.appspot.com/o/Screenshot_2022-09-22-14-28-40-452-edit_com.android.chrome.jpg?alt=media&token=aa6e0aba-df6d-4b12-8761-6ca2cc118d2a");
-}
-  viewer.appendChild(pic);
-
-  var name = document.createElement("div");
-
-  viewer.appendChild(name);
-
-  name.textContent = doc.data().Name;
-
-  var phone = document.createElement("div");
-
-  var vPhone = doc.data().Phone;
-
-  if(!!vPhone){
-
-  phone.textContent = vPhone;
-
-  viewer.appendChild(phone);}
-
-  var email = document.createElement("div");
-
-  var vEmail = doc.data().Email;
-
-  if(!!vEmail){
-
-  email.textContent = vEmail;
-
-  viewer.appendChild(email);}
-
-  var btn = document.createElement("button");
-
-  btn.id= doc.data().Uid;
-if(this.parentElement.parentElement.id === 'sent'){
-
-   btn.textContent = "Waiting for response…";
-
-   }
-
-      else{ 
-  btn.onclick = AcceptRequest;
-
-  btn.textContent = "Accept Friend";}
-
-  viewer.appendChild(btn);
-
-  
-var delet = document.createElement("button");
-  delet.textContent = 'Delete proposal';
-  delet.onclick = deleteProposal;
-  delet.id = this.parentElement.parentElement.id;
-  delet.style.color = 'red';
-  viewer.appendChild(delet);
-var openP = document.createElement('a');
-  openP.href = '/' + doc.id;
-  openP.textContent = 'View user';
-  viewer.appendChild(openP);
-  viewer.appendChild(close);
-});
-
-   }
-
-function closeBox(){
-
-  this.parentElement.remove();
-
+  for( let i = 0; i< request.length; i++){
+  if( doc.data().Uid == request [i]){
+    box.appendChild(namebox);
+    console.log("breaking from request", doc.data().Uid);
+    break;
   }
 
-   async function AcceptRequest(){
+  else if(doc.data().Name != name){
+    namebox.remove();
+    console.log("appending from req ", doc.data().Uid);
+  }}}
 
-     var myUid = sessionStorage.getItem("uid");
-
-     const acceptRef = doc(db, "Private", "friends", myUid, this.parentElement.id);
-
-// Set the "capital" field of the city 'DC'
-
-await updateDoc(acceptRef, {
-
-  Status: "accepted",
-  Code: this.parentElement.id
-
+  else{
+    if(doc.data().Name != name){
+     //box.appendChild(namebox);
+      console.log("breakink from outer");
+    }}
+  var namer = document.createElement("span");
+  namebox.appendChild(namer);
+  namer.textContent = doc.data().Name;
+  var namebtn = document.createElement("button");
+  namebtn.id = doc.id;
+  namebtn.onclick = ViewProfile;
+  namebtn.textContent = "View Profile";
+  namebox.appendChild(namebtn);
 });
 
-     const updateRef = doc(db, "Private", "friends", this.parentElement.id,myUid);
+     
 
-// Set the "capital" field of the city 'DC'
+ }
 
-await updateDoc(updateRef, {
-
-  Status: "accepted",
-
-  Code: this.parentElement.id
-
-});
-
-     this.parentElement.remove();
-
-     }
-
-   async function deleteProposal(){
-     await deleteDoc(doc(db, "Private", "friends", sessionStorage.getItem('uid'), this.id));
-     }
-
-async function Signout(){
-
-signOut(auth).then(() => {
-
-  
-
-  sessionStorage.removeItem("uid");
-
-  sessionStorage.removeItem("anonymous");
-
-  //alert(" Sign-out successful.");
-
-  window.open("/signin", "_self");
-
-}).catch((error) => {
-
-  alert(" An error happened.");
-
-});
-
-  }
-
- 
-
-  
+  async function ViewProfile(){
+     window.open( '/' + this.id, '_self');
+   }
+   
 
   
 
@@ -744,15 +442,9 @@ signOut(auth).then(() => {
   var uid = sessionStorage.getItem("uid");
 
   if(uid){
-
      console.log(uid);
-
     }
-
   else{ 
-
-    
-
     window.open("/signin", "_self")}
 
   var gen = localStorage.getItem("Gen");
@@ -774,27 +466,7 @@ signOut(auth).then(() => {
         document.body.id = "theme2";
 
          document.querySelector('#back').style.color = 'rgb(222,190,190)';
-
         }
-
-    changeThemeColor(color);
-
-    
-
-    }
-
-  function changeThemeColor(color) {
-
-    var metaThemeColor = document.querySelector("meta[name=theme-color]");
-
-    metaThemeColor.setAttribute("content", color);
-
   }
-
   getColor();
-
-  
-
-  
-
   </script>
