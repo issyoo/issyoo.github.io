@@ -248,16 +248,16 @@ if(docSnap.data().Type === 'user'){
     // doc.data() is never undefined for query doc snapshots
     console.log(doc.id, " => ", doc.data());
     req.push(doc.id);
-    if(doc.data.Status === 'pending' && doc.data.Sender === uid){
+    if(doc.data().Status === 'pending' && doc.data().Sender === uid){
       btn.setAttribute('class', 'danger');
       btn.textContent = "Delete Request";
       }
-    else if(doc.data.Status === 'accepted'){
+    else if(doc.data().Status === 'accepted'){
       btn.setAttribute('class', 'success');
    // btn.onclick = SendRequest;
       btn.textContent = "Chat";
       }
-    else if(doc.data.Status === 'pending' && doc.data.Sender != uid){
+    else if(doc.data().Status === 'pending' && doc.data().Sender != uid){
       btn.setAttribute('class', 'success');
       btn.textContent = "Accept Request";
       }
