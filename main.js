@@ -112,7 +112,7 @@ async function moreData(id, img, nam) {
 }
 
 function openCont() {
-    location.href = location.href + 'watch?v=' + this.id;
+    location.href = location.href + 'watch?i=' + this.id;
 }
 async function Signout() {
     signOut(auth).then(() => {
