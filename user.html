@@ -242,7 +242,7 @@ if(docSnap.data().Type === 'user'){
   btn.id= docSnap.data().Uid;
   if(sessionStorage.getItem('uid')){
    try{
-    const q = query(collection(db, "Proposals"), where("Uid", "array-contains-any", uid));
+    const q = query(collection(db, "Proposals"), where("Uid", "array-contains", uid));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
     // doc.data() is never undefined for query doc snapshots
