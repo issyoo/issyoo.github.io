@@ -333,13 +333,7 @@ max-height: 250px;
 <div id="cover">
 
 <div id="upprogress"></div></div><br>
-
-        
-
             <button id="dbtn" class="material-symbols-outlined">close</button>
-
-         
-
  </div>
 <div id='attachBox' hidden></div>
 <div id="menu">
@@ -443,7 +437,7 @@ Check_login_data();
 
      var myUid = sessionStorage.getItem("uid");
      var friends=[];
-const q = query(collection(db, "Private", "friends", myUid), where("Status", "==", "accepted"));
+const q = query(collection(db, "Friends"), where('Uid','array-contains-any',uid) , where("Status", "==", "accepted"));
 
 const unsubscribe = onSnapshot(q, (snapshot) => {
 
