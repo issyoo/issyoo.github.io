@@ -272,7 +272,7 @@ if(docSnap.data().Type === 'user'){
       btn.onclick = e => { location.href = '/chat'};
       btn.textContent = "Message";
       }
-    else if(doc.data().Status === 'pending' && doc.data().Sender != uid){
+    else if(doc.data().Status === 'pending' && doc.data().Sender === docSnap.data().Uid){
       btn.setAttribute('class', 'success');
       btn.textContent = "Accept Request";
       }
