@@ -1,137 +1,70 @@
 <head>
-
   <title>people</title>
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <meta name="theme-color" content="rgb(200,205,255)">
-
+  <meta name="theme-color" content="#000">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-
   <link rel="stylesheet" 
-
     href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Nunito:ital,wght@1,700&family=Patrick+Hand&family=Quicksand:wght@700&display=swap">
-
   <style>
-
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@600&display=swap');
-
 </style>
-
   <style>
-
     *{
-
       font-family: 'Poppins';
-
       }
-
     #theme1{
-
-      color: rgb(22,122,222);
-
+      color: #000;
       }
-
      #theme2{
-
-      color: rgb(255,181,182);
-
+      color: pink;
     }
-
     body{
-
       padding:0;
-
       margin:0;
-
       }
-
   button {
-
   padding: 10px;
-
   border: none;
-
   border-radius: 15px;
-
 transition: all ease 0.21s;
-
   }
-
     img{
-
       border-radius: 100%;
-
       }
-
   #theme1 button {
-
-  background-color: rgb(22,122,222,0);
-
+  background-color: rgb(0,0,0);
   }
-
   #theme1 button:active {
-
   background-color: rgb(22,122,222,0.1);
-
   }
-
   #theme2 button {
-
-  background-color: rgb(222,192,192,0);
-
+  background-color: rgb(215,150,150);
   }
-
   #theme2 button:active {
-
   background-color: rgb(222,192,192,0.2);
-
   }
-
     #menu{
-
       width: 100vw;
-
       height: 48px;
-
       align-items: stretch;
-
   position: fixed;
-
   bottom: 0;
-
   display: flex;
-
   overflow: hidden;
-
   flex-direction: row;
-
   flex-wrap: nowrap;
-
       border-top: solid;
-
       }
-
     #menu button {
-
       min-width: 25vw;
-
       }
-
     #issyoo{
-
       font-family: 'Dancing Script', cursive;
-
       padding: 10px;
-
       font-size: 25px;
-
       font-weight:900;
-
       position: absolute;
-
       right: 10px;
-
       }
 
     #nav{
@@ -226,24 +159,11 @@ transition: all ease 0.21s;
 
       }
 
-    #explore div{
-
-      padding: 5px;
-
-     // border: solid 1px;
-
-      width: 90vw;
-
-      margin: 10px;
-
-      }
-
     #explore div:active {
 
       background-color: rgb(0,0,0,0.1);
 
       }
-
 #progg{
 
   height: 2px;
@@ -281,92 +201,55 @@ transition: all ease 0.21s;
   to{left:90vw}
 
 }
-
     .namebox{
-
       background-color: #fff;
-
       font-weight: 900;
-
       border: none;
-
-      border-radius: 10px;
-
-      padding: 10px;
-
+      padding: 7px;
       text-align: center;
-
       padding: 10px;
-
       display: flex;
-
       justify-content: space-between;
-
       align-items: center;
-
+      border-bottom: solid;
       }
-
-    #theme1 .namebox{
-
-      box-shadow: 5px 5px 15px rgb(22,122,222,0.2);
-
+     .namebox span{
+      font-size: 19px;
+      font-weight: 700;
       }
-
-    #theme2 .namebox{
-
-      box-shadow: 5px 5px 15px rgb(222,190,190,0.5);
-
+      .namebox button {
+      background-color: #000;
+      box-shadow: 3px 3px 5px rgb(0,0,0,0.3);
+      color: #fff;
       }
-
     #viewer{
-
       margin: auto;
-
       position: absolute;
-
       left: 0;
-
       right:0;
-
       top:0;
-
       bottom:0;
-
       height: 315px;
-
       width:280px;
-
       display: flex;
-
       flex-direction: column;
-
       justify-content: center;
-
       align-items: center;
-
       }
-
+   #viewer img{
+    height: 70px;
+    width: 70px;
+}
   </style>
 
 </head>
 
 <body>
-
 <div id="progg"></div>
-
-     <button id="back" onclick="history.back()" class="material-symbols-outlined">arrow_back</button>
-
- 
-
-  
-
-    
-
+  <button id="back" onclick="history.back()" class="material-symbols-outlined">arrow_back</button>
   <div id="explore"></div>
-
- 
-
   </body>
+
 
  <script type="module">
 
@@ -419,9 +302,7 @@ transition: all ease 0.21s;
   import { getAuth, signInWithPopup,signInWithEmailAndPassword, createUserWithEmailAndPassword, GoogleAuthProvider , signOut
 
   } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js";
-
  
-
   const auth = getAuth();
 
   const db = getFirestore();
@@ -431,258 +312,121 @@ transition: all ease 0.21s;
 async function getRequested(){
 
   var uid = sessionStorage.getItem("uid");
+const request= [];
+const q = query(collection(db, "Proposals"), where("Uid", "array-contains", uid), where("Status", "==", 'accepted'));
+const querySnapshot = await getDocs(q);
+querySnapshot.forEach((doc) => {
+  // doc.data() is never undefined for query doc snapshots
+  console.log(doc.id, " => ", doc.data());
+  if(doc.data().Uid[0] == uid){
+  request.push(doc.data().Uid[1]);
+  }
+  else{
+  request.push(doc.data().Uid[0]);
+  }
+});
 
-const querySnapshot = await getDocs(collection(db, "Private","friends", uid));
+/*  var querySnapshot = await getDocs(query(collection(db, "Private"),where("RecieverUid", "==", uid)));
+querySnapshot.forEach((doc) => {
+  // doc.data() is never undefined for query doc snapshots
+request.push(doc.data().SenderUid);
+  console.log(doc.id, " => ", doc.data().SenderUid);
+});*/
 
-var request;
+  Check_login_data(request);
+
+}
+
+getRequested();
+
+      async function Check_login_data(request){
+
+var uid = sessionStorage.getItem("uid");
+
+var q = query(collection(db, "People"), where("Uid", "==", uid));
+
+const querySnapshot = await getDocs(q);
 
 querySnapshot.forEach((doc) => {
 
   // doc.data() is never undefined for query doc snapshots
 
-request = doc.data().OtherUid;
-printData(request);
-  });
-      }
+  const name = doc.data().Name;
+
+  const email = doc.data().Email;
+
+ // alert("Name: " + name + "\n" + "Email: " + email);
+
+GetUsers(name, request);
+
+});
+ }
+
    
-async function printData(request){
-  const docRef = doc(db, "Explore", request);
-
-const doc = await getDoc(docRef);
-
-if (doc.exists()) {
-
-  console.log("Document data:", doc.data());
-
-
-
-  console.log(doc.id, " => ", doc.data());
-
-document.getElementById("progg").hidden= true;
-
-  var box = document.getElementById("explore");
-
-  var namebox = document.createElement("div");
-
-  var phto = document.createElement("img");
-
-  if(!!doc.data().Pic){
-
-  phto.src = doc.data().Pic;}
-
-  else{
-
-    phto.src = "https://firebasestorage.googleapis.com/v0/b/em-issyoo.appspot.com/o/Screenshot_2022-09-22-14-28-40-452-edit_com.android.chrome.jpg?alt=media&token=aa6e0aba-df6d-4b12-8761-6ca2cc118d2a";
-
-    }
-
-  namebox.appendChild(phto);
-
-  phto.style.width = "30px";
-
-  namebox.setAttribute("class", "namebox");
-
-  
-
-  box.appendChild(namebox);
 
     
 
-  
+   async function GetUsers(name, request){
+const q = query(collection(db, "Public"), where("Name", "!=", null), where('Type', '==', 'user'));
 
+const querySnapshot = await getDocs(q);
+
+querySnapshot.forEach((doc) => {
+
+  // doc.data() is never undefined for query doc snapshots
+
+  console.log(doc.id, " => ", doc.data());
+document.getElementById("progg").hidden= true;
+  var box = document.getElementById("explore");
+
+  var namebox = document.createElement("div");
+  var phto = document.createElement("img");
+  if(!!doc.data().Pic){
+  phto.src = doc.data().Pic;}
+  else{
+    phto.src = "https://firebasestorage.googleapis.com/v0/b/em-issyoo.appspot.com/o/Screenshot_2022-09-22-14-28-40-452-edit_com.android.chrome.jpg?alt=media&token=aa6e0aba-df6d-4b12-8761-6ca2cc118d2a";
+    }
+  namebox.appendChild(phto);
+  phto.style.width = "30px";
+  phto.style.height = "30px";
+  namebox.setAttribute("class", "namebox");
+  if(!!request[0]){
+
+  for( let i = 0; i< request.length; i++){
+  if( doc.data().Uid == request [i]){
+    box.appendChild(namebox);
+    console.log("breaking from request", doc.data().Uid);
+    break;
+  }
+
+  else if(doc.data().Name != name){
+    namebox.remove();
+    console.log("appending from req ", doc.data().Uid);
+  }}}
+
+  else{
+    if(doc.data().Name != name){
+     //box.appendChild(namebox);
+      console.log("breakink from outer");
+    }}
   var namer = document.createElement("span");
-
   namebox.appendChild(namer);
-
   namer.textContent = doc.data().Name;
-
-  namebox.id = doc.id;
-
-  namebox.onclick = ViewProfile;
-
-  
-
- var namebtn = document.createElement("button");
-
+  var namebtn = document.createElement("button");
+  namebtn.id = doc.id;
+  namebtn.onclick = ViewProfile;
   namebtn.textContent = "View Profile";
-
   namebox.appendChild(namebtn);
-
-} else {
-
-  // doc.data() will be undefined in this case
-
-  console.log("No such document!");
-
-}
+});
 
      
 
  }
 
   async function ViewProfile(){
-
-     console.log("viewProfile");
-
-   const docRef = doc(db, "Explore", this.id);
-
-const docSnap = await getDoc(docRef);
-
-if (docSnap.exists()) {
-
-  console.log("Document data:", docSnap.data());
-
-var viewer = document.createElement("div");
-
-  viewer.setAttribute("id", "viewer");
-
-  viewer.setAttribute("class", "namebox");
-
-  document.body.appendChild(viewer);
-
-  var close = document.createElement("button");
-
-  close.textContent = "close";
-
-  
-
-  close.onclick = closeBox;
-
-  close.style.float = "right";
-
-  var pic = document.createElement("img");
-
-  var vPic = docSnap.data().Pic;
-
-  ;
-
-  viewer.appendChild(pic)
-
-  if(!!vPic){
-
-  pic.setAttribute("src", vPic);}else{
-
-    pic.src = "https://firebasestorage.googleapis.com/v0/b/em-issyoo.appspot.com/o/Screenshot_2022-09-22-14-28-40-452-edit_com.android.chrome.jpg?alt=media&token=aa6e0aba-df6d-4b12-8761-6ca2cc118d2a";
-
-    }
-
-  var name = document.createElement("div");
-
-  viewer.appendChild(name);
-
-  name.textContent = docSnap.data().Name;
-
-  var phone = document.createElement("div");
-
-  var vPhone = docSnap.data().Phone;
-
-  if(!!vPhone){
-
-  phone.textContent = vPhone;
-
-  viewer.appendChild(phone);}
-
-  var email = document.createElement("div");
-
-  var vEmail = docSnap.data().Email;
-
-  if(!!vEmail){
-
-  email.textContent = vEmail;
-
-  viewer.appendChild(email);}
-
-  var btn = document.createElement("button");
-
-  btn.id= docSnap.data().Uid;
-
-  btn.onclick = SendRequest;
-
-  btn.textContent = "Request Friend";
-
-  viewer.appendChild(btn);
-
-  viewer.appendChild(close);
-
-} else {
-
-  // doc.data() will be undefined in this case
-
-  console.log("No such document!");
-
-}
-
+     window.open( '/' + this.id, '_self');
    }
-
-function closeBox(){
-
-  this.parentElement.remove();
-
-  }
-
-   async function SendRequest(){
-
-     var myUid = sessionStorage.getItem("uid");
-
-     const docRef = await setDoc(doc(db, "Private", "friends", myUid , this.id), {
-
-  Status: "pending",
-
-  MyUid: myUid,
-
-  OtherUid: this.id,
-
-  Sender: true
-
-});
-
-     
-
-     const docref = await setDoc(doc(db, "Private", "friends", this.id , myUid), {
-
-  Status: "pending",
-
-  MyUid: this.id,
-
-  OtherUid: myUid,
-
-  Sender: false
-
-});
-
-     
-
-     location.reload();
-
-     }
-
    
-
-async function Signout(){
-
-signOut(auth).then(() => {
-
-  
-
-  sessionStorage.removeItem("uid");
-
-  sessionStorage.removeItem("anonymous");
-
-  //alert(" Sign-out successful.");
-
-  window.open("/signin", "_self");
-
-}).catch((error) => {
-
-  alert(" An error happened.");
-
-});
-
-  }
-
- 
-
-  getRequested();
 
   
 
@@ -693,15 +437,9 @@ signOut(auth).then(() => {
   var uid = sessionStorage.getItem("uid");
 
   if(uid){
-
      console.log(uid);
-
     }
-
   else{ 
-
-    
-
     window.open("/signin", "_self")}
 
   var gen = localStorage.getItem("Gen");
@@ -723,27 +461,7 @@ signOut(auth).then(() => {
         document.body.id = "theme2";
 
          document.querySelector('#back').style.color = 'rgb(222,190,190)';
-
         }
-
-    changeThemeColor(color);
-
-    
-
-    }
-
-  function changeThemeColor(color) {
-
-    var metaThemeColor = document.querySelector("meta[name=theme-color]");
-
-    metaThemeColor.setAttribute("content", color);
-
   }
-
   getColor();
-
-  
-
-  
-
   </script>
