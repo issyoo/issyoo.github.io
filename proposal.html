@@ -313,7 +313,7 @@ async function getRequested(){
 
   var uid = sessionStorage.getItem("uid");
 const request= [];
-const q = query(collection(db, "Proposals"), where("Uid", "array-contains", uid), where("Status", "==", 'accepted'));
+const q = query(collection(db, "Proposals"), where("Uid", "array-contains", uid), where("Status", "==", 'pending'));
 const querySnapshot = await getDocs(q);
 querySnapshot.forEach((doc) => {
   // doc.data() is never undefined for query doc snapshots
