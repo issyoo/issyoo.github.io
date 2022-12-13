@@ -276,6 +276,12 @@ if(docSnap.data().Type === 'user'){
       btn.setAttribute('class', 'success');
       btn.textContent = "Accept Request";
       }
+    else{
+     console.log("No such document!");
+     btn.setAttribute('class', 'success');
+     btn.onclick = SendRequest;
+     btn.textContent = "Request Friend";
+      }
    }) } catch(err){
      // doc.data() will be undefined in this case
      console.log("No such document!");
