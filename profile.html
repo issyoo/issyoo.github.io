@@ -124,8 +124,14 @@
    justify-content:center;
    align-items:center;
 border-bottom: solid;
-margin: 23px;
+//margin: 23px;
 padding: 23px;
+}
+.card{
+padding: 27px;
+border-radius: 50px;
+background-color: rgb(222,222,222);
+box-shadow: 3px 3px 5px rgb( 0,0,0,0.3);
 }
 #name{
 font-size: 22px;
@@ -212,12 +218,12 @@ justify-content:center;
 
 <div id="progg"></div>
 <div id='body'>
-<span>
+<span class='card'>
 <div id="namer">
 <img id="pPic">
  <span id="name"></span></div>
  <div class="div" style='font-size:10px; display:flex;justify-content:center;'><span>joined on </span><span id="time"></span></div></span>
-<span><div id="inf">
+<span class='card'><div id="inf">
  <div class="div"><span class="material-symbols-outlined" id="gender_sym"></span> <span>Gender: </span><span id="gender"></span></div>
  <div class="div"><span class="material-symbols-outlined">cake</span> <span>D.O.B.: </span><span id="dob"></span></div>
  <div class="div"><span class="material-symbols-outlined">email</span> <span>Email: </span><span id="email"></span></div>
