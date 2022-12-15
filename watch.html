@@ -225,8 +225,8 @@ if(docSnap.data().Type === 'content'){
             div.appendChild(ifrm);
             div.setAttribute('class', 'box');
             div.ontouchstart = e => { y = e.touches[0].clientY; e.preventDefault();}
-            div.ontouchmove = e => { document.getElementById("body").style ='position: absolute; top: '+ e.touches[0].clientY.toString()+ 'px;'; e.preventDefault();}
-            div.ontouchend = e => { if(y >= 5 || y <= -5){document.getElementById("body").classList.toggle("minimize"); } e.preventDefault();}
+            div.ontouchmove = e => { document.getElementById("body").style ='position: relative; top: '+ e.touches[0].clientY.toString()+ 'px;'; e.preventDefault();}
+            div.ontouchend = e => { if(y >= 15){document.getElementById("body").classList.add("minimize"); } else(y <= -15){document.getElementById("body").classList.remove("minimize"); } e.preventDefault();}
             var title = document.createElement('p');
             title.innerHTML = docSnap.data().Description;
             document.getElementById('titleCont').innerHTML = docSnap.data().Title;
