@@ -556,7 +556,7 @@ var div = document.createElement('div');
 }
   async function getMeta( id, div){
     var uid = sessionStorage.getItem("uid")
-const docRef = doc(db, "Storage", uid , "storage", id);
+const docRef = doc(db, "Storage", id);
 
 const docSnap = await getDoc(docRef);
 
