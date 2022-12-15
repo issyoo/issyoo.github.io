@@ -589,10 +589,11 @@ newData();
    
    async function addData(){
     var msg =  document.getElementById("inp");
-     const docRef = await addDoc(collection(db, "Feedback", uid, "AjpCdUG0E0Q61qnyWPm56AZkaXg2"), {
+     const docRef = await addDoc(collection(db, "Feedback"), {
 
   Name: name,
   Attachment: false,
+  Access: [uid, 'Kik7Y8zkhTPxndnGxkWfdiZnvIu2'],
   Uid: uid,
        Time: Timestamp.fromDate(new Date()),
        Msg: msg.value
