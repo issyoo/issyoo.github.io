@@ -207,6 +207,7 @@ const docSnap = await getDoc(docRef);
 if (docSnap.exists()) {
 if(docSnap.data().Type === 'content'){
   let head = document.createElement('div');
+  let y;
             head.setAttribute('class', 'head');
             document.getElementById('body').appendChild(head);
             head.innerHTML = `<span class='material-symbols-outlined' id='minimise' onclick='document.getElementById("body").classList.toggle("minimize");'>keyboard_arrow_down</span><span id='titleCont'></span> <span class='material-symbols-outlined' id='shareCont' onclick='window.open("whatsapp://send?text=${location.href}", "_self")'>forward</span><span class='material-symbols-outlined' id='closeCont' onclick='this.parentElement.parentElement.remove()'>close</span>`
@@ -223,7 +224,9 @@ if(docSnap.data().Type === 'content'){
             ifrm.controlsList = "nodownload";
             div.appendChild(ifrm);
             div.setAttribute('class', 'box');
-            div.ontouchmove = e => { div.style ='position: absolute; top: '+ e.touches[0].clientY.toString()+ 'px;'; e.preventDefault();}
+            div.ontouchstart = e => { y = e.touches[0].clientY; e.preventDefault();}
+            div.ontouchmove = e => { document.getElementById("body").style ='position: absolute; top: '+ e.touches[0].clientY.toString()+ 'px;'; e.preventDefault();}
+            div.ontouchend = e => { if(y >= 5 || y <= -5){document.getElementById("body").classList.toggle("minimize"); } e.preventDefault();}
             var title = document.createElement('p');
             title.innerHTML = docSnap.data().Description;
             document.getElementById('titleCont').innerHTML = docSnap.data().Title;
