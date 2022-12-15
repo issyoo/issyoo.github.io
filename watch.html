@@ -223,7 +223,7 @@ if(docSnap.data().Type === 'content'){
             ifrm.controlsList = "nodownload";
             div.appendChild(ifrm);
             div.setAttribute('class', 'box');
-            div.ontouchmove = e => { this.style ='position: absolute; top: '+ e.touches[0].clientY.toString()+ 'px;'; e.preventDefault();}
+            div.ontouchmove = e => { div.style ='position: absolute; top: '+ e.touches[0].clientY.toString()+ 'px;'; e.preventDefault();}
             var title = document.createElement('p');
             title.innerHTML = docSnap.data().Description;
             document.getElementById('titleCont').innerHTML = docSnap.data().Title;
