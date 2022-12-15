@@ -489,7 +489,7 @@ var uid = sessionStorage.getItem("uid");
 async function newData(){
 var uid = sessionStorage.getItem("uid");
 const citiesRef = collection(db, "Feedback");
-const q = query(citiesRef,  where('Access' ,'array-contains-any' , sessionStorage.getItem('uid'));
+const q = query(citiesRef,  where('Access' ,'array-contains' , sessionStorage.getItem('uid')));
 
 const unsubscribe = onSnapshot(q, (snapshot) => {
 
