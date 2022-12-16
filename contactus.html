@@ -42,7 +42,7 @@
       border-radius: 0 25px 25px 25px;
       }
     .myMsg{
-      border-radius: 25px 25px 0 25px;
+      border-radius: 25px 0 25px 25px;
       width: 52vw;
       word-break:break-all;
       padding:5px;
@@ -74,16 +74,16 @@
       font-size: 10px;
       }
   #theme1  .msg, #theme1 .myMsg{
-    //  border: 0.5px solid rgb(22,122,222);
+      border: 0.5px solid rgb(22,122,222);
     background-color: rgb(251,251,255);
     color: rgb(22,122,222);
-    box-shadow: 5px 5px 5px rgb(22,122,222,0.2);
+   // box-shadow: 5px 5px 5px rgb(22,122,222,0.2);
     }
     #theme2  .msg, #theme2 .myMsg{
-     // border: solid rgb(255,251,251);
+      border: solid rgb(255,251,251);
     background-color: rgb(255,190,190,0.1);
     color: rgb(255,190,190);
-      box-shadow: 5px 5px 5px rgb(255,190,190,0.4);
+     // box-shadow: 5px 5px 5px rgb(255,190,190,0.4);
     }
     .msg:before{
      content:'';
@@ -94,7 +94,8 @@
      background: transparent;
      position: absolute;
      left: 2px;
-     box-shadow: 5px 5px 5px rgb(22,122,222,0.4);
+     border: solid;
+     //box-shadow: 5px 5px 5px rgb(22,122,222,0.4);
 }
 .myMsg:before{
      content:'';
@@ -104,7 +105,8 @@
      transform: rotate(-45deg);
      background: transparent;
      position: absolute;
-     right: -2px;;
+     right: -2px;
+     border: solid;
      box-shadow: 5px 5px 5px rgb(22,122,222,0.4);
 }
     #inpBox{
