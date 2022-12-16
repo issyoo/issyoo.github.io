@@ -72,6 +72,40 @@ background-color: rgb(255,255,255,0.2);
 width: 100%;
 border-radius: 13px;
 }
+.box{
+position: relative;
+  padding: 12px;
+  overflow: hidden;
+  margin:0;
+  transition: background 400ms;
+}
+span.ripple {
+
+  position: absolute;
+
+  border-radius: 50%;
+
+  transform: scale(0);
+
+  animation: ripple 600ms linear;
+
+  background-color: rgba(5, 5, 5, 0.2);
+
+ 
+
+}
+
+@keyframes ripple {
+
+  to {
+
+    transform: scale(4);
+
+    opacity: 0;
+
+  }
+
+}
 @media only screen and (min-width: 600px) {
   .cont{
    width: 100%;
