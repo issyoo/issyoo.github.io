@@ -56,6 +56,11 @@ mix-blend-mode: difference;
             height: 250px;
             width: 350px;
             }
+#pst{
+position: absolute;
+top:0;
+mix-blend-mode: difference;
+}
 </style>
 </head>
 <button class="material-symbols-outlined" onclick='history.back()' id='backBtn'>arrow_back</button>
@@ -70,7 +75,7 @@ mix-blend-mode: difference;
 
             <button id="dbtn" style="float:right" class="material-symbols-outlined">close</button>
       <span id='atch'></span>
-      <span id="name"></span>
+      <span id="name" hidden></span>
 
 <label id="extlab"></label>
 <div id='controls' hidden>
@@ -187,8 +192,8 @@ document.getElementById("attach").style.display = 'none';
 
         document.getElementById("atch").appendChild(ftg);
 
-        ftg.style.maxHeight = "50%";
-         ftg.style.maxWidth = "30%";
+        ftg.style.height = "auto";
+         ftg.style.maxWidth = "100vw";
        document.getElementById("pst").hidden = false;
 
         if( filtyp == "video" || filtyp == "audio" ){
