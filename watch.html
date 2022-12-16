@@ -161,11 +161,7 @@ display: none !important;
  transform: rotate(180deg) !important;
 }
 #desc, #comm{
-overflow: hidden;
-text-overflow: ellipsis;
-white-space: nowrap;
 padding: 12px 9px;
-width: 220px;
 }
   </style>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -251,11 +247,11 @@ if(docSnap.data().Type === 'content'){
             var tools = document.createElement('div');
             tools.setAttribute('class', 'tools');
             tools.innerHTML = `<span class='material-symbols-outlined'>thumb_up</span><span class='material-symbols-outlined'>thumb_down</span>`;
-            document.getElementById('body').appendChild(title);
+            document.body.appendChild(title);
             document.getElementById('body').appendChild(tools);
             var comm = document.createElement('p');
             comm.innerHTML = `<span id='comm'>Public comments </span>`;
-            document.getElementById('body').appendChild(comm);
+            document.body.appendChild(comm);
         }
 else if(docSnap.data().Type === 'user'){
    location.replace('/user?i=' + getParameterByName('i'));
