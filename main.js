@@ -46,7 +46,6 @@ async function newData() {
             if (change.type === "added") {
                 console.log("New msg: " + change.doc.data());
                 var div = document.createElement('div');
-                var div = document.createElement('div');
                 var cont = document.createElement('div');
                 cont.appendChild(div);
                 document.getElementById("body").appendChild(cont);
@@ -88,6 +87,7 @@ async function newData() {
                 title.setAttribute("class", 'title');
                 div.setAttribute('class', 'cont');
                 cont.setAttribute("class", 'box');
+                cont.ontouchstaet = createRipple;
             }
             if (change.type === "modified") {
                 alert("Modified msg: " + change.doc.data().Msg);
@@ -197,7 +197,7 @@ function createRipple() {
   button.appendChild(circle);
 }
 
-const divs = document.getElementsByClassName("div");
+const divs = document.getElementsByClassName("box");
 for (const div of divs) {
   div.addEventListener("touchstart", createRipple);
 }
