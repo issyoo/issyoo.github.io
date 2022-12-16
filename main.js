@@ -143,9 +143,13 @@ async function getProfilePic() {
         const name = doc.data().Name;
         const pPic = doc.data().Pic;
         var profBox = document.getElementById('profile');
+        var pImg = document.getElementById('pImg');
+        var nameP = document.getElementById('nameP');
         if (!!pPic) {
             profBox.href = '/profile.html';
             profBox.innerHTML = `<img src=${pPic} style='width:27px; height:27px; border-radius:23px;'>`;
+            pImg.innerHTML = `<img src=${pPic} style='width:160px; height:160px; border-radius:29px;'>`;
+            nameP.innerHTML = name;
         }
         else {
             profBox.href = '/profile.html';
