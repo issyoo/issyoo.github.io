@@ -211,7 +211,8 @@ border-radius: 22px;
 overflow: hidden;
 z-index: 12 !important;
 position: relative;
-bottom: 75px;
+bottom: 95px;
+box-shadow: 3px 3px 5px rgb(0,0,0,0.2);
 }
 #menuBody div{
   background-color: #fff;
@@ -289,10 +290,15 @@ color:#000;
   border-radius: 19px 19px 0 0;
       }
     }
+#nameP{
+font-size: 22px;
+font-weight: 300;
+}
 </style>
 </head>
 <div id="dash" onclick="closeDash()">
   <div id="menuBody">
+     <div id='prof' hidden><span id='pImg'></span><p id='nameP'></p></div>
      <div id="signInBtn" hidden><a href="/signin.html">Sign in</a></div>
     <div><a href="/blog.html">Blog</a></div>
     <div><a href="/sitemap.html">Site Map</a></div>
