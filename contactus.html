@@ -16,7 +16,7 @@
       height: 92vh;
       width: 100vw;
       }
-   body:selection{
+::selection{
       background-color: #000;
       color: #fff;
 }
@@ -86,10 +86,11 @@
       box-shadow: 5px 5px 5px rgb(255,190,190,0.4);
     }
     .myMsg:before{
-     content:' k';
+     content:'';
      height: 55px;
+     padding: 7px;
      width: 55px;
-     transform: rotateX(45deg);
+     transform: rotate(45deg);
      background: red;
 }
     #inpBox{
