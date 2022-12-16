@@ -159,6 +159,7 @@ async function getProfilePic() {
 }
 if (!!sessionStorage.getItem("uid")) {
     getProfilePic();
+    document.getElementById('prof').hidden = false;
 }
 else {
     document.getElementById('profile').innerHTML = `<span class='material-symbols-outlined' onclick='window.open("/signin.html","_self")'>account_circle</span>`;
