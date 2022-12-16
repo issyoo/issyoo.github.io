@@ -40,9 +40,12 @@ body{
 .box, .infobox{
 display: flex;
 flex-direction: column;
-background-color: #000;
-background-color: #fff;
 overflow:hidden
+}
+.box:hover{
+box-shadow: 3px 3px 5px rgb(0,0,0,0.2);
+transform: translateY(-3px);
+transition: 0.19s ease;
 }
 .infobox{
 width: 70vw;
