@@ -27,7 +27,7 @@
   background-color: rgb(222,222,222);
   border-radius: 0 0 23px 23px;
 }
-#viewer img{
+#viewer img, img{
   width: 200px;
   height: 200px;
   border-radius: 50%;
@@ -392,7 +392,7 @@ querySnapshot.forEach((doc) => {
   //viewer.setAttribute("class", "namebox");
   document.getElementById('sugg').appendChild(viewer);
   var pic = document.createElement("img");
-  var vPic = docSnap.data().Pic;
+  var vPic = doc.data().Pic;
   viewer.appendChild(pic);
   if(!!vPic){
     pic.setAttribute("src", vPic);}else{
@@ -401,21 +401,21 @@ querySnapshot.forEach((doc) => {
   var name = document.createElement("span");
   viewer.appendChild(name);
   name.setAttribute('class', 'name');
-  name.textContent = docSnap.data().Name;
+  name.textContent = doc.data().Name;
   var phone = document.createElement("div");
-  var vPhone = docSnap.data().Phone;
+  var vPhone = doc.data().Phone;
   if(!!vPhone){
     phone.textContent = vPhone;
     viewer.appendChild(phone);
     }
   var email = document.createElement("h3");
-  var vEmail = docSnap.data().Email;
+  var vEmail = doc.data().Email;
   if(!!vEmail){
     email.textContent = vEmail;
     viewer.appendChild(email);
     }
   var btn = document.createElement("button");
-  btn.onclick = e => {window.open( '/user?' + docSnap.data().Uid, '_self')};
+  btn.onclick = e => {window.open( '/user?' + doc.data().Uid, '_self')};
   viewer.appendChild(btn);
   btn.innerHTML = 'View Profile ';
 });
