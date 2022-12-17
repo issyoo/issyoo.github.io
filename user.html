@@ -415,7 +415,7 @@ querySnapshot.forEach((doc) => {
     viewer.appendChild(email);
     }
   var btn = document.createElement("button");
-  btn.onclick = e => {window.open( '/user?' + doc.data().Uid, '_self')};
+  btn.onclick = e => {window.open( '/user?' + doc.id, '_self')};
   viewer.appendChild(btn);
   btn.innerHTML = 'View Profile ';
 });
