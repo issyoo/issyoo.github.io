@@ -179,7 +179,7 @@ display: none !important;
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <h2 id='load'>loading...</h2>
-<div id='body' oncontextmenu="return false"><div id='profile'></div><div id='sugg'></div></div>
+<div id='body' oncontextmenu="return false"><div id='profile'></div><div id='sugg'><h2>People </h2></div></div>
 <div id='pnf' hidden> <span style='font-size: 200px;'>404 </span><p>The User was not found on this website. Please try again.</p></div>
 <script type="module">
 
@@ -258,11 +258,13 @@ if(docSnap.data().Type === 'user'){
   btn.id= docSnap.data().Uid;
   if(sessionStorage.getItem('uid')){
    try{
+   var req = [];
     const q = query(collection(db, "Proposals"), where("Uid", "in", [[uid, docSnap.data().Uid]]));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
     // doc.data() is never undefined for query doc snapshots
     console.log(doc.id, " => ", doc.data());
+    req.push(doc.id);
     if(doc.data().Status === 'pending' && doc.data().Sender === uid){
       btn.setAttribute('class', 'danger');
       btn.textContent = "Delete Request";
@@ -289,6 +291,12 @@ if(docSnap.data().Type === 'user'){
      btn.onclick = SendRequest;
      btn.textContent = "Request Friend";
     }
+  if(req.length <= 0){
+     console.log("No such document!");
+     btn.setAttribute('class', 'success');
+     btn.onclick = SendRequest;
+     btn.textContent = "Request Friend";
+   {
   }
   else {
       btn.setAttribute('class', 'success');
@@ -372,6 +380,46 @@ async function SendRequest(){
      
      location.reload();
      }
+
+async function GetUsers(name, request){
+const q = query(collection(db, "Public"), where('Type', '==', 'user'), orderBy("Name", "desc"), limit(3));
+const querySnapshot = await getDocs(q);
+querySnapshot.forEach((doc) => {
+  // doc.data() is never undefined for query doc snapshots
+  console.log(doc.id, " => ", doc.data());
+  var viewer = document.createElement("div");
+  //viewer.setAttribute("id", "viewer");
+  //viewer.setAttribute("class", "namebox");
+  document.getElementById('sugg').appendChild(viewer);
+  var pic = document.createElement("img");
+  var vPic = docSnap.data().Pic;
+  viewer.appendChild(pic);
+  if(!!vPic){
+    pic.setAttribute("src", vPic);}else{
+    pic.src = "https://firebasestorage.googleapis.com/v0/b/em-issyoo.appspot.com/o/Screenshot_2022-09-22-14-28-40-452-edit_com.android.chrome.jpg?alt=media&token=aa6e0aba-df6d-4b12-8761-6ca2cc118d2a";
+    }
+  var name = document.createElement("span");
+  viewer.appendChild(name);
+  name.setAttribute('class', 'name');
+  name.textContent = docSnap.data().Name;
+  var phone = document.createElement("div");
+  var vPhone = docSnap.data().Phone;
+  if(!!vPhone){
+    phone.textContent = vPhone;
+    viewer.appendChild(phone);
+    }
+  var email = document.createElement("h3");
+  var vEmail = docSnap.data().Email;
+  if(!!vEmail){
+    email.textContent = vEmail;
+    viewer.appendChild(email);
+    }
+  var btn = document.createElement("button");
+  btn.onclick = e => {window.open( '/user?' + docSnap.data().Uid, '_self')};
+  viewer.appendChild(btn);
+  btn.innerHTML = 'View Profile ';
+});
+}
 function getParameterByName(name, url = window.location.href) {
     name = name.replace(/[\[\]]/g, '\\$&');
     var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
