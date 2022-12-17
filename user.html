@@ -382,7 +382,7 @@ async function SendRequest(){
      }
 
 async function GetUsers(name, request){
-const q = query(collection(db, "Public"), where('Type', '==', 'user'), orderBy("Name", "desc"), limit(3));
+const q = query(collection(db, "Public"), where('Type', '==', 'user'), limit(3));
 const querySnapshot = await getDocs(q);
 querySnapshot.forEach((doc) => {
   // doc.data() is never undefined for query doc snapshots
