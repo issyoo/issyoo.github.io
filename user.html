@@ -241,7 +241,7 @@ import { getStorage, ref as sRef, uploadBytesResumable , getDownloadURL
 
 
 async function getMeta(){
-    var uid = sessionStorage.getItem("uid")
+    var uid = sessionStorage.getItem("uid");
 const docRef = doc(db, "Public" , getParameterByName('i'));
 const docSnap = await getDoc(docRef);
 if (docSnap.exists()) {
@@ -401,6 +401,7 @@ async function SendRequest(){
      }
 GetUsers();
 async function GetUsers(){
+var uid = sessionStorage.getItem("uid");
 const q = query(collection(db, "Public"), where('Type', '==', 'user'),where('Uid', '!=', uid), limit(3));
 const querySnapshot = await getDocs(q);
 querySnapshot.forEach((doc) => {
