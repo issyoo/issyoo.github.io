@@ -136,20 +136,20 @@ width: 100vw !important;
 }
 .tools{
 width: 100vw;
-background-color: #000;
+background-color: #fff;
 display: flex;
 justify-content: space-between;
 }
 .tools button{
-background-color: #000;
-color: #fff;
+background-color: #fff;
+color: #000;
 border:none;
 padding: 7px;
 width: 20vw;
 }
 .tools button:active{
 background-color: pink;
-color: #000;
+color: #fff;
 border-radius: 21px;
 }
 #body{
@@ -254,7 +254,7 @@ if(docSnap.data().Type === 'content'){
            // div.ontouchend = e => { if(y >= e.touches[0].clientY){document.getElementById("body").classList.add("minimize"); } else if(y <= e.touches[0].clientY){document.getElementById("body").classList.remove("minimize"); } e.preventDefault();}
             var title = document.createElement('p');
             title.innerHTML = `<span id='desc'><p>${docSnap.data().Title}</p><p>${docSnap.data().Description}</p></span>`;
-            document.getElementById('titleCont').innerHTML = docSnap.data().Title;
+          //  document.getElementById('titleCont').innerHTML = docSnap.data().Title;
             document.getElementById('load').hidden = true;
             var header = document.createElement('title');
             header.innerHTML = docSnap.data().Title + ' | issyoo';
