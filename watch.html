@@ -285,6 +285,11 @@ if(docSnap.data().Type === 'content'){
             tt.setAttribute('class', 'title');
             tt.innerHTML = `<h2 onclick='document.getElementById("body").classList.toggle("minimize");'>${docSnap.data().Title}</h2><span class='material-symbols-outlined' onclick='document.getElementById("body").classList.toggle("minimize");'>keyboard_arrow_down</span>`;
             document.getElementById('body').appendChild(tt);
+            let ownr = document.createElement('div');
+            ownr.setAttribute('class', 'owner');
+           // ownr.innerHTML = `<h2 onclick='document.getElementById("body").classList.toggle("minimize");'>${docSnap.data().Title}</h2><span class='material-symbols-outlined' onclick='document.getElementById("body").classList.toggle("minimize");'>keyboard_arrow_down</span>`;
+            document.getElementById('body').appendChild(ownr);
+            getOwner(ownr, docSnap.data().Uid);
             document.getElementById('body').appendChild(tools);
             var comm = document.createElement('p');
             comm.innerHTML = `<span id='comm'>Public comments </span>`;
@@ -313,7 +318,15 @@ var header = document.createElement('title');
    // document.getElementById('load').hidden = true;
     }
     getMeta();
-   
+   async function getOwner(cont, id) {
+    const q = query(collection(db, "Public"), where("Uid", "==", id), where('Type', '==', 'user'));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        console.log(doc.id, " => ", doc.data());
+        cont.innerHTML = `<img src=${doc.data().Pic} width = '55px' onclick="window.open('/'+${doc.id},'_self')"><span>${ doc.data().Name}</span><button>Subscribe</button>`;
+    });
+}
  /*async function getCont(cont, id){
   const q = query(collection(db, "Public"), where("Uid", "==", id));
 
