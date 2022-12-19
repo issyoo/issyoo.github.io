@@ -638,10 +638,10 @@ console.log(getParameterByName('i'));
 window.onscroll = function() {scrollFunction()};
 
 function scrollFunction() {
-  if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
-    document.getElementById("ifrm").style.height = "220px";
+  if (document.body.scrollTop > 30 || document.documentElement.scrollTop > 30) {
+    document.getElementById("ifrm").style ="height:220px; position:fixed;";
   } else {
-    document.getElementById("ifrm").style.height = "auto";
+    document.getElementById("ifrm").style = "height:auto; position: absolute;";
   }
 }
 function createRipple() {
