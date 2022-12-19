@@ -199,6 +199,12 @@ color: pink !important;
 .active:active {
 color: #fff !important;
 }
+.comment{
+margin: 10px;
+padding: 12px;
+background-color: rgb(245,245,245);
+border-radius: 15px;
+}
   </style>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -295,9 +301,10 @@ if(docSnap.data().Type === 'content'){
             document.getElementById('body').appendChild(ownr);
             getOwner(ownr, docSnap.data().Uid);
             document.getElementById('body').appendChild(tools);
-            var comm = document.createElement('p');
+            var comm = document.createElement('div');
+            comm.setAttribute('class', 'comment');
             comm.innerHTML = `<span id='comm'>Public comments </span>`;
-            document.body.appendChild(comm);
+            document.getElementById('body').appendChild(comm);
 document.getElementById('like').onclick= like;
 document.getElementById('dislike').onclick= dislike;
         }
