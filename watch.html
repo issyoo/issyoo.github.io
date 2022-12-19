@@ -205,6 +205,16 @@ padding: 12px;
 background-color: rgb(245,245,245);
 border-radius: 15px;
 }
+#subscribe{
+border: none;
+border-radius: 23px;
+background-color: #000;
+color: #fff;
+}
+#subscribe:active {
+background-color: pink;
+color: #000;
+}
   </style>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -335,7 +345,7 @@ var header = document.createElement('title');
     querySnapshot.forEach((doc) => {
         // doc.data() is never undefined for query doc snapshots
         console.log(doc.id, " => ", doc.data());
-        cont.innerHTML = `<span class='owner' onclick="window.open(${doc.id} ,'_self')"><img src=${doc.data().Pic} style='width:40px; height: 40px; border-radius: 23px;'><span>${ doc.data().Name}</span></span><button>Subscribe</button>`;
+        cont.innerHTML = `<span class='owner' onclick="window.open(${doc.id} ,'_self')"><img src=${doc.data().Pic} style='width:40px; height: 40px; border-radius: 23px;'><span>${ doc.data().Name}</span></span><button id='subscribe'>Subscribe</button>`;
     });
 }
  /*async function getCont(cont, id){
