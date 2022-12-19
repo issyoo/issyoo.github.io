@@ -357,24 +357,19 @@ document.getElementById('like').classList.remove('active');
 async function liked(){
 colsole.log('liked video');
 const q = query(collection(db, "People"), where("Uid", "==", sessionStorage.getItem('uid')));
-const unsubscribe = onSnapshot(q, (snapshot) => {
-  snapshot.docChanges().forEach((change) => {
-    if (change.type === "added") {
-        console.log("New city: ", change.doc.data());
-        var likeA = change.doc.data().Likes;
+const querySnapshot = await getDocs(q);
+querySnapshot.forEach((doc) => {
+  // doc.data() is never undefined for query doc snapshots
+  console.log(doc.id, " => ", doc.data());
+        var likeA = doc.data().Likes;
         const checklike = likeA.filter(function(element){ return element == getParameterByName('i') });
-        if(checklike){ console.log('liked')}
-    }
-    if (change.type === "modified") {
-        console.log("Modified city: ", change.doc.data());
-    }
-    if (change.type === "removed") {
-        console.log("Removed city: ", change.doc.data());
-    }
-  });
+        if(checklike){ 
+          console.log('liked');
+          document.getElementById('like').classList.add('active');
+          }
 });
 }
-
+liked();
 function getParameterByName(name, url = window.location.href) {
     name = name.replace(/[\[\]]/g, '\\$&');
     var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
