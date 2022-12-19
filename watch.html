@@ -230,6 +230,7 @@ if(docSnap.data().Type === 'content'){
             ifrm.setAttribute("src", docSnap.data().Url);
             ifrm.style.maxHeight = '70vh';
             ifrm.controls = true;
+            ifrm.autoplay = true;
             ifrm.controlsList = "nodownload";
             ifrm.setAttribute('id', 'ifrm');
             div.appendChild(ifrm);
