@@ -12,6 +12,101 @@
     margin:0;
     padding:0;
     }
+
+.cont{
+    width: 100%;
+    min-height: 200px;
+    max-height: 290px;
+    overflow:hidden;
+    background-color:#000;
+    display: flex;
+    justify-content: center;
+  //  align-items:center;
+    border-radius: 13px;
+    }
+.box, .infobox{
+display: flex;
+flex-direction: column;
+overflow:hidden
+}
+.box:hover{
+box-shadow: 3px 3px 5px rgb(0,0,0,0.2), inset 3px 3px 5px rgb(0,0,0,0.2);
+transform: translateY(-3px);
+transition: 0.19s ease;
+border-radius: 17px;
+}
+.infobox{
+width: 70vw;
+border-radius:0;
+padding: 7px 0;
+}
+.box .title{
+display: flex;
+align-items:center;
+}
+.tname{
+   font-weight:900;
+   font-size: 18px;
+}
+.name{
+  font-size: 10px;
+}
+.tBox{
+display: flex;
+justify-content: space-between;
+align-items:center;
+}
+.moreBtn:active{
+background-color: rgb(255,255,255,0.2);
+}
+.ifrm{
+width: 100%;
+border-radius: 13px;
+}
+.box{
+position: relative;
+  padding: 12px;
+  overflow: hidden;
+  margin:0;
+  transition: background 400ms;
+}
+span.ripple {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple 600ms linear;
+  background-color: rgba(5, 5, 5, 0.2);
+}
+
+@keyframes ripple {
+
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+
+}
+@media only screen and (min-width: 600px) {
+  .cont{
+   width: 100%;
+   height: 100px !important;
+   overflow:hidden;
+   border-radius: 13px;
+ }
+.box{
+display: flex;
+flex-direction: row;
+height: 100px !important;
+}
+.ifrm{
+//width: 200px !important;
+max-height: 100px !important;
+border-radius: 13px;
+}
+
+}
+
+
   #content{
     margin: 0;
     border-radius: 2px;
