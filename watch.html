@@ -1,6 +1,6 @@
 <head>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <style>
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@600&display=swap');
 </style>
@@ -261,7 +261,7 @@ if(docSnap.data().Type === 'content'){
             document.head.appendChild(header);
             var tools = document.createElement('div');
             tools.setAttribute('class', 'tools');
-            tools.innerHTML = `<button class='material-symbols-outlined' id='like'>thumb_up</button><button class='material-symbols-outlined' id='dislike'>thumb_down</button><button class='material-symbols-outlined' onclick='document.getElementById("body").classList.toggle("minimize");'>comment</button><button class='material-symbols-outlined' onclick='document.getElementById("body").classList.toggle("minimize");'>description</button><button class='material-symbols-outlined'>library_add</button>`;
+            tools.innerHTML = `<button class="material-icons-outlined" id='like'>thumb_up</button><button class="material-icons-outlined" id='dislike'>thumb_down</button><button class='material-symbols-outlined' onclick='document.getElementById("body").classList.toggle("minimize");'>comment</button><button class='material-symbols-outlined' onclick='document.getElementById("body").classList.toggle("minimize");'>description</button><button class='material-symbols-outlined'>library_add</button>`;
             document.body.appendChild(title);
             document.getElementById('body').appendChild(tools);
             var comm = document.createElement('p');
@@ -340,7 +340,11 @@ await updateDoc(washingtonRef, {
     Likes: arrayUnion(getParameterByName('i'))
 });
 document.getElementById('like').classList.add('active');
+document.getElementById('like').classList.add('material-icons');
+document.getElementById('like').classList.remove('material-icons-outlined');
 document.getElementById('dislike').classList.remove('active');
+document.getElementById('dislike').classList.add('material-icons-outlined');
+document.getElementById('dislike').classList.remove('material-icons');
 }
 async function dislike(){
 const q = query(collection(db, "People"), where("Uid", "==", sessionStorage.getItem('uid')));
@@ -360,7 +364,11 @@ await updateDoc(washingtonRef, {
     Likes: arrayRemove(getParameterByName('i'))
 });
 document.getElementById('dislike').classList.add('active');
+document.getElementById('dislike').classList.add('material-icons');
+document.getElementById('dislike').classList.remove('material-icons-outlined');
 document.getElementById('like').classList.remove('active');
+document.getElementById('like').classList.add('material-icons-outlined');
+document.getElementById('like').classList.remove('material-icons');
 }
 async function liked(){
 colsole.log('liked video');
