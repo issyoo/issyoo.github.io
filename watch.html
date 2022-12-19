@@ -166,6 +166,9 @@ display: none !important;
 #desc, #comm{
 padding: 12px 9px;
 }
+.active{
+color: pink;
+}
   </style>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -250,7 +253,7 @@ if(docSnap.data().Type === 'content'){
             document.head.appendChild(header);
             var tools = document.createElement('div');
             tools.setAttribute('class', 'tools');
-            tools.innerHTML = `<button class='material-symbols-outlined' onclick='like()'>thumb_up</button><button class='material-symbols-outlined'>thumb_down</button><button class='material-symbols-outlined' onclick='document.getElementById("body").classList.toggle("minimize");'>comment</button><button class='material-symbols-outlined' onclick='document.getElementById("body").classList.toggle("minimize");'>description</button><button class='material-symbols-outlined'>library_add</button>`;
+            tools.innerHTML = `<button class='material-symbols-outlined' onclick='like()' id='like'>thumb_up</button><button class='material-symbols-outlined' onclick='dislike()' id='dislike'>thumb_down</button><button class='material-symbols-outlined' onclick='document.getElementById("body").classList.toggle("minimize");'>comment</button><button class='material-symbols-outlined' onclick='document.getElementById("body").classList.toggle("minimize");'>description</button><button class='material-symbols-outlined'>library_add</button>`;
             document.body.appendChild(title);
             document.getElementById('body').appendChild(tools);
             var comm = document.createElement('p');
@@ -310,9 +313,59 @@ var div = document.createElement('div');
 }
 */
 async function like(){
-colsole.log('liked video');
+const q = query(collection(db, "People"), where("Uid", "==", sessionStorage.getItem('uid')));
 
+const querySnapshot = await getDocs(q);
+querySnapshot.forEach((doc) => {
+  // doc.data() is never undefined for query doc snapshots
+  console.log(doc.id, " => ", doc.data());
+
+const washingtonRef = doc(db, "People", doc.id);
+
+// Set the "capital" field of the city 'DC'
+await updateDoc(washingtonRef, {
+    Likes: arrayUnion(getParameterByName('i'))
+});
+document.getElementById('dislike').classList.add('active');
+document.getElementById('like').classList.remove('active');
+});
 }
+async function dislike(){
+const q = query(collection(db, "People"), where("Uid", "==", sessionStorage.getItem('uid')));
+
+const querySnapshot = await getDocs(q);
+querySnapshot.forEach((doc) => {
+  // doc.data() is never undefined for query doc snapshots
+  console.log(doc.id, " => ", doc.data());
+
+const washingtonRef = doc(db, "People", doc.id);
+
+// Set the "capital" field of the city 'DC'
+await updateDoc(washingtonRef, {
+    Likes: arrayRemove(getParameterByName('i'))
+});
+document.getElementById('like').classList.add('active');
+document.getElementById('like').classList.add('active');
+});
+}
+async function liked(){
+colsole.log('liked video');
+const q = query(collection(db, "People"), where("Uid", "==", sessionStorage.getItem('uid')));
+const unsubscribe = onSnapshot(q, (snapshot) => {
+  snapshot.docChanges().forEach((change) => {
+    if (change.type === "added") {
+        console.log("New city: ", change.doc.data());
+    }
+    if (change.type === "modified") {
+        console.log("Modified city: ", change.doc.data());
+    }
+    if (change.type === "removed") {
+        console.log("Removed city: ", change.doc.data());
+    }
+  });
+});
+}
+
 function getParameterByName(name, url = window.location.href) {
     name = name.replace(/[\[\]]/g, '\\$&');
     var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
