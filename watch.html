@@ -275,8 +275,7 @@ if(docSnap.data().Type === 'content'){
             document.body.appendChild(title);
             let tt = document.createElement('div');
             tt.setAttribute('class', 'title');
-            tt.onclick = 'document.getElementById("body").classList.toggle("minimize");';
-            tt.innerHTML = `<h2>${docSnap.data().Title}</h2><span class='material-symbols-outlined'>keyboard_arrow_down</span>`;
+            tt.innerHTML = `<h2 onclick='document.getElementById("body").classList.toggle("minimize");'>${docSnap.data().Title}</h2><span class='material-symbols-outlined' onclick='document.getElementById("body").classList.toggle("minimize");'>keyboard_arrow_down</span>`;
             document.getElementById('body').appendChild(tt);
             document.getElementById('body').appendChild(tools);
             var comm = document.createElement('p');
