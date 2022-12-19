@@ -13,7 +13,7 @@
     padding:0;
     }
 
-.cont{
+.contM{
     width: 100%;
     min-height: 200px;
     max-height: 290px;
@@ -24,46 +24,46 @@
   //  align-items:center;
     border-radius: 13px;
     }
-.box, .infobox{
+.boxM, .infoboxM{
 display: flex;
 flex-direction: column;
 overflow:hidden
 }
-.box:hover{
+.boxM:hover{
 box-shadow: 3px 3px 5px rgb(0,0,0,0.2), inset 3px 3px 5px rgb(0,0,0,0.2);
 transform: translateY(-3px);
 transition: 0.19s ease;
 border-radius: 17px;
 }
-.infobox{
+.infoboxM{
 width: 70vw;
 border-radius:0;
 padding: 7px 0;
 }
-.box .title{
+.boxM .titleM{
 display: flex;
 align-items:center;
 }
-.tname{
+.tnameM{
    font-weight:900;
    font-size: 18px;
 }
-.name{
+.nameM{
   font-size: 10px;
 }
-.tBox{
+.tBoxM{
 display: flex;
 justify-content: space-between;
 align-items:center;
 }
-.moreBtn:active{
+.moreBtnM:active{
 background-color: rgb(255,255,255,0.2);
 }
-.ifrm{
+.ifrmM{
 width: 100%;
 border-radius: 13px;
 }
-.box{
+.boxM{
 position: relative;
   padding: 12px;
   overflow: hidden;
@@ -87,18 +87,18 @@ span.ripple {
 
 }
 @media only screen and (min-width: 600px) {
-  .cont{
+  .contM{
    width: 100%;
    height: 100px !important;
    overflow:hidden;
    border-radius: 13px;
  }
-.box{
+.boxM{
 display: flex;
 flex-direction: row;
 height: 100px !important;
 }
-.ifrm{
+.ifrmM{
 //width: 200px !important;
 max-height: 100px !important;
 border-radius: 13px;
@@ -571,26 +571,26 @@ async function newData() {
                 title.appendChild(ttlbox);
                 var ttl = document.createElement('span');
                 ttlbox.appendChild(ttl);
-                ttlbox.setAttribute("class", 'infobox');
-                ttl.setAttribute("class", 'tname');
+                ttlbox.setAttribute("class", 'infoboxM');
+                ttl.setAttribute("class", 'tnameM');
                 ttl.innerHTML = change.doc.data().Title;
                 var nam = document.createElement('span');
-                nam.setAttribute("class", 'name');
+                nam.setAttribute("class", 'nameM');
                 ttlbox.appendChild(nam);
                 moreData(change.doc.data().Uid, img, nam);
                 let moreBtn = document.createElement('span');
-                moreBtn.setAttribute("class", 'material-symbols-outlined moreBtn');
+                moreBtn.setAttribute("class", 'material-symbols-outlined moreBtnM');
                 moreBtn.innerHTML = 'more_vert';
                 //title.innerHTML = `<img style='width:39px; height:39px; border-radius:23px;' src=${moreData(change.doc.data().Uid).Pic}> <p>${change.doc.data().Title}</p><br><p>${moreData(change.doc.data().Uid).Name}</p>`;
                 var tbox = document.createElement('span');
                 tbox.appendChild(title)
                 cont.appendChild(tbox);
                 tbox.appendChild(moreBtn);
-                tbox.setAttribute("class", 'tBox');
-                ifrm.setAttribute("class", 'ifrm');
-                title.setAttribute("class", 'title');
-                div.setAttribute('class', 'cont');
-                cont.setAttribute("class", 'box');
+                tbox.setAttribute("class", 'tBoxM');
+                ifrm.setAttribute("class", 'ifrmM');
+                title.setAttribute("class", 'titleM');
+                div.setAttribute('class', 'contM');
+                cont.setAttribute("class", 'boxM');
                 cont.ontouchstart = createRipple;
             }
             if (change.type === "modified") {
