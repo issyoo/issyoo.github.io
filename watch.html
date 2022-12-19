@@ -259,6 +259,8 @@ if(docSnap.data().Type === 'content'){
             var comm = document.createElement('p');
             comm.innerHTML = `<span id='comm'>Public comments </span>`;
             document.body.appendChild(comm);
+document.getElementById('like').onclick= like;
+document.getElementById('dislike').onclick= dislike;
         }
 else if(docSnap.data().Type === 'user'){
    location.replace('/user?i=' + getParameterByName('i'));
@@ -312,8 +314,6 @@ var div = document.createElement('div');
   });
 }
 */
-document.getElementById('like').onclick= like;
-document.getElementById('dislike').onclick= dislike;
 async function like(){
 const q = query(collection(db, "People"), where("Uid", "==", sessionStorage.getItem('uid')));
 
