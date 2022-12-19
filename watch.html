@@ -253,7 +253,7 @@ if(docSnap.data().Type === 'content'){
             document.head.appendChild(header);
             var tools = document.createElement('div');
             tools.setAttribute('class', 'tools');
-            tools.innerHTML = `<button class='material-symbols-outlined' onclick='like()' id='like'>thumb_up</button><button class='material-symbols-outlined' onclick='dislike()' id='dislike'>thumb_down</button><button class='material-symbols-outlined' onclick='document.getElementById("body").classList.toggle("minimize");'>comment</button><button class='material-symbols-outlined' onclick='document.getElementById("body").classList.toggle("minimize");'>description</button><button class='material-symbols-outlined'>library_add</button>`;
+            tools.innerHTML = `<button class='material-symbols-outlined' id='like'>thumb_up</button><button class='material-symbols-outlined' id='dislike'>thumb_down</button><button class='material-symbols-outlined' onclick='document.getElementById("body").classList.toggle("minimize");'>comment</button><button class='material-symbols-outlined' onclick='document.getElementById("body").classList.toggle("minimize");'>description</button><button class='material-symbols-outlined'>library_add</button>`;
             document.body.appendChild(title);
             document.getElementById('body').appendChild(tools);
             var comm = document.createElement('p');
@@ -312,6 +312,8 @@ var div = document.createElement('div');
   });
 }
 */
+document.getElementById('like').addEventListener('click', like);
+document.getElementById('dislike').addEventListener('click', dislike);
 async function like(){
 const q = query(collection(db, "People"), where("Uid", "==", sessionStorage.getItem('uid')));
 
