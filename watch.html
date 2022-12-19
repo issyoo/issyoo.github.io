@@ -137,6 +137,12 @@ text-overflow: ellipsis;
 white-space: nowrap;
 margin:0;
 }
+#titleCont{
+opacity:0;
+}
+.minimize #titleCont{
+opacity: 1 !important;
+}
 .minimize .box *{
 height: 200px !important;
 width: 100vw !important;
@@ -264,7 +270,7 @@ if(docSnap.data().Type === 'content'){
            // div.ontouchend = e => { if(y >= e.touches[0].clientY){document.getElementById("body").classList.add("minimize"); } else if(y <= e.touches[0].clientY){document.getElementById("body").classList.remove("minimize"); } e.preventDefault();}
             var title = document.createElement('p');
             title.innerHTML = `<span id='desc'><h2>${docSnap.data().Title}</h2><p>${docSnap.data().Description}</p></span>`;
-          //  document.getElementById('titleCont').innerHTML = docSnap.data().Title;
+            document.getElementById('titleCont').innerHTML = docSnap.data().Title;
             document.getElementById('load').hidden = true;
             var header = document.createElement('title');
             header.innerHTML = docSnap.data().Title + ' | issyoo';
