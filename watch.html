@@ -261,7 +261,7 @@ if(docSnap.data().Type === 'content'){
             document.head.appendChild(header);
             var tools = document.createElement('div');
             tools.setAttribute('class', 'tools');
-            tools.innerHTML = `<button class="material-icons-outlined" id='like'>thumb_up</button><button class="material-icons-outlined" id='dislike'>thumb_down</button><button class='material-symbols-outlined' onclick='document.getElementById("body").classList.toggle("minimize");'>comment</button><button class='material-symbols-outlined'>flag</button><button class='material-symbols-outlined'>library_add</button>`;
+            tools.innerHTML = `<button class="material-symbols-outlined" id='like'>thumb_up</button><button class="material-symbols-outlined" id='dislike'>thumb_down</button><button class='material-symbols-outlined' onclick='document.getElementById("body").classList.toggle("minimize");'>comment</button><button class='material-symbols-outlined'>flag</button><button class='material-symbols-outlined'>library_add</button>`;
             document.body.appendChild(title);
             document.getElementById('body').appendChild(tools);
             var comm = document.createElement('p');
@@ -341,9 +341,9 @@ await updateDoc(washingtonRef, {
 });
 document.getElementById('like').classList.add('active');
 document.getElementById('like').classList.add('material-icons');
-document.getElementById('like').classList.remove('material-icons-outlined');
+document.getElementById('like').classList.remove('material-symbols-outlined');
 document.getElementById('dislike').classList.remove('active');
-document.getElementById('dislike').classList.add('material-icons-outlined');
+document.getElementById('dislike').classList.add('material-symbols-outlined');
 document.getElementById('dislike').classList.remove('material-icons');
 }
 async function dislike(){
@@ -365,9 +365,9 @@ await updateDoc(washingtonRef, {
 });
 document.getElementById('dislike').classList.add('active');
 document.getElementById('dislike').classList.add('material-icons');
-document.getElementById('dislike').classList.remove('material-icons-outlined');
+document.getElementById('dislike').classList.remove('material-symbols-outlined');
 document.getElementById('like').classList.remove('active');
-document.getElementById('like').classList.add('material-icons-outlined');
+document.getElementById('like').classList.add('material-symbols-outlined');
 document.getElementById('like').classList.remove('material-icons');
 }
 async function liked(){
