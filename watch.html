@@ -324,7 +324,7 @@ var header = document.createElement('title');
     querySnapshot.forEach((doc) => {
         // doc.data() is never undefined for query doc snapshots
         console.log(doc.id, " => ", doc.data());
-        cont.innerHTML = `<span onclick="window.open(${doc.id} ,'_self')"><img src=${doc.data().Pic} style='width:40px; height: 40px; border-radius: 23px;'><span>${ doc.data().Name}</span></span><button>Subscribe</button>`;
+        cont.innerHTML = `<span class='owner' onclick="window.open(${doc.id} ,'_self')"><img src=${doc.data().Pic} style='width:40px; height: 40px; border-radius: 23px;'><span>${ doc.data().Name}</span></span><button>Subscribe</button>`;
     });
 }
  /*async function getCont(cont, id){
