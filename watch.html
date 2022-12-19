@@ -129,6 +129,7 @@ display: flex;
 flex-direction: row;
 justify-content: space-between;
 align-items: center;
+padding: 7px 23px;
 }
 .title h2{
 overflow: hidden;
@@ -274,7 +275,8 @@ if(docSnap.data().Type === 'content'){
             document.body.appendChild(title);
             let tt = document.createElement('div');
             tt.setAttribute('class', 'title');
-            tt.innerHTML = `<h2>${docSnap.data().Title}</h2><span class='material-symbols-outlined' id='minimise' onclick='document.getElementById("body").classList.toggle("minimize");'>keyboard_arrow_down</span>`;
+            tt.onclick = 'document.getElementById("body").classList.toggle("minimize");';
+            tt.innerHTML = `<h2>${docSnap.data().Title}</h2><span class='material-symbols-outlined'>keyboard_arrow_down</span>`;
             document.getElementById('body').appendChild(tt);
             document.getElementById('body').appendChild(tools);
             var comm = document.createElement('p');
