@@ -27,14 +27,15 @@
 .boxM, .infoboxM{
 display: flex;
 flex-direction: column;
-overflow:hidden
+overflow:hidden;
+border-bottom: solid .5px gray;
 }
-.boxM:hover{
+/*.boxM:hover{
 box-shadow: 3px 3px 5px rgb(0,0,0,0.2), inset 3px 3px 5px rgb(0,0,0,0.2);
 transform: translateY(-3px);
 transition: 0.19s ease;
 border-radius: 17px;
-}
+}*/
 .infoboxM{
 width: 70vw;
 border-radius:0;
@@ -401,7 +402,7 @@ if(docSnap.data().Type === 'content'){
             document.body.appendChild(title);
             let tt = document.createElement('div');
             tt.setAttribute('class', 'title');
-            tt.ontouchstart = createRipple;
+           // tt.ontouchstart = createRipple;
             tt.innerHTML = `<h2 onclick='document.getElementById("body").classList.toggle("minimize");'>${docSnap.data().Title}</h2><span class='material-symbols-outlined' onclick='document.getElementById("body").classList.toggle("minimize");'>keyboard_arrow_down</span>`;
             document.getElementById('body').appendChild(tt);
             let ownr = document.createElement('div');
@@ -413,7 +414,7 @@ if(docSnap.data().Type === 'content'){
             var comm = document.createElement('div');
             comm.setAttribute('class', 'comment');
             comm.innerHTML = `<span id='comm'>Public comments </span>`;
-            comm.ontouchstart = createRipple;
+          //  comm.ontouchstart = createRipple;
             document.getElementById('body').appendChild(comm);
 document.getElementById('like').onclick= like;
 document.getElementById('dislike').onclick= dislike;
