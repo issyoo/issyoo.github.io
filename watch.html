@@ -641,10 +641,12 @@ window.onscroll = function() {scrollFunction()};
 function scrollFunction() {
   if (document.body.scrollTop > 30 || document.documentElement.scrollTop > 30) {
     document.getElementById("ifrm").style.height = "220px";
+    document.getElementById("ifrm").style.width = "100vw";
     document.getElementById("ifrm").style.position = "fixed";
   } else {
     document.getElementById("ifrm").style.height = "auto";
-    document.getElementById("ifrm").style.position = "absolute;";
+    document.getElementById("ifrm").style.width = "100vw";
+    document.getElementById("ifrm").style.position = "relative";
   }
 }
 function createRipple() {
