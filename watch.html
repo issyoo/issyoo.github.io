@@ -134,12 +134,13 @@ max-width: 80%;
 height: 200px !important;
 width: 100vw !important;
 }
+.tools{
+width: 100vw;
+display: flex;
+}
 .tools span{
-padding: 2px 7px;
-background-color: rgb(245,245,255);
+background-color: rgb(245,245,245);
 color: #000;
-border-radius: 12px;
-margin: 5px;
 }
 #body{
 transition: top 0.23s ease;
@@ -247,7 +248,7 @@ if(docSnap.data().Type === 'content'){
             document.head.appendChild(header);
             var tools = document.createElement('div');
             tools.setAttribute('class', 'tools');
-            tools.innerHTML = `<span class='material-symbols-outlined'>thumb_up</span><span class='material-symbols-outlined'>thumb_down</span>`;
+            tools.innerHTML = `<span class='material-symbols-outlined'>thumb_up</span><span class='material-symbols-outlined'>thumb_down</span><span class='material-symbols-outlined'>stream</span><span class='material-symbols-outlined'>list</span>`;
             document.body.appendChild(title);
             document.getElementById('body').appendChild(tools);
             var comm = document.createElement('p');
