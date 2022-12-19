@@ -319,8 +319,11 @@ const querySnapshot = await getDocs(q);
 querySnapshot.forEach((doc) => {
   // doc.data() is never undefined for query doc snapshots
   console.log(doc.id, " => ", doc.data());
-
-const washingtonRef = doc(db, "People", doc.id);
+   lik(doc.id);
+  });
+  }
+  async function lik(id){
+const washingtonRef = doc(db, "People", id);
 
 // Set the "capital" field of the city 'DC'
 await updateDoc(washingtonRef, {
@@ -328,7 +331,6 @@ await updateDoc(washingtonRef, {
 });
 document.getElementById('dislike').classList.add('active');
 document.getElementById('like').classList.remove('active');
-});
 }
 async function dislike(){
 const q = query(collection(db, "People"), where("Uid", "==", sessionStorage.getItem('uid')));
@@ -337,8 +339,11 @@ const querySnapshot = await getDocs(q);
 querySnapshot.forEach((doc) => {
   // doc.data() is never undefined for query doc snapshots
   console.log(doc.id, " => ", doc.data());
-
-const washingtonRef = doc(db, "People", doc.id);
+  dislik(doc.id);
+  });
+  }
+  async function dislik(id){
+const washingtonRef = doc(db, "People", id);
 
 // Set the "capital" field of the city 'DC'
 await updateDoc(washingtonRef, {
@@ -346,7 +351,6 @@ await updateDoc(washingtonRef, {
 });
 document.getElementById('like').classList.add('active');
 document.getElementById('like').classList.add('active');
-});
 }
 async function liked(){
 colsole.log('liked video');
