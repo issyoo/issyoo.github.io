@@ -312,8 +312,8 @@ var div = document.createElement('div');
   });
 }
 */
-document.getElementById('like').addEventListener('click', like);
-document.getElementById('dislike').addEventListener('click', dislike);
+document.getElementById('like').onclick= like;
+document.getElementById('dislike').onclick= dislike;
 async function like(){
 const q = query(collection(db, "People"), where("Uid", "==", sessionStorage.getItem('uid')));
 
