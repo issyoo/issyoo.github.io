@@ -251,7 +251,7 @@ if(docSnap.data().Type === 'content'){
   //let y;
             head.setAttribute('class', 'head');
             document.getElementById('body').appendChild(head);
-            head.innerHTML = `<span class='material-symbols-outlined' id='minimise' onclick='document.getElementById("body").classList.toggle("minimize");'></span><span id='titleCont'></span> <span id='shareCont'></span><span class='material-symbols-outlined' id='closeCont' onclick='this.parentElement.parentElement.remove()'>close</span>`
+            head.innerHTML = `<span class='material-symbols-outlined' id='minimise' onclick='document.getElementById("body").classList.toggle("minimize");'>expand_more</span><span id='titleCont'></span> <span id='shareCont'></span><span class='material-symbols-outlined' id='closeCont' onclick='this.parentElement.parentElement.remove()'>close</span>`
             let div = document.createElement('div');
             div.setAttribute('id', 'content');
             document.getElementById('body').appendChild(div);
