@@ -321,6 +321,7 @@ document.getElementById('dislike').onclick= dislike;
 else if(docSnap.data().Type === 'user'){
    location.replace('/user?i=' + getParameterByName('i'));
 }
+newData();
 document.getElementById('load').hidden = true;
 var header = document.createElement('title');
     header.innerHTML = docSnap.data().Name + ' | issyoo';
@@ -442,6 +443,86 @@ querySnapshot.forEach((doc) => {
 });
 }
 liked();
+
+async function newData() {
+
+    var uid = sessionStorage.getItem('uid');
+
+    const citiesRef = collection(db, "Public");
+    const q = query(citiesRef, where('Type', '==', 'content'));
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+        snapshot.docChanges().forEach((change) => {
+            if (change.type === "added") {
+                console.log("New msg: " + change.doc.data());
+                var div = document.createElement('div');
+                var cont = document.createElement('div');
+                cont.appendChild(div);
+                document.getElementById("body").appendChild(cont);
+                if (!!change.doc.data().FileTyp) { var ffl = change.doc.data().FileTyp; }
+                else { ffl = 'iframe'; }
+                let ifrm = document.createElement(ffl);
+                ifrm.setAttribute("src", change.doc.data().Url);
+                div.setAttribute('id', change.doc.id);
+                ifrm.controls = false;
+                div.onclick = openCont;
+                div.appendChild(ifrm);
+                var title = document.createElement('span');
+                var img = document.createElement('img');
+                title.appendChild(img);
+                img.style.height = '40px';
+                img.style.width = '40px';
+                img.style.borderRadius = '23px';
+                var ttlbox = document.createElement('span');
+                title.appendChild(ttlbox);
+                var ttl = document.createElement('span');
+                ttlbox.appendChild(ttl);
+                ttlbox.setAttribute("class", 'infobox');
+                ttl.setAttribute("class", 'tname');
+                ttl.innerHTML = change.doc.data().Title;
+                var nam = document.createElement('span');
+                nam.setAttribute("class", 'name');
+                ttlbox.appendChild(nam);
+                moreData(change.doc.data().Uid, img, nam);
+                let moreBtn = document.createElement('span');
+                moreBtn.setAttribute("class", 'material-symbols-outlined moreBtn');
+                moreBtn.innerHTML = 'more_vert';
+                //title.innerHTML = `<img style='width:39px; height:39px; border-radius:23px;' src=${moreData(change.doc.data().Uid).Pic}> <p>${change.doc.data().Title}</p><br><p>${moreData(change.doc.data().Uid).Name}</p>`;
+                var tbox = document.createElement('span');
+                tbox.appendChild(title)
+                cont.appendChild(tbox);
+                tbox.appendChild(moreBtn);
+                tbox.setAttribute("class", 'tBox');
+                ifrm.setAttribute("class", 'ifrm');
+                title.setAttribute("class", 'title');
+                div.setAttribute('class', 'cont');
+                cont.setAttribute("class", 'box');
+                cont.ontouchstart = createRipple;
+            }
+            if (change.type === "modified") {
+                alert("Modified msg: " + change.doc.data().Msg);
+            }
+            if (change.type === "removed") {
+                // alert("Removed msg: "+ change.doc.data().Msg);
+                document.getElementById(change.doc.id).parentElement.remove();
+            }
+        });
+    });
+}
+async function moreData(id, img, nam) {
+    const q = query(collection(db, "Public"), where("Uid", "==", id), where('Type', '==', 'user'));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        console.log(doc.id, " => ", doc.data());
+        img.src = doc.data().Pic;
+        img.onclick = e => { window.open('/'+this.id,'_self')}
+        nam.innerHTML = doc.data().Name;
+    });
+}
+
+function openCont() {
+    location.href = location.href + 'watch?i=' + this.id;
+}
 function getParameterByName(name, url = window.location.href) {
     name = name.replace(/[\[\]]/g, '\\$&');
     var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
