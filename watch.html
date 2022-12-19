@@ -141,7 +141,7 @@ width: 100vw;
 background-color: rgb(245,245,245);
 color: #000;
 border:none;
-width: 25vw;
+width: 20vw;
 
 }
 #body{
@@ -250,7 +250,7 @@ if(docSnap.data().Type === 'content'){
             document.head.appendChild(header);
             var tools = document.createElement('div');
             tools.setAttribute('class', 'tools');
-            tools.innerHTML = `<button class='material-symbols-outlined'>thumb_up</button><button class='material-symbols-outlined'>thumb_down</button><button class='material-symbols-outlined' onclick='document.getElementById("body").classList.toggle("minimize");'>comment</button><button class='material-symbols-outlined' onclick='document.getElementById("body").classList.toggle("minimize");'>feed</button>`;
+            tools.innerHTML = `<button class='material-symbols-outlined'>thumb_up</button><button class='material-symbols-outlined'>thumb_down</button><button class='material-symbols-outlined' onclick='document.getElementById("body").classList.toggle("minimize");'>comment</button><button class='material-symbols-outlined' onclick='document.getElementById("body").classList.toggle("minimize");'>description</button><button class='material-symbols-outlined'>library_add</button>`;
             document.body.appendChild(title);
             document.getElementById('body').appendChild(tools);
             var comm = document.createElement('p');
