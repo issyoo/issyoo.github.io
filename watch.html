@@ -136,13 +136,18 @@ width: 100vw !important;
 }
 .tools{
 width: 100vw;
+display: flex;
+justify-content: space-between;
 }
 .tools button{
-background-color: rgb(245,245,245);
-color: #000;
+background-color: #000;
+color: #fff;
 border:none;
-width: 20vw;
-
+padding: 7px;
+}
+.tools button:active{
+background-color: pink;
+color: #000;
 }
 #body{
 transition: top 0.23s ease;
