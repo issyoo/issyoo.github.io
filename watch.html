@@ -251,7 +251,7 @@ if(docSnap.data().Type === 'content'){
   //let y;
             head.setAttribute('class', 'head');
             document.getElementById('body').appendChild(head);
-            head.innerHTML = `<span class='material-symbols-outlined' id='minimise' onclick='document.getElementById("body").classList.toggle("minimize");'>keyboard_arrow_down</span><span id='titleCont'></span> <span class='material-symbols-outlined' id='shareCont' onclick='window.open("whatsapp://send?text=https://issyoo.github.io/${getParameterByName('i')}", "_self")'>forward</span><span class='material-symbols-outlined' id='closeCont' onclick='this.parentElement.parentElement.remove()'>close</span>`
+            head.innerHTML = `<span class='material-symbols-outlined' id='minimise' onclick='document.getElementById("body").classList.toggle("minimize");'></span><span id='titleCont'></span> <span id='shareCont'></span><span class='material-symbols-outlined' id='closeCont' onclick='this.parentElement.parentElement.remove()'>close</span>`
             let div = document.createElement('div');
             div.setAttribute('id', 'content');
             document.getElementById('body').appendChild(div);
@@ -279,7 +279,7 @@ if(docSnap.data().Type === 'content'){
             document.head.appendChild(header);
             var tools = document.createElement('div');
             tools.setAttribute('class', 'tools');
-            tools.innerHTML = `<button class="material-symbols-outlined" id='like'>thumb_up</button><button class="material-symbols-outlined" id='dislike'>thumb_down</button><button class='material-symbols-outlined' onclick='document.getElementById("body").classList.toggle("minimize");'>comment</button><button class='material-symbols-outlined'>flag</button><button class='material-symbols-outlined'>library_add</button>`;
+            tools.innerHTML = `<button class="material-symbols-outlined" id='like'>thumb_up</button><button class="material-symbols-outlined" id='dislike'>thumb_down</button><button class='material-symbols-outlined' onclick='window.open("whatsapp://send?text=https://issyoo.github.io/${getParameterByName('i')}", "_self")'>forward</button><button class='material-symbols-outlined'>flag</button><button class='material-symbols-outlined'>library_add</button>`;
             document.body.appendChild(title);
             let tt = document.createElement('div');
             tt.setAttribute('class', 'title');
