@@ -183,7 +183,7 @@ height: 45px;
       //  mix-blend-mode: difference;
     }
 .ifrm{
-width: 100vw;
+width: 100%;
 border-radius: 13px;
 transition: height .2s ease;
 z-index: 12;
@@ -640,14 +640,14 @@ window.onscroll = function() {scrollFunction()};
 
 function scrollFunction() {
   if (document.body.scrollTop > 30 || document.documentElement.scrollTop > 30) {
-    document.getElementById("ifrm").style.height = "220px";
-    document.getElementById("ifrm").style.width = "100vw";
-    document.getElementById("ifrm").style.position = "fixed";
+    document.getElementById("content").style.height = "220px";
+    document.getElementById("content").style.width = "100vw";
+    document.getElementById("content").style.position = "fixed";
     document.getElementById("body").style.borderTop = "solid black 220px";
   } else {
-    document.getElementById("ifrm").style.height = "auto";
-    document.getElementById("ifrm").style.width = "100vw";
-    document.getElementById("ifrm").style.position = "relative";
+    document.getElementById("content").style.height = "auto";
+    document.getElementById("content").style.width = "100vw";
+    document.getElementById("content").style.position = "relative";
     document.getElementById("body").style.borderTop = "none";
   }
 }
