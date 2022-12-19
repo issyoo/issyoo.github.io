@@ -250,7 +250,7 @@ if(docSnap.data().Type === 'content'){
             document.head.appendChild(header);
             var tools = document.createElement('div');
             tools.setAttribute('class', 'tools');
-            tools.innerHTML = `<button class='material-symbols-outlined'>thumb_up</button><button class='material-symbols-outlined'>thumb_down</button><button class='material-symbols-outlined' onclick='document.getElementById("body").classList.toggle("minimize");'>comment</button><button class='material-symbols-outlined' onclick='document.getElementById("body").classList.toggle("minimize");'>description</button><button class='material-symbols-outlined'>library_add</button>`;
+            tools.innerHTML = `<button class='material-symbols-outlined' onclick='like()'>thumb_up</button><button class='material-symbols-outlined'>thumb_down</button><button class='material-symbols-outlined' onclick='document.getElementById("body").classList.toggle("minimize");'>comment</button><button class='material-symbols-outlined' onclick='document.getElementById("body").classList.toggle("minimize");'>description</button><button class='material-symbols-outlined'>library_add</button>`;
             document.body.appendChild(title);
             document.getElementById('body').appendChild(tools);
             var comm = document.createElement('p');
@@ -309,6 +309,10 @@ var div = document.createElement('div');
   });
 }
 */
+async function like(){
+colsole.log('liked video');
+
+}
 function getParameterByName(name, url = window.location.href) {
     name = name.replace(/[\[\]]/g, '\\$&');
     var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
