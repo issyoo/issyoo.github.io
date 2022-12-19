@@ -643,10 +643,12 @@ function scrollFunction() {
     document.getElementById("ifrm").style.height = "220px";
     document.getElementById("ifrm").style.width = "100vw";
     document.getElementById("ifrm").style.position = "fixed";
+    document.getElementById("body").style.borderTop = "220px";
   } else {
     document.getElementById("ifrm").style.height = "auto";
     document.getElementById("ifrm").style.width = "100vw";
     document.getElementById("ifrm").style.position = "relative";
+    document.getElementById("body").style.borderTop = "none";
   }
 }
 function createRipple() {
