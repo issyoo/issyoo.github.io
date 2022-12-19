@@ -331,8 +331,8 @@ const washingtonRef = doc(db, "People", id);
 await updateDoc(washingtonRef, {
     Likes: arrayUnion(getParameterByName('i'))
 });
-document.getElementById('dislike').classList.add('active');
-document.getElementById('like').classList.remove('active');
+document.getElementById('like').classList.add('active');
+document.getElementById('dislike').classList.remove('active');
 }
 async function dislike(){
 const q = query(collection(db, "People"), where("Uid", "==", sessionStorage.getItem('uid')));
@@ -351,8 +351,8 @@ const washingtonRef = doc(db, "People", id);
 await updateDoc(washingtonRef, {
     Likes: arrayRemove(getParameterByName('i'))
 });
-document.getElementById('like').classList.add('active');
-document.getElementById('like').classList.add('active');
+document.getElementById('dislike').classList.add('active');
+document.getElementById('like').classList.remove('active');
 }
 async function liked(){
 colsole.log('liked video');
@@ -361,6 +361,9 @@ const unsubscribe = onSnapshot(q, (snapshot) => {
   snapshot.docChanges().forEach((change) => {
     if (change.type === "added") {
         console.log("New city: ", change.doc.data());
+        var likeA = change.doc.data().Likes;
+        const checklike = likeA.filter(function(element){ return element == getParameterByName('i') });
+        if(checklike){ console.log('liked')}
     }
     if (change.type === "modified") {
         console.log("Modified city: ", change.doc.data());
