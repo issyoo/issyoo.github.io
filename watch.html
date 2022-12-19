@@ -185,6 +185,7 @@ height: 45px;
 .ifrm{
 width: 100%;
 border-radius: 13px;
+transition: height .2s ease;
 }
 #viewer .success{
 border:none;
@@ -637,7 +638,7 @@ console.log(getParameterByName('i'));
 window.onscroll = function() {scrollFunction()};
 
 function scrollFunction() {
-  if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+  if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
     document.getElementById("ifrm").style.height = "220px";
   } else {
     document.getElementById("ifrm").style.height = "auto";
