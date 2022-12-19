@@ -87,7 +87,7 @@ async function newData() {
                 title.setAttribute("class", 'title');
                 div.setAttribute('class', 'cont');
                 cont.setAttribute("class", 'box');
-                cont.ontouchstaet = createRipple;
+                cont.ontouchstart = createRipple;
             }
             if (change.type === "modified") {
                 alert("Modified msg: " + change.doc.data().Msg);
