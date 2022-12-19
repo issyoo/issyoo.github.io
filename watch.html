@@ -640,13 +640,13 @@ window.onscroll = function() {scrollFunction()};
 
 function scrollFunction() {
   if (document.body.scrollTop > 30 || document.documentElement.scrollTop > 30) {
-    document.getElementById("content").style.height = "220px";
+    document.getElementById("ifrm").style.height = "220px";
     document.getElementById("content").style.width = "100vw";
     document.getElementById("content").style.position = "fixed";
     document.getElementById("content").style.top = 0;
-    document.getElementById("body").style.borderTop = "solid black 220px";
+    document.getElementById("body").style.borderTop = "solid black " + document.body.scrollTop.toString()+"px";
   } else {
-    document.getElementById("content").style.height = "auto";
+    document.getElementById("ifrm").style.height = "auto";
     document.getElementById("content").style.width = "100vw";
     document.getElementById("content").style.position = "relative";
     document.getElementById("body").style.borderTop = "none";
