@@ -125,7 +125,7 @@ position: absolute !important;
 mix-blend-mode: difference;
 z-index: 2 !important;
 }
-.title {
+.title ,.owner{
 display: flex;
 flex-direction: row;
 justify-content: space-between;
@@ -324,7 +324,7 @@ var header = document.createElement('title');
     querySnapshot.forEach((doc) => {
         // doc.data() is never undefined for query doc snapshots
         console.log(doc.id, " => ", doc.data());
-        cont.innerHTML = `<img src=${doc.data().Pic} width = '55px' onclick="window.open('/'+${doc.id},'_self')"><span>${ doc.data().Name}</span><button>Subscribe</button>`;
+        cont.innerHTML = `<span onclick="window.open(${doc.id} ,'_self')"><img src=${doc.data().Pic} style='width:40px; height: 40px; border-radius: 23px;'><span>${ doc.data().Name}</span></span><button>Subscribe</button>`;
     });
 }
  /*async function getCont(cont, id){
