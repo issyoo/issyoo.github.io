@@ -437,7 +437,7 @@ Check_login_data();
 
      var myUid = sessionStorage.getItem("uid");
      var friends=[];
-const q = query(collection(db, "Friends"), where('Uid','array-contains-any',uid) , where("Status", "==", "accepted"));
+const q = query(collection(db, "Proposals"), where('Uid','array-contains',uid) , where("Status", "==", "accepted"));
 
 const unsubscribe = onSnapshot(q, (snapshot) => {
 
