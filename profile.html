@@ -340,11 +340,7 @@ querySnapshot.forEach((doc) => {
 document.getElementById("uid").textContent = auth.currentUser.uid;
    }
     Check_login_data();
- async function gUid(){
-
-alert( 'uid: ' + auth.currentUser.uid);
-}
-gUid();
+ 
 async function Signout(){
 
 signOut(auth).then(() => {
