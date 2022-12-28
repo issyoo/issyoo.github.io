@@ -338,12 +338,13 @@ querySnapshot.forEach((doc) => {
   document.getElementById("progg").hidden = true;
 });
 
-
-      }
-
-      document.getElementById("uid").textContent = auth.currentUser.uid;
-    Check_login_data()
-
+   }
+    Check_login_data();
+ async function gUid(){
+document.getElementById("uid").textContent = auth.currentUser.uid;
+alert( 'uid: ' + auth.currentUser.uid);
+}
+gUid();
 async function Signout(){
 
 signOut(auth).then(() => {
