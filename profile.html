@@ -227,7 +227,7 @@ justify-content:center;
  <div class="div"><span class="material-symbols-outlined" id="gender_sym"></span> <span>Gender: </span><span id="gender"></span></div>
  <div class="div"><span class="material-symbols-outlined">cake</span> <span>D.O.B.: </span><span id="dob"></span></div>
  <div class="div"><span class="material-symbols-outlined">email</span> <span>Email: </span><span id="email"></span></div>
- <div class="div" hidden><!--span class="material-symbols-outlined">id</span--> <span>User Id: </span><span id="uid"></span></div>
+ <div class="div" ><!--span class="material-symbols-outlined">id</span--> <span>User Id: </span><span id="uid"></span></div>
   </div>
 <fieldset id="morebtn">
 <legend style='color:#000;'>More Actions</legend>
@@ -338,10 +338,10 @@ querySnapshot.forEach((doc) => {
   document.getElementById("progg").hidden = true;
 });
 
-      document.getElementById("uid").textContent = auth.currentUser.uid;
 
       }
 
+      document.getElementById("uid").textContent = auth.currentUser.uid;
     Check_login_data()
 
 async function Signout(){
