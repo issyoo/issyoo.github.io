@@ -194,6 +194,10 @@
       border: solid 1px;
       border-radius: 5px;
       }
+.del{
+position: absolute;
+float: right;
+}
 </style>
 </head>
 <body>
@@ -553,7 +557,7 @@ var div = document.createElement('div');
   msg.innerHTML = urlify(change.doc.data().Msg);
 
   var del = document.createElement('button');
-  del.setAttribute('class', 'material-symbols-outlined');
+  del.setAttribute('class', 'material-symbols-outlined del');
       del.textContent = 'delete';
       del.onclick = deleteData;
       if(change.doc.data().Time.toMillis() >= Timestamp.fromDate(new Date()).toMillis() - 1690000 && change.doc.data().Name == localStorage.getItem('Name')){
