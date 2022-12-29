@@ -44,10 +44,9 @@
  // For more info see:  
  // https://firebase.google.com/docs/cloud-messaging/concept-options 
  messaging.onBackgroundMessage(function(payload) { 
-   console.log( "[firebase-messaging-sw.js] Received background message "; //,  payload );
+   console.log( "[firebase-messaging-sw.js] Received background message " ,  payload );
   const notificationTitle = payload.notification.title;
   const notificationOptions = { body: payload.notification.body, icon: payload.notification.icon, image: payload.notification.image };
   
-   self.registration.showNotification(notificationTitle,  notificationOptions); 
- });
+   self.registration.showNotification(notificationTitle,  notificationOptions); });
 
