@@ -725,11 +725,9 @@ newData();
   var uid = sessionStorage.getItem("uid");
   var luid = localStorage.getItem("uid");
   if(uid){
-
      console.log(uid);
-
     }
- // else if(luid){ sessionStorage.setItem('uid', luid);}
+   else if(luid){ sessionStorage.setItem('uid' , luid);}
   else{ window.open("/signin.html", "_self")}
 
   var gen = localStorage.getItem("Gen");
