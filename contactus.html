@@ -21,10 +21,10 @@
       color: #fff;
 }
     #body{
-      min-height: 80vh;
       width: 100vw;
       margin-top: 45px;
       margin-bottom: 15px;
+      padding-bottom: 50px;
       }
      button{
       background: transparent;
@@ -39,6 +39,7 @@
       margin: 10px;
       word-break:break-all;
       border-radius: 0 25px 25px 25px;
+      border: solid 1px;
       }
     .myMsg{
       border-radius: 25px 0 25px 25px;
@@ -48,13 +49,11 @@
       position:relative;
       left: 40vw;
       margin: 10px;
+      border: solid 1px;
       }
     .msg img, .msg video, .msg audio, .msg iframe{
-
-      
       border-radius: 23px;
       margin: 2px;
-
       }
     .myMsg img, .myMsg video, .myMsg audio, .myMsg iframe{
      
@@ -113,13 +112,14 @@
      // box-shadow: 5px 5px 5px rgb(22,122,222,0.4);
 }
     #inpBox{
-      position: relative;
+      position: fixed;
       width: 100%;
       display: flex;
       justify-content: space-between;
       align-items:center;
       height: 45px;
-      
+      bottom:0;
+      border-top: solid;
       }
     #back{
       position: fixed;
