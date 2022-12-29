@@ -555,7 +555,7 @@ var div = document.createElement('div');
   del.setAttribute('class', 'material-symbols-outlined');
       del.textContent = 'delete';
       del.onclick = deleteData;
-      if(change.doc.data().Time.toMillis() >= Timestamp.fromDate(new Date()).toMillis() - 16990000 && change.doc.data().Name == sessionStorage.getItem('Name')){
+      if(change.doc.data().Time.toMillis() >= Timestamp.fromDate(new Date()).toMillis() - 1690000 && change.doc.data().Name == localStorage.getItem('Name')){
       div.appendChild(del);}
       var ffl = change.doc.data().Attachment;
 
