@@ -2,12 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='https://talktale.web.app/theme.css'>
 </head>
-<body>
+<body class='background primary-text'>
     <input id="files" type="file" accept=".docx" />
     <input type="button" id="btnPreview" value="Preview Word Document" onclick="PreviewWordDoc()" />
-    <div id="word-container" class=""></div>
-    <!--script type="text/javascript" src="https://unpkg.com/jszip/dist/jszip.min.js"></script-->
+    <div id="word-container" class="tertiary-container"></div>
+    <script type="text/javascript" src="https://unpkg.com/jszip/dist/jszip.min.js"></script>
     <script src="./docx-preview.js"></script>
     <script type="text/javascript">
         function PreviewWordDoc() {
