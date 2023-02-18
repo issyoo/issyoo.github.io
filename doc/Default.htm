@@ -1,0 +1,32 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <input id="files" type="file" accept=".docx" />
+    <input type="button" id="btnPreview" value="Preview Word Document" onclick="PreviewWordDoc()" />
+    <div id="word-container" class=""></div>
+    <script type="text/javascript" src="https://unpkg.com/jszip/dist/jszip.min.js"></script>
+    <script src="Scripts/docx-preview.js"></script>
+    <script type="text/javascript">
+        function PreviewWordDoc() {
+            //Read the Word Document data from the File Upload.
+            var doc = document.getElementById("files").files[0];
+
+            //If Document not NULL, render it.
+            if (doc != null) {
+                //Set the Document options.
+                var docxOptions = Object.assign(docx.defaultOptions, {
+                    useMathMLPolyfill: true
+                });
+                //Reference the Container DIV.
+                var container = document.querySelector("#word-container");
+
+                //Render the Word Document.
+                docx.renderAsync(doc, container, null, docxOptions);
+            }
+        }
+    </script>
+</body>
+</html>
