@@ -2811,7 +2811,7 @@ section.${c} { box-sizing: border-box; display: flex; flex-flow: column nowrap; 
 section.${c}>article { margin-bottom: auto; }
 .${c} table { border-collapse: collapse; }
 .${c} table td, .${c} table th { vertical-align: top; }
-.${c} p { margin: 0pt; min-height: 1em; }
+.${c} p { margin: 0pt; width: 100vw; }
 .${c} span { white-space: pre-wrap; overflow-wrap: break-word; }
 .${c} a { color: inherit; text-decoration: inherit; }
 `;
